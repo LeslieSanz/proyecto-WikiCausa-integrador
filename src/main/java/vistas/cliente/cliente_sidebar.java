@@ -4,6 +4,7 @@
  */
 package vistas.cliente;
 
+import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -230,6 +231,17 @@ public class cliente_sidebar extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(cliente_sidebar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
+        /* Create and display the form */
+        try {
+//            UIManager.setLookAndFeel(new FlatLightLaf());
+//             FlatArcIJTheme.setup();
+            FlatLightFlatIJTheme.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
