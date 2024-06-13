@@ -102,7 +102,7 @@ public class cliente_inicio extends javax.swing.JPanel {
         Categorias.setText("Categorías");
         jPanel1.add(Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
 
-        bannerBlancoDerecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/menuDerecha.png"))); // NOI18N
+        bannerBlancoDerecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/background_lateral.png"))); // NOI18N
         jPanel1.add(bannerBlancoDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 30, -1, -1));
 
         estofado.setBackground(new java.awt.Color(245, 245, 245));
