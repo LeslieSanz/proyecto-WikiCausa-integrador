@@ -13,7 +13,9 @@ public class cliente_menu extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(245, 245, 245));
+
+        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
 
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 89, 19));

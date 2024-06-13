@@ -15,7 +15,7 @@ public class cliente_perfil extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
 
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 89, 19));
