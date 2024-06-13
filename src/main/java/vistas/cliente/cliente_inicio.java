@@ -37,7 +37,6 @@ public class cliente_inicio extends javax.swing.JPanel {
         btnVerTodas1 = new javax.swing.JToggleButton();
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
-        jPanel1.setMaximumSize(new java.awt.Dimension(32767, 32767));
         jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(1049, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,19 +71,19 @@ public class cliente_inicio extends javax.swing.JPanel {
                 btnBebidasActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBebidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 500, -1, -1));
+        jPanel1.add(btnBebidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, -1, -1));
 
         btnHamburguesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/Hamburguesas.png"))); // NOI18N
         btnHamburguesas.setContentAreaFilled(false);
-        jPanel1.add(btnHamburguesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 500, -1, -1));
+        jPanel1.add(btnHamburguesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, -1, -1));
 
         btnPollito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/Pollito.png"))); // NOI18N
         btnPollito.setContentAreaFilled(false);
-        jPanel1.add(btnPollito, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 500, -1, -1));
+        jPanel1.add(btnPollito, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 480, -1, -1));
 
         btnPostrecitos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/Postrecitos.png"))); // NOI18N
         btnPostrecitos.setContentAreaFilled(false);
-        jPanel1.add(btnPostrecitos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 500, -1, -1));
+        jPanel1.add(btnPostrecitos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
 
         panelDerechoTuDespensa.setBackground(new java.awt.Color(255, 255, 255));
         panelDerechoTuDespensa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -101,7 +100,7 @@ public class cliente_inicio extends javax.swing.JPanel {
 
         Categorias.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         Categorias.setText("Categorías");
-        jPanel1.add(Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, -1, -1));
+        jPanel1.add(Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
 
         bannerBlancoDerecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/menuDerecha.png"))); // NOI18N
         jPanel1.add(bannerBlancoDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 30, -1, -1));
@@ -161,7 +160,7 @@ public class cliente_inicio extends javax.swing.JPanel {
         btnVerTodas1.setText("Ver Todas    >");
         btnVerTodas1.setBorder(null);
         btnVerTodas1.setContentAreaFilled(false);
-        jPanel1.add(btnVerTodas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 460, -1, -1));
+        jPanel1.add(btnVerTodas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 450, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
