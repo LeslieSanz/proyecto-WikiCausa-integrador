@@ -1,6 +1,7 @@
 package modelo;
 
 public class IngredienteDTO {
+    private int id;
     private String nombre;
     private String tipo;
 
@@ -18,6 +19,14 @@ public class IngredienteDTO {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     

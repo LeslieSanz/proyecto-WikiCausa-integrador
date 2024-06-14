@@ -41,6 +41,7 @@ public class ingredienteDAO implements IngredienteInterface{
             rs = ps.executeQuery();
             while(rs.next()){
                 i = new IngredienteDTO();
+                i.setId(rs.getInt("IdIngrediente"));
                 i.setNombre(rs.getString("Nombre"));
                 i.setTipo(rs.getString("Tipo_Ingrediente_IdTipo"));
                 lista.add(i);
