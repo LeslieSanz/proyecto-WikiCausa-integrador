@@ -4,7 +4,7 @@
  */
 package vistas.cliente;
 
-import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -234,17 +234,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        try {
-//            UIManager.setLookAndFeel(new FlatLightLaf());
-//             FlatArcIJTheme.setup();
-            FlatLightFlatIJTheme.setup();
-        } catch (Exception ex) {
-            System.err.println("Failed to initialize LaF");
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new cliente_sidebar().setVisible(true);
