@@ -1,24 +1,24 @@
 package modeloDAO;
 import config.Conexion;
 import java.util.ArrayList;
-import misInterfaces.IngredienteInterface;
-import modelo.IngredienteDTO;
 import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import misInterfaces.TipoIngredienteInterface;
+import modelo.TipoIngrediente;
 
-public class ingredienteDAO implements IngredienteInterface{
+public class tipoIngredienteDAO implements TipoIngredienteInterface{
     Connection conn;
     Conexion con = new Conexion();
     Statement st;
     PreparedStatement ps;
     ResultSet rs;
-    ArrayList<IngredienteDTO> lista = new ArrayList<>(); 
-    IngredienteDTO i;
+    ArrayList<TipoIngrediente> lista = new ArrayList<>(); 
+    TipoIngrediente ti;
     
     @Override
-    public boolean agregar(IngredienteDTO i) {
+    public boolean agregar(TipoIngrediente ti) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -28,32 +28,17 @@ public class ingredienteDAO implements IngredienteInterface{
     }
 
     @Override
-    public boolean modificar(IngredienteDTO i) {
+    public boolean modificar(TipoIngrediente i) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public ArrayList<IngredienteDTO> listarTodos() {
-        try {
-            String sql = "select * from ingredientes";
-            conn = con.getConexion();
-            ps = conn.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                i = new IngredienteDTO();
-                i.setNombre(rs.getString("Nombre"));
-                i.setTipo(rs.getString("Tipo_Ingrediente_IdTipo"));
-                lista.add(i);
-            }
-            conn.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return lista;
+    public ArrayList<TipoIngrediente> listarTodos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public IngredienteDTO listarUno(String codigo) {
+    public TipoIngrediente listarUno(String codigo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
