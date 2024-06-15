@@ -1,11 +1,43 @@
 package vistas.admin;
 
-import vistas.cliente.*;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import modelo.IngredienteDTO;
+import modelo.RecetaIngredientesDTO;
+import modeloDAO.ingredienteDAO;
+
 
 public class admin_recetas extends javax.swing.JPanel {
+    //Declarar un objeto de la clase ingredientes
+    IngredienteDTO i;
+    //Declarar un objeto de la clase ingredineteDAO
+    ingredienteDAO id;
+    
+    //RecetaIngredientes
+    RecetaIngredientesDTO dd;
+    ArrayList<RecetaIngredientesDTO> listaDetalle = new ArrayList<>();
+    
+    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modelo2 = new DefaultTableModel();
+
     
     public admin_recetas() {
         initComponents();
+        establecerColumnas();
+        establecerColumnas2();
+    }
+    
+    private void establecerColumnas(){
+        modelo.addColumn("Id");
+        modelo.addColumn("Nombre");
+        tblIngredientesGeneral.setModel(modelo);
+    }
+    
+    private void establecerColumnas2(){
+        modelo2.addColumn("Ingrediente");
+        modelo2.addColumn("Cantidad");
+        modelo2.addColumn("Medida");
+        tblDetalle.setModel(modelo2);
     }
 
     @SuppressWarnings("unchecked")
@@ -21,7 +53,7 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblIngredientesGeneral = new javax.swing.JTable();
         btnAgregarReceta = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -29,11 +61,11 @@ public class admin_recetas extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblDetalle = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField4 = new javax.swing.JTextField();
+        cbxUnidadMedida = new javax.swing.JComboBox<>();
+        txtCant = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -42,8 +74,9 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtCodIngre = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        btnMostrar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(245, 245, 245));
 
@@ -68,7 +101,7 @@ public class admin_recetas extends javax.swing.JPanel {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 177, -1, -1));
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 205, 151, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblIngredientesGeneral.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -79,12 +112,22 @@ public class admin_recetas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        tblIngredientesGeneral.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblIngredientesGeneralMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblIngredientesGeneral);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 286, 290));
 
         btnAgregarReceta.setText("Agregar");
-        jPanel1.add(btnAgregarReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 450, -1, -1));
+        btnAgregarReceta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarRecetaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregarReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, -1, -1));
 
         jLabel5.setText("Porcion");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 123, -1, -1));
@@ -97,7 +140,7 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel7.setText("min");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, -1, -1));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -108,7 +151,7 @@ public class admin_recetas extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblDetalle);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(652, 128, 366, 277));
 
@@ -118,9 +161,9 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel9.setText("Unidad de medida");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 400, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, -1, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, 149, -1));
+        cbxUnidadMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Presas", "Tazas", "Cucharadas", "Pedazo" }));
+        jPanel1.add(cbxUnidadMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 400, -1, -1));
+        jPanel1.add(txtCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 370, 149, -1));
 
         jLabel10.setText("Nro. de calorias");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 230, -1, -1));
@@ -137,14 +180,24 @@ public class admin_recetas extends javax.swing.JPanel {
 
         jLabel11.setText("Lista de ingredientes para la receta");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, -1, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 520, 20));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 520, 20));
 
         jLabel12.setText("Agregar ingredientes");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 110, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
+
+        txtCodIngre.setEditable(false);
+        jPanel1.add(txtCodIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 110, -1));
 
         jLabel13.setText("Cod. Ingrediente");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
+
+        btnMostrar.setText("Mostrar");
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -158,14 +211,79 @@ public class admin_recetas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        mostrarTablaIngredientes();
+    }//GEN-LAST:event_btnMostrarActionPerformed
+
+    private void tblIngredientesGeneralMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblIngredientesGeneralMouseClicked
+        int row = tblIngredientesGeneral.getSelectedRow();
+        
+        int codIngre = Integer.parseInt(tblIngredientesGeneral.getValueAt(row, 0)+"");
+        txtCodIngre.setText(codIngre+"");
+    }//GEN-LAST:event_tblIngredientesGeneralMouseClicked
+
+    private void btnAgregarRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarRecetaActionPerformed
+        //Obteniendo los datos de los campos
+        int cant = Integer.parseInt(txtCant.getText());
+        String medida = cbxUnidadMedida.getSelectedItem().toString();
+        
+        //Buscando ingrediente
+        String codigo = txtCodIngre.getText();
+        id = new ingredienteDAO();
+        i = id.listarUno(codigo);
+        
+        dd = new RecetaIngredientesDTO();
+        dd.setIngrediente(i);
+        dd.setCantidad(cant);
+        dd.setMedida(medida);
+        
+        //Agregandolo a la tabla de ingredientes
+        listaDetalle.add(dd);
+        txtCant.setText(null);
+        mostrarTablaDetalle();
+    }//GEN-LAST:event_btnAgregarRecetaActionPerformed
+    
+    public void mostrarTablaIngredientes(){
+        //Mostrar productos en la tabla
+        modelo.setRowCount(0);
+        id = new ingredienteDAO();   
+        ArrayList<IngredienteDTO> listaIngredientes = new ArrayList<>();
+        listaIngredientes = id.listarTodos();
+        for(int i=0; i<listaIngredientes.size(); i++){
+            Object[] data = {
+                listaIngredientes.get(i).getId(), 
+                listaIngredientes.get(i).getNombre(),
+                };
+            modelo.addRow(data);
+        }
+    }
+    
+    public void eliminarElementosTabla() {
+        for (int i = tblDetalle.getRowCount() - 1; i >= 0; i--) {
+            modelo2.removeRow(i);
+        }
+    }
+
+    public void mostrarTablaDetalle() {
+        eliminarElementosTabla();
+        for (int i = 0; i < listaDetalle.size(); i++) {
+            Object[] data = {
+                listaDetalle.get(i).getIngrediente().getNombre(),
+                listaDetalle.get(i).getCantidad(),
+                listaDetalle.get(i).getMedida(),
+                };
+            modelo2.addRow(data);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarReceta;
+    private javax.swing.JButton btnMostrar;
     private javax.swing.JComboBox<String> cbxBuscarCategoria;
+    private javax.swing.JComboBox<String> cbxUnidadMedida;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -183,14 +301,14 @@ public class admin_recetas extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTable tblDetalle;
+    private javax.swing.JTable tblIngredientesGeneral;
+    private javax.swing.JTextField txtCant;
+    private javax.swing.JTextField txtCodIngre;
     private javax.swing.JTextField txtNombreReceta;
     // End of variables declaration//GEN-END:variables
 }

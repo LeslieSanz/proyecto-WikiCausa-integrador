@@ -3,9 +3,7 @@ package modelo;
 public class TipoIngrediente {
     private int id;
     private String nombre;
-
-
-
+    
     public String getNombre() {
         return nombre;
     }

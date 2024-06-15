@@ -35,15 +35,15 @@ public class ingredienteDAO implements IngredienteInterface{
     @Override
     public ArrayList<IngredienteDTO> listarTodos() {
         try {
-            String sql = "select * from ingredientes";
+            String sql = "select idIngrediente,Nombre from ingredientes";
             conn = con.getConexion();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
                 i = new IngredienteDTO();
-                i.setId(rs.getInt("IdIngrediente"));
+                i.setId(rs.getInt("idIngrediente"));
                 i.setNombre(rs.getString("Nombre"));
-                i.setTipo(rs.getString("Tipo_Ingrediente_IdTipo"));
+               // i.setTipo(rs.getString("Tipo_Ingrediente_IdTipo"));
                 lista.add(i);
             }
             conn.close();
@@ -55,7 +55,21 @@ public class ingredienteDAO implements IngredienteInterface{
 
     @Override
     public IngredienteDTO listarUno(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "select idIngrediente,Nombre from ingredientes where idIngrediente='"+codigo+"'";
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                i = new IngredienteDTO();
+                i.setId(rs.getInt("idIngrediente"));
+                i.setNombre(rs.getString("Nombre"));
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return i;
     }
     
 }
