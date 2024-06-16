@@ -1,6 +1,12 @@
 package vistas.general;
 
+import javax.swing.JOptionPane;
+import modelo.Usuario;
+import modeloDAO.UsurarioDAO;
+
 public class registro extends javax.swing.JFrame {
+
+    UsurarioDAO usDao = new UsurarioDAO();
 
     public registro() {
         initComponents();
@@ -127,6 +133,11 @@ public class registro extends javax.swing.JFrame {
         btnIngresar.setContentAreaFilled(false);
         btnIngresar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/RegistrarBlanco.png"))); // NOI18N
         btnIngresar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/RegistrarBlanco.png"))); // NOI18N
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
         background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 580, -1, 110));
 
         txtNom.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
@@ -176,7 +187,6 @@ public class registro extends javax.swing.JFrame {
             }
         });
         background.add(txtRepPssw, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 280, -1));
-        txtRepPssw.getAccessibleContext().setAccessibleDescription("");
 
         txtEmail1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         txtEmail1.setForeground(new java.awt.Color(147, 147, 147));
@@ -251,6 +261,22 @@ public class registro extends javax.swing.JFrame {
     private void txtApeMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApeMaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApeMaActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+
+        try {
+            Usuario usu = new Usuario();
+            usu.setCorreo(txtEmail1.getText());
+            usu.setPassword(txtPssw1.getText());
+            usu.setNombre(txtNom.getText());
+            usu.setApellidoP(txtApePa.getText());
+            usu.setApellidoM(txtApeMa.getText());
+            usDao.AgregarUsu(usu);
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Usuario no agregado");
+        }
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

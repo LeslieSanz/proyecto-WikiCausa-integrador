@@ -1,8 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vistas.general;
+
+import javax.swing.JOptionPane;
+import modelo.Usuario;
+import modeloDAO.UsurarioDAO;
+import vistas.cliente.cliente_sidebar;
 
 /**
  *
@@ -10,6 +11,8 @@ package vistas.general;
  */
 public class iniciar_sesion extends javax.swing.JFrame {
 
+    UsurarioDAO usDao = new UsurarioDAO();
+    
     public iniciar_sesion() {
         initComponents();
     }
@@ -69,6 +72,11 @@ public class iniciar_sesion extends javax.swing.JFrame {
         btnIngresar.setContentAreaFilled(false);
         btnIngresar.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/btnIngresar2.png"))); // NOI18N
         btnIngresar.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/btnIngresar2.png"))); // NOI18N
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
         background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, -1, 60));
         background.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, 310, 30));
 
@@ -116,6 +124,23 @@ public class iniciar_sesion extends javax.swing.JFrame {
         b.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        
+        String correo=txtUsuario.getText();
+        String password=contrasena.getText();
+        Usuario usu=usDao.validarUsu(correo, password);
+        
+        if (usu!=null) {
+            System.out.println("Wuenas "+usu.getNombre());
+            cliente_sidebar cliSi= new cliente_sidebar();
+            cliSi.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Piña Usuario y/o contraseña no encontrado");
+        }
+        
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
      * @param args the command line arguments
