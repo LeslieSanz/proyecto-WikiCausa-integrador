@@ -37,13 +37,13 @@ public class admin_sidebar extends javax.swing.JFrame {
         btnInicio = new javax.swing.JPanel();
         casita = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnMiMenu = new javax.swing.JPanel();
+        btnRecetas = new javax.swing.JPanel();
         casita2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnMiDespensa = new javax.swing.JPanel();
+        btnIngredientes = new javax.swing.JPanel();
         casita1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnMiPerfil = new javax.swing.JPanel();
+        btnMiPerfilAdmin = new javax.swing.JPanel();
         casita3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -76,59 +76,59 @@ public class admin_sidebar extends javax.swing.JFrame {
 
         sidebar.add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 230, 60));
 
-        btnMiMenu.setBackground(new java.awt.Color(241, 208, 75));
-        btnMiMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRecetas.setBackground(new java.awt.Color(241, 208, 75));
+        btnRecetas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnMiMenuMousePressed(evt);
+                btnRecetasMousePressed(evt);
             }
         });
-        btnMiMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnRecetas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         casita2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/mimenu_logo.png"))); // NOI18N
-        btnMiMenu.add(casita2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        btnRecetas.add(casita2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(65, 29, 7));
         jLabel3.setText("Recetas");
-        btnMiMenu.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+        btnRecetas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
-        sidebar.add(btnMiMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 230, 60));
+        sidebar.add(btnRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 230, 60));
 
-        btnMiDespensa.setBackground(new java.awt.Color(241, 208, 75));
-        btnMiDespensa.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnIngredientes.setBackground(new java.awt.Color(241, 208, 75));
+        btnIngredientes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnMiDespensaMousePressed(evt);
+                btnIngredientesMousePressed(evt);
             }
         });
-        btnMiDespensa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnIngredientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         casita1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/midespensa_logo.png"))); // NOI18N
-        btnMiDespensa.add(casita1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        btnIngredientes.add(casita1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(65, 29, 7));
         jLabel2.setText("Ingredientes");
-        btnMiDespensa.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+        btnIngredientes.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
-        sidebar.add(btnMiDespensa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 230, 60));
+        sidebar.add(btnIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 230, 60));
 
-        btnMiPerfil.setBackground(new java.awt.Color(241, 208, 75));
-        btnMiPerfil.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnMiPerfilAdmin.setBackground(new java.awt.Color(241, 208, 75));
+        btnMiPerfilAdmin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnMiPerfilMousePressed(evt);
+                btnMiPerfilAdminMousePressed(evt);
             }
         });
-        btnMiPerfil.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnMiPerfilAdmin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         casita3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/miperfil_logo.png"))); // NOI18N
-        btnMiPerfil.add(casita3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        btnMiPerfilAdmin.add(casita3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(65, 29, 7));
         jLabel4.setText("Mi perfil");
-        btnMiPerfil.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+        btnMiPerfilAdmin.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
-        sidebar.add(btnMiPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 230, 60));
+        sidebar.add(btnMiPerfilAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 230, 60));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/salir1.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -164,47 +164,41 @@ public class admin_sidebar extends javax.swing.JFrame {
 
     private void btnInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMousePressed
         setColor(btnInicio);
-        resetColor(btnMiDespensa);
-        resetColor(btnMiMenu);
-        resetColor(btnMiPerfil);
+        resetColor(btnIngredientes);
+        resetColor(btnRecetas);
+        resetColor(btnMiPerfilAdmin);
         
-        // Abrir sección
-        i = new cliente_inicio();
-        mostrarPanel(i);
+        
     }//GEN-LAST:event_btnInicioMousePressed
 
-    private void btnMiDespensaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiDespensaMousePressed
-        setColor(btnMiDespensa);
+    private void btnIngredientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngredientesMousePressed
+        setColor(btnIngredientes);
         resetColor(btnInicio);
-        resetColor(btnMiMenu);
-        resetColor(btnMiPerfil);
+        resetColor(btnRecetas);
+        resetColor(btnMiPerfilAdmin);
         
-        // Abrir sección
-        d = new cliente_despensa();
-        mostrarPanel(d);
-    }//GEN-LAST:event_btnMiDespensaMousePressed
+        
+    }//GEN-LAST:event_btnIngredientesMousePressed
 
-    private void btnMiMenuMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiMenuMousePressed
-        setColor(btnMiMenu);
+    private void btnRecetasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecetasMousePressed
+        setColor(btnRecetas);
         resetColor(btnInicio);
-        resetColor(btnMiDespensa);
-        resetColor(btnMiPerfil);
+        resetColor(btnIngredientes);
+        resetColor(btnMiPerfilAdmin);
         
         // Abrir sección
         r = new admin_recetas();
         mostrarPanel(r);
-    }//GEN-LAST:event_btnMiMenuMousePressed
+    }//GEN-LAST:event_btnRecetasMousePressed
 
-    private void btnMiPerfilMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiPerfilMousePressed
-        setColor(btnMiPerfil);
+    private void btnMiPerfilAdminMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMiPerfilAdminMousePressed
+        setColor(btnMiPerfilAdmin);
         resetColor(btnInicio);
-        resetColor(btnMiDespensa);
-        resetColor(btnMiMenu);
+        resetColor(btnIngredientes);
+        resetColor(btnRecetas);
         
-        // Abrir sección
-        p = new cliente_perfil();
-        mostrarPanel(p);
-    }//GEN-LAST:event_btnMiPerfilMousePressed
+        
+    }//GEN-LAST:event_btnMiPerfilAdminMousePressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -259,10 +253,10 @@ public class admin_sidebar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel btnIngredientes;
     private javax.swing.JPanel btnInicio;
-    private javax.swing.JPanel btnMiDespensa;
-    private javax.swing.JPanel btnMiMenu;
-    private javax.swing.JPanel btnMiPerfil;
+    private javax.swing.JPanel btnMiPerfilAdmin;
+    private javax.swing.JPanel btnRecetas;
     private javax.swing.JLabel casita;
     private javax.swing.JLabel casita1;
     private javax.swing.JLabel casita2;
