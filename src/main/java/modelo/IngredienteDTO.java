@@ -3,7 +3,7 @@ package modelo;
 public class IngredienteDTO {
     private int id;
     private String nombre;
-    private String tipo;
+    private TipoIngrediente tipo;
 
     public String getNombre() {
         return nombre;
@@ -12,15 +12,7 @@ public class IngredienteDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
+    
     public int getId() {
         return id;
     }
@@ -29,5 +21,12 @@ public class IngredienteDTO {
         this.id = id;
     }
 
-    
+    public TipoIngrediente getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoIngrediente tipo) {
+        this.tipo = tipo;
+    }
+ 
 }

@@ -34,12 +34,41 @@ public class tipoIngredienteDAO implements TipoIngredienteInterface{
 
     @Override
     public ArrayList<TipoIngrediente> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "select * from tipo_ingrediente";            
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                ti = new TipoIngrediente();
+                ti.setId(rs.getInt("idTipo"));
+                ti.setNombre(rs.getString("Nombre"));
+                lista.add(ti);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(tipoIngredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
     }
 
     @Override
     public TipoIngrediente listarUno(String codigo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "select * from tipo_ingrediente where idTipo = '"+codigo+"'";            
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                ti = new TipoIngrediente();
+                ti.setId(rs.getInt("idTipo"));
+                ti.setNombre(rs.getString("Nombre"));
+             }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(tipoIngredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ti;
     }
     
 }

@@ -5,6 +5,7 @@
 package vistas.admin;
 
 
+import com.formdev.flatlaf.FlatLightLaf;
 import vistas.cliente.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -227,6 +228,13 @@ public class admin_sidebar extends javax.swing.JFrame {
 
         /* Create and display the form */
         
+        try {
+            //UIManager.setLookAndFeel(new FlatLightLaf());
+            FlatLightLaf.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new admin_sidebar().setVisible(true);
