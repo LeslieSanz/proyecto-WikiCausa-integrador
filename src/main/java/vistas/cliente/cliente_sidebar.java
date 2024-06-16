@@ -4,10 +4,12 @@
  */
 package vistas.cliente;
 
-
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
 
 /**
  *
@@ -32,6 +34,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
     cliente_despensa d;
     cliente_menu m;
     cliente_perfil p;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -170,7 +173,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiDespensa);
         resetColor(btnMiMenu);
         resetColor(btnMiPerfil);
-        
+
         // Abrir sección
         i = new cliente_inicio();
         mostrarPanel(i);
@@ -181,7 +184,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnInicio);
         resetColor(btnMiMenu);
         resetColor(btnMiPerfil);
-        
+
         // Abrir sección
         d = new cliente_despensa();
         mostrarPanel(d);
@@ -192,7 +195,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnInicio);
         resetColor(btnMiDespensa);
         resetColor(btnMiPerfil);
-        
+
         // Abrir sección
         m = new cliente_menu();
         mostrarPanel(m);
@@ -203,7 +206,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnInicio);
         resetColor(btnMiDespensa);
         resetColor(btnMiMenu);
-        
+
         // Abrir sección
         p = new cliente_perfil();
         mostrarPanel(p);
@@ -234,14 +237,20 @@ public class cliente_sidebar extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
+        try {
+            //UIManager.setLookAndFeel(new FlatLightLaf());
+            FlatLightLaf.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new cliente_sidebar().setVisible(true);
             }
         });
     }
-    
+
     void setColor(JPanel panel) {
         panel.setBackground(new Color(251, 235, 202));
     }

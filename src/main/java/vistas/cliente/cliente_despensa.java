@@ -1,5 +1,7 @@
 package vistas.cliente;
 
+import java.awt.Color;
+
 public class cliente_despensa extends javax.swing.JPanel {
     
     public cliente_despensa() {
@@ -27,6 +29,12 @@ public class cliente_despensa extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jTextField1 = new javax.swing.JTextField();
+        unidad = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
         jPanel1.setPreferredSize(new java.awt.Dimension(1049, 720));
@@ -35,7 +43,7 @@ public class cliente_despensa extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 89, 19));
         jLabel1.setText("Mi despensa");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 410, -1));
 
         frutasVerduras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/frutasVerduras.png"))); // NOI18N
         frutasVerduras.setContentAreaFilled(false);
@@ -64,7 +72,7 @@ public class cliente_despensa extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(46, 46, 46));
-        jLabel10.setText("Cantidad");
+        jLabel10.setText("Unidad");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 100, -1));
 
         QueCocinareHoy.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
@@ -92,20 +100,68 @@ public class cliente_despensa extends javax.swing.JPanel {
         jButton4.setBackground(new java.awt.Color(0, 124, 238));
         jButton4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Modificar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 510, -1, 40));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/modificar.png"))); // NOI18N
+        jButton4.setContentAreaFilled(false);
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 590, -1, 40));
 
         jButton5.setBackground(new java.awt.Color(18, 91, 0));
         jButton5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/agregar.png"))); // NOI18N
         jButton5.setText("Agregar");
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 473, -1, 40));
+        jButton5.setBorder(null);
+        jButton5.setContentAreaFilled(false);
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 90, 40));
 
         jButton6.setBackground(new java.awt.Color(210, 76, 0));
         jButton6.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("Eliminar");
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 510, -1, 40));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/eliminar.png"))); // NOI18N
+        jButton6.setContentAreaFilled(false);
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 590, -1, 40));
+
+        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " " }));
+        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 150, 30));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, "", null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Alimnento", "Cantidad", "Medida", "Fecha de ingreso"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 480, 210));
+
+        jTextField1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
+        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 30, 30));
+
+        unidad.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
+        unidad.setForeground(new java.awt.Color(204, 204, 204));
+        unidad.setText("Kilogramo");
+        unidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                unidadMousePressed(evt);
+            }
+        });
+        jPanel1.add(unidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 410, 100, 30));
+
+        txtBuscar.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
+        txtBuscar.setForeground(new java.awt.Color(204, 204, 204));
+        txtBuscar.setText("Buscar");
+        txtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtBuscarMousePressed(evt);
+            }
+        });
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 315, 120, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -119,6 +175,33 @@ public class cliente_despensa extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtBuscarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBuscarMousePressed
+     if (txtBuscar.getText().equals("Buscar")) {
+            txtBuscar.setText("");
+            txtBuscar.setForeground(Color.black);
+        }
+     
+     
+     if (unidad.getText().isEmpty()) {
+            unidad.setText("Kilogramo");
+            unidad.setForeground(new Color(204, 204, 204));
+        }
+
+    }//GEN-LAST:event_txtBuscarMousePressed
+
+    private void unidadMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unidadMousePressed
+      if (unidad.getText().equals("Kilogramo")) {
+            unidad.setText("");
+            unidad.setForeground(Color.black);
+        }
+      
+      if (txtBuscar.getText().isEmpty()) {
+            txtBuscar.setText("Buscar");
+            txtBuscar.setForeground(new Color(204, 204, 204));
+        }
+
+    }//GEN-LAST:event_unidadMousePressed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel QueCocinareHoy;
@@ -129,6 +212,7 @@ public class cliente_despensa extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -136,7 +220,12 @@ public class cliente_despensa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton lacteos;
     private javax.swing.JButton pastas;
+    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField unidad;
     // End of variables declaration//GEN-END:variables
 }
