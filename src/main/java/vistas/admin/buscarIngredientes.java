@@ -2,8 +2,12 @@
 package vistas.admin;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 import modelo.IngredienteDTO;
 import modelo.TipoIngrediente;
 import modeloDAO.ingredienteDAO;
@@ -27,12 +31,17 @@ public class buscarIngredientes extends javax.swing.JFrame {
     
     //Esto es para el cbxTipoIngrediente
      String tipIng;
+     
+     //Para buscar el ingrediente por su nombre
+     String filtro;
+     private TableRowSorter trsfiltro;
     
     public buscarIngredientes() {
         initComponents();
          establecerColumnas();
          mostrarTablaIngredientes();
          mostrarTipoIngrediente();
+         aplicarFiltro();
          this.setLocationRelativeTo(this);
     }
     
@@ -60,7 +69,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         cbxTipoIngre = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblIngredientes = new javax.swing.JTable();
@@ -80,8 +89,8 @@ public class buscarIngredientes extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Buscar");
 
-        jTextField1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
+        txtBuscar.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtBuscar.setForeground(new java.awt.Color(102, 102, 102));
 
         cbxTipoIngre.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxTipoIngre.setForeground(new java.awt.Color(102, 102, 102));
@@ -129,7 +138,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
                             .addGap(18, 18, 18)
                             .addComponent(jLabel3)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -142,7 +151,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(cbxTipoIngre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -179,7 +188,26 @@ public class buscarIngredientes extends javax.swing.JFrame {
              mostrarTablaIngrexTipo(tipIng);
         } 
     }//GEN-LAST:event_cbxTipoIngreActionPerformed
-
+    
+    public void aplicarFiltro(){
+        txtBuscar.addKeyListener(new KeyAdapter(){
+                @Override
+                public void keyReleased(final KeyEvent e){
+                String cadena=txtBuscar.getText();
+                txtBuscar.setText(cadena);
+                repaint();
+                filtro();
+                   }
+            });
+    }
+    
+    public void filtro(){
+        filtro=txtBuscar.getText();
+        trsfiltro = new TableRowSorter(tblIngredientes.getModel()); 
+        trsfiltro.setRowFilter(RowFilter.regexFilter(txtBuscar.getText(), 1));
+        tblIngredientes.setRowSorter(trsfiltro);
+    }
+    
     public void mostrarTablaIngredientes(){
         //Mostrar productos en la tabla
         modelo.setRowCount(0);
@@ -257,7 +285,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblIngredientes;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
