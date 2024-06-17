@@ -356,8 +356,8 @@ public class admin_recetas extends javax.swing.JPanel {
             rid.agregar(listaDetalle.get(i));
         }
         
-        // Limpiar la listaDetalle para la próxima receta
-        eliminarElementosTabla();
+        //Limpiar los txt la próxima receta
+        limpiarCampos();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnBuscarIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIngredientesActionPerformed
@@ -446,6 +446,19 @@ public class admin_recetas extends javax.swing.JPanel {
         mostrarTablaDetalle();
     }//GEN-LAST:event_btnAgregarIngreActionPerformed
     
+    public void limpiarCampos() {
+        txtIdReceta.setText(null);
+        txtNombreReceta.setText(null);
+        txtPorcion.setText(null);
+        txtCalorias.setText(null);
+        txtTiempo.setText(null);
+        txtCodIngre.setText(null);
+        txtCant.setText(null);
+        cbxUnidadMedida.setSelectedIndex(0);
+        cbxTipoComida.setSelectedIndex(0);
+        taPreparacion.setText(null);
+        eliminarElementosTabla();
+    }
    
     
     public void eliminarElementosTabla() {
