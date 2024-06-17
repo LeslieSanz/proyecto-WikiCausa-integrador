@@ -66,7 +66,6 @@ public class admin_recetas extends javax.swing.JPanel {
         btnEliminarIngre = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtPorcion = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         txtTiempo = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -82,7 +81,6 @@ public class admin_recetas extends javax.swing.JPanel {
         txtCodIngre = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
         txtIdReceta = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         btnBuscarIngredientes = new javax.swing.JButton();
@@ -98,6 +96,15 @@ public class admin_recetas extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        txtNomIngrediente = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(245, 245, 245));
 
@@ -110,11 +117,11 @@ public class admin_recetas extends javax.swing.JPanel {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel2.setText("Nombre");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+        jLabel2.setText("Nombre :");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         txtNombreReceta.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtNombreReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 220, -1));
+        jPanel1.add(txtNombreReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 220, -1));
 
         btnEliminarIngre.setBackground(new java.awt.Color(210, 76, 0));
         btnEliminarIngre.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -125,26 +132,22 @@ public class admin_recetas extends javax.swing.JPanel {
                 btnEliminarIngreActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminarIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 580, 90, 30));
+        jPanel1.add(btnEliminarIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 90, 30));
 
         jLabel5.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel5.setText("Porción");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, -1, -1));
+        jLabel5.setText("Porción :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, 10));
 
         txtPorcion.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtPorcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 150, -1));
-
-        jLabel6.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel6.setText("Tiempo preparación");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+        jPanel1.add(txtPorcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 110, -1));
 
         txtTiempo.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 90, -1));
+        jPanel1.add(txtTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 100, -1));
 
         jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("min");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, -1, -1));
+        jLabel7.setText("kcal.");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, 30));
 
         tblDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,32 +162,32 @@ public class admin_recetas extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblDetalle);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 320, 160));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 320, 160));
 
         jLabel8.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Cant.");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, -1, -1));
+        jLabel8.setText("Cant: ");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, 20));
 
         jLabel9.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel9.setText("Unidad de medida");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
+        jLabel9.setText("Unidad de medida :");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, -1, 30));
 
         cbxUnidadMedida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxUnidadMedida.setForeground(new java.awt.Color(102, 102, 102));
         cbxUnidadMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Presas", "Tazas", "Cucharadas", "Pedazo" }));
-        jPanel1.add(cbxUnidadMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 410, -1, -1));
+        jPanel1.add(cbxUnidadMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 130, -1));
 
         txtCant.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 360, 80, -1));
+        jPanel1.add(txtCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 100, -1));
 
         jLabel10.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel10.setText("Nro. de calorias");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 190, -1, -1));
+        jLabel10.setText("Calorías :");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 169, -1, 30));
 
         txtCalorias.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 220, 120, -1));
+        jPanel1.add(txtCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 100, -1));
 
         btnRegistrar.setBackground(new java.awt.Color(18, 91, 0));
         btnRegistrar.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -200,35 +203,34 @@ public class admin_recetas extends javax.swing.JPanel {
 
         txtCodIngre.setEditable(false);
         txtCodIngre.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtCodIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 370, 110, -1));
+        jPanel1.add(txtCodIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 40, -1));
 
         jLabel13.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel13.setText("Ingrediente");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
+        jLabel13.setText("Ingrediente :");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, 30));
 
         jLabel14.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel14.setText("Tipo");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, -1, -1));
+        jLabel14.setText("Tipo :");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel15.setText("Id. Receta");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
-
+        txtIdReceta.setEditable(false);
         txtIdReceta.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtIdReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 140, -1));
+        jPanel1.add(txtIdReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 80, -1));
 
         jLabel16.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel16.setText("Seleccionar foto");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 310, -1, -1));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, -1, -1));
 
+        btnBuscarIngredientes.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        btnBuscarIngredientes.setForeground(new java.awt.Color(102, 102, 102));
         btnBuscarIngredientes.setText("Buscar");
         btnBuscarIngredientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarIngredientesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 80, -1));
+        jPanel1.add(btnBuscarIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 90, 30));
 
         taPreparacion.setColumns(20);
         taPreparacion.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -293,7 +295,7 @@ public class admin_recetas extends javax.swing.JPanel {
         cbxTipoComida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxTipoComida.setForeground(new java.awt.Color(102, 102, 102));
         cbxTipoComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        jPanel1.add(cbxTipoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+        jPanel1.add(cbxTipoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, -1, -1));
 
         btnAgregarIngre.setBackground(new java.awt.Color(18, 91, 0));
         btnAgregarIngre.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -304,18 +306,49 @@ public class admin_recetas extends javax.swing.JPanel {
                 btnAgregarIngreActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 410, 90, 30));
+        jPanel1.add(btnAgregarIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 90, 30));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 30, 390));
 
         jLabel17.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel17.setText("Ingredientes");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
 
         jLabel18.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel18.setText("Preparación");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 60, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/relojcito.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel11.setText("Tiempo de preparación :");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, 30));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/info.png"))); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, -1));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/people.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel19.setText("minutos.");
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, -1, 30));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/ingre.png"))); // NOI18N
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/ensalada1.png"))); // NOI18N
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 310, -1, -1));
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/preparacion.png"))); // NOI18N
+        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
+
+        txtNomIngrediente.setEditable(false);
+        txtNomIngrediente.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jPanel1.add(txtNomIngrediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 140, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -490,13 +523,19 @@ public class admin_recetas extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbxUnidadMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -516,6 +555,7 @@ public class admin_recetas extends javax.swing.JPanel {
     public static javax.swing.JTextField txtCodIngre;
     private javax.swing.JTextField txtIdReceta;
     private javax.swing.JTextField txtNomImagen;
+    public static javax.swing.JTextField txtNomIngrediente;
     private javax.swing.JTextField txtNombreReceta;
     private javax.swing.JTextField txtPorcion;
     private javax.swing.JTextField txtTiempo;

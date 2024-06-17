@@ -9,6 +9,7 @@ import modelo.TipoIngrediente;
 import modeloDAO.ingredienteDAO;
 import modeloDAO.tipoIngredienteDAO;
 import static vistas.admin.admin_recetas.txtCodIngre;
+import static vistas.admin.admin_recetas.txtNomIngrediente;
 
 public class buscarIngredientes extends javax.swing.JFrame {
     //Declarar un objeto de la clase ingredientes
@@ -164,7 +165,9 @@ public class buscarIngredientes extends javax.swing.JFrame {
     private void tblIngredientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblIngredientesMouseClicked
        int fila = tblIngredientes.getSelectedRow();
        int codigo = Integer.parseInt(tblIngredientes.getValueAt(fila, 0).toString());
+       String nombre = tblIngredientes.getValueAt(fila, 1).toString();
        txtCodIngre.setText(codigo+"");
+       txtNomIngrediente.setText(nombre);
        dispose();
     }//GEN-LAST:event_tblIngredientesMouseClicked
 
