@@ -1,7 +1,7 @@
 package modelo;
 
 public class RecetaDTO {
-    private int id;
+    private String id;
     private String nombre;
     private String preparacion;
     private TipoComida tipo;
@@ -9,13 +9,6 @@ public class RecetaDTO {
     private int tiempo;
     private double calorias;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -65,6 +58,14 @@ public class RecetaDTO {
 
     public void setTipo(TipoComida tipo) {
         this.tipo = tipo;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     

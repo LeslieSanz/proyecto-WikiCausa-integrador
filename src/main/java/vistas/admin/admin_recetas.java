@@ -19,6 +19,7 @@ public class admin_recetas extends javax.swing.JPanel {
     ingredienteDAO id;
     //Declarar un objeto de la clase receta
     RecetaDTO r;
+    recetaDAO rd;
     
     //Para almacenar el detalle de cada ingrediente en la receta: RecetaIngredientes
     RecetaIngredientesDTO dd;
@@ -36,6 +37,7 @@ public class admin_recetas extends javax.swing.JPanel {
     public admin_recetas() {
         initComponents();
         mostrarTipoComida();
+        generaCodigoAutomatico();
         establecerColumnas2();
     }
 
@@ -149,6 +151,8 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel7.setText("kcal.");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, 30));
 
+        tblDetalle.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        tblDetalle.setForeground(new java.awt.Color(102, 102, 102));
         tblDetalle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -261,14 +265,16 @@ public class admin_recetas extends javax.swing.JPanel {
 
         txtNomImagen.setEditable(false);
 
+        lblFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/default.png"))); // NOI18N
+
         javax.swing.GroupLayout pnlGuardarLayout = new javax.swing.GroupLayout(pnlGuardar);
         pnlGuardar.setLayout(pnlGuardarLayout);
         pnlGuardarLayout.setHorizontalGroup(
             pnlGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGuardarLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
                 .addGroup(pnlGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSeleccionar)
@@ -278,16 +284,18 @@ public class admin_recetas extends javax.swing.JPanel {
         pnlGuardarLayout.setVerticalGroup(
             pnlGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGuardarLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(btnSeleccionar)
-                .addGap(18, 18, 18)
-                .addComponent(txtNomImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlGuardarLayout.createSequentialGroup()
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(pnlGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlGuardarLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(btnSeleccionar)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNomImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlGuardarLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanel1.add(pnlGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 400, 230));
@@ -309,7 +317,7 @@ public class admin_recetas extends javax.swing.JPanel {
         jPanel1.add(btnAgregarIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 90, 30));
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 30, 390));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 30, 340));
 
         jLabel17.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel17.setText("Ingredientes");
@@ -369,8 +377,8 @@ public class admin_recetas extends javax.swing.JPanel {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         //Primero, agregamos la receta
         r = new RecetaDTO();
-        recetaDAO rd = new recetaDAO();
-        r.setId(Integer.parseInt(txtIdReceta.getText()));
+        rd = new recetaDAO();
+        r.setId(txtIdReceta.getText());
         r.setNombre(txtNombreReceta.getText());
         
         int indice_tipo = cbxTipoComida.getSelectedIndex();
@@ -491,6 +499,7 @@ public class admin_recetas extends javax.swing.JPanel {
         cbxTipoComida.setSelectedIndex(0);
         taPreparacion.setText(null);
         eliminarElementosTabla();
+        generaCodigoAutomatico();
     }
    
     
@@ -498,6 +507,14 @@ public class admin_recetas extends javax.swing.JPanel {
         for (int i = tblDetalle.getRowCount() - 1; i >= 0; i--) {
             modelo2.removeRow(i);
         }
+    }
+    
+    private void generaCodigoAutomatico(){
+        //Generar el codigo del producto a partir del ultimo en la base de datos
+        rd = new recetaDAO();
+        String codReceta = rd.generaCodReceta();
+        //Seteando el valor obtenido en el txtCodEntrada
+        txtIdReceta.setText(codReceta);
     }
 
     public void mostrarTablaDetalle() {

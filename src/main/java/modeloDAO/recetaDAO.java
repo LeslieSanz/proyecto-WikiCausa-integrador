@@ -24,7 +24,7 @@ public class recetaDAO implements RecetaInterface{
                     + " values (?, ?, ?, ?, ?, ?, ?)";
             conn = con.getConexion();
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, r.getId());
+            ps.setString(1, r.getId());
             ps.setString(2, r.getNombre());
             ps.setInt(3, r.getTipo().getId());
             ps.setString(4, r.getPreparacion());
@@ -56,5 +56,28 @@ public class recetaDAO implements RecetaInterface{
     @Override
     public RecetaDTO listarUno(String codigo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    } 
+    }
+    
+    public String generaCodReceta() {
+    String cod="";
+
+    try {
+        String sql = "{? = call generarNuevoCodigoReceta()}";
+        conn = con.getConexion();
+        CallableStatement st = conn.prepareCall(sql);
+        st.registerOutParameter(1, Types.VARCHAR);
+        st.execute();
+        cod = st.getString(1);
+
+        } catch (SQLException ex) {
+        Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return cod;
+    }
 }
