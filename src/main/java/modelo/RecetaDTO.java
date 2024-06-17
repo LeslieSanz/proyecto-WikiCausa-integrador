@@ -4,7 +4,7 @@ public class RecetaDTO {
     private int id;
     private String nombre;
     private String preparacion;
-    private int tipo;
+    private TipoComida tipo;
     private int porcion;
     private int tiempo;
     private double calorias;
@@ -59,11 +59,13 @@ public class RecetaDTO {
         this.calorias = calorias;
     }
 
-    public int getTipo() {
+    public TipoComida getTipo() {
         return tipo;
     }
 
-    public void setTipo(int tipo) {
+    public void setTipo(TipoComida tipo) {
         this.tipo = tipo;
     }
+
+    
 }

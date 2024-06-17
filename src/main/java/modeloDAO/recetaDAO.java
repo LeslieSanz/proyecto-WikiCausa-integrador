@@ -26,7 +26,7 @@ public class recetaDAO implements RecetaInterface{
             ps = conn.prepareStatement(sql);
             ps.setInt(1, r.getId());
             ps.setString(2, r.getNombre());
-            ps.setInt(3, r.getTipo());
+            ps.setInt(3, r.getTipo().getId());
             ps.setString(4, r.getPreparacion());
             ps.setInt(5, r.getPorcion());
             ps.setInt(6, r.getTiempo());

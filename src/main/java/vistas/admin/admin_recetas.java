@@ -5,9 +5,11 @@ import javax.swing.table.DefaultTableModel;
 import modelo.IngredienteDTO;
 import modelo.RecetaDTO;
 import modelo.RecetaIngredientesDTO;
+import modelo.TipoComida;
 import modeloDAO.ingredienteDAO;
 import modeloDAO.recetaDAO;
 import modeloDAO.recetaIngredientesDAO;
+import modeloDAO.tipoComidaDAO;
 
 
 public class admin_recetas extends javax.swing.JPanel {
@@ -15,28 +17,42 @@ public class admin_recetas extends javax.swing.JPanel {
     IngredienteDTO i;
     //Declarar un objeto de la clase ingredineteDAO
     ingredienteDAO id;
-    
+    //Declarar un objeto de la clase receta
     RecetaDTO r;
     
-    //RecetaIngredientes
+    //Para almacenar el detalle de cada ingrediente en la receta: RecetaIngredientes
     RecetaIngredientesDTO dd;
     ArrayList<RecetaIngredientesDTO> listaDetalle = new ArrayList<>();
     
+    //Modelo de la tabla donde se agregan los ingredientes de la receta
     DefaultTableModel modelo2 = new DefaultTableModel();
+    
+    //ArrayList mostrar los tipos de comida en el cbx
+    TipoComida tc;
+    tipoComidaDAO tcd = new tipoComidaDAO();
+    ArrayList<TipoComida> listaTipos = new ArrayList<>();
 
     
     public admin_recetas() {
         initComponents();
+        mostrarTipoComida();
         establecerColumnas2();
     }
-    
-    
-    
+
     private void establecerColumnas2(){
         modelo2.addColumn("Ingrediente");
         modelo2.addColumn("Cantidad");
         modelo2.addColumn("Medida");
         tblDetalle.setModel(modelo2);
+    }
+    
+    //Metodo que recorre la lista de TipoComida, obtiene su nombre y los agrega uno por uno
+    //al cbTipoComida
+    private void mostrarTipoComida(){
+        listaTipos = tcd.listarTodos();
+        for(int i=0; i<listaTipos.size(); i++){
+            cbxTipoComida.addItem(listaTipos.get(i).getNombre());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -77,7 +93,7 @@ public class admin_recetas extends javax.swing.JPanel {
         btnSeleccionar = new javax.swing.JButton();
         txtNomImagen = new javax.swing.JTextField();
         lblFoto = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxTipoComida = new javax.swing.JComboBox<>();
         btnAgregarIngre = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel17 = new javax.swing.JLabel();
@@ -274,10 +290,10 @@ public class admin_recetas extends javax.swing.JPanel {
 
         jPanel1.add(pnlGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 400, 230));
 
-        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+        cbxTipoComida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        cbxTipoComida.setForeground(new java.awt.Color(102, 102, 102));
+        cbxTipoComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        jPanel1.add(cbxTipoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
 
         btnAgregarIngre.setBackground(new java.awt.Color(18, 91, 0));
         btnAgregarIngre.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -323,7 +339,10 @@ public class admin_recetas extends javax.swing.JPanel {
         recetaDAO rd = new recetaDAO();
         r.setId(Integer.parseInt(txtIdReceta.getText()));
         r.setNombre(txtNombreReceta.getText());
-//        r.setTipo(Integer.parseInt(txtTipoComida.getText()));
+        
+        int indice_tipo = cbxTipoComida.getSelectedIndex();
+        r.setTipo(listaTipos.get(indice_tipo-1));
+
         r.setPorcion(Integer.parseInt(txtPorcion.getText()));
         r.setTiempo(Integer.parseInt(txtTiempo.getText()));
         r.setCalorias(Double.parseDouble(txtCalorias.getText()));
@@ -331,7 +350,7 @@ public class admin_recetas extends javax.swing.JPanel {
         rd.agregar(r);
         
         //Luego, sus detalles
-        //Agregando detalles a la venta
+        //Agregando detalles de cada ingrediente a la receta
         for (int i = 0; i < listaDetalle.size(); i++) {
             recetaIngredientesDAO rid = new recetaIngredientesDAO();
             rid.agregar(listaDetalle.get(i));
@@ -454,8 +473,8 @@ public class admin_recetas extends javax.swing.JPanel {
     private javax.swing.JButton btnGuardarCambios;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSeleccionar;
+    private javax.swing.JComboBox<String> cbxTipoComida;
     private javax.swing.JComboBox<String> cbxUnidadMedida;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
