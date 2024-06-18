@@ -23,8 +23,10 @@ public class iniciar_sesion extends javax.swing.JFrame {
 
         background = new javax.swing.JPanel();
         titulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        ingreseContrasena = new javax.swing.JLabel();
+        ingreseCorreo = new javax.swing.JLabel();
+        hidePsww = new javax.swing.JLabel();
+        mostrarPsww = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
         txtUsuario = new javax.swing.JTextField();
@@ -49,15 +51,21 @@ public class iniciar_sesion extends javax.swing.JFrame {
         titulo.setText("!Bienvenido de vuelta!");
         background.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 290, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel1.setText("Ingrese su contraseña");
-        background.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 420, -1, -1));
+        ingreseContrasena.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        ingreseContrasena.setForeground(new java.awt.Color(102, 102, 102));
+        ingreseContrasena.setText("Ingrese su contraseña");
+        background.add(ingreseContrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 420, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Ingrese su correo");
-        background.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
+        ingreseCorreo.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        ingreseCorreo.setForeground(new java.awt.Color(102, 102, 102));
+        ingreseCorreo.setText("Ingrese su correo");
+        background.add(ingreseCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
+
+        hidePsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/hidePssw.png"))); // NOI18N
+        background.add(hidePsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 455, -1, -1));
+
+        mostrarPsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/showPssw.png"))); // NOI18N
+        background.add(mostrarPsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 458, -1, -1));
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/regresar.png"))); // NOI18N
         btnRegresar.setContentAreaFilled(false);
@@ -187,10 +195,12 @@ public class iniciar_sesion extends javax.swing.JFrame {
     private javax.swing.JLabel elipse3;
     private javax.swing.JLabel elipse_izquierda;
     private javax.swing.JLabel frmLogin;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel hidePsww;
+    private javax.swing.JLabel ingreseContrasena;
+    private javax.swing.JLabel ingreseCorreo;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logowiki;
+    private javax.swing.JLabel mostrarPsww;
     private javax.swing.JLabel personas;
     private javax.swing.JLabel titulo;
     private javax.swing.JTextField txtUsuario;
