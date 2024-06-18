@@ -1,6 +1,11 @@
 package vistas.admin;
 
+import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import modelo.IngredienteDTO;
 import modelo.RecetaDTO;
@@ -32,6 +37,10 @@ public class admin_recetas extends javax.swing.JPanel {
     TipoComida tc;
     tipoComidaDAO tcd = new tipoComidaDAO();
     ArrayList<TipoComida> listaTipos = new ArrayList<>();
+    
+     File file;
+    ImageIcon icono;
+    ImageIcon iconoDefault = new ImageIcon("/img/cuenta/Profe.png");
 
     
     public admin_recetas() {
@@ -84,14 +93,10 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txtIdReceta = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         btnBuscarIngredientes = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         taPreparacion = new javax.swing.JTextArea();
         pnlGuardar = new javax.swing.JPanel();
-        btnGuardarCambios = new javax.swing.JButton();
-        btnSeleccionar = new javax.swing.JButton();
-        txtNomImagen = new javax.swing.JTextField();
         lblFoto = new javax.swing.JLabel();
         cbxTipoComida = new javax.swing.JComboBox<>();
         btnAgregarIngre = new javax.swing.JButton();
@@ -104,9 +109,11 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         txtNomIngrediente = new javax.swing.JTextField();
+        btnGuardarCambios = new javax.swing.JButton();
+        btnSeleccionar = new javax.swing.JButton();
+        txtNomImagen = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(245, 245, 245));
 
@@ -202,7 +209,7 @@ public class admin_recetas extends javax.swing.JPanel {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 610, 150, 30));
+        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, 150, 30));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 930, 20));
 
         txtCodIngre.setEditable(false);
@@ -221,10 +228,6 @@ public class admin_recetas extends javax.swing.JPanel {
         txtIdReceta.setEditable(false);
         txtIdReceta.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jPanel1.add(txtIdReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 80, -1));
-
-        jLabel16.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
-        jLabel16.setText("Seleccionar foto");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 320, -1, -1));
 
         btnBuscarIngredientes.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         btnBuscarIngredientes.setForeground(new java.awt.Color(102, 102, 102));
@@ -245,60 +248,26 @@ public class admin_recetas extends javax.swing.JPanel {
 
         pnlGuardar.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnGuardarCambios.setBackground(new java.awt.Color(241, 208, 75));
-        btnGuardarCambios.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnGuardarCambios.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardarCambios.setText("Guardar");
-        btnGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarCambiosActionPerformed(evt);
-            }
-        });
-
-        btnSeleccionar.setFont(new java.awt.Font("Poppins Medium", 1, 12)); // NOI18N
-        btnSeleccionar.setText("Subir foto");
-        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarActionPerformed(evt);
-            }
-        });
-
-        txtNomImagen.setEditable(false);
-
-        lblFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/default.png"))); // NOI18N
+        lblFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Comidas/probando.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlGuardarLayout = new javax.swing.GroupLayout(pnlGuardar);
         pnlGuardar.setLayout(pnlGuardarLayout);
         pnlGuardarLayout.setHorizontalGroup(
             pnlGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGuardarLayout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(pnlGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSeleccionar)
-                    .addComponent(txtNomImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                .addContainerGap(62, Short.MAX_VALUE)
+                .addComponent(lblFoto)
+                .addGap(57, 57, 57))
         );
         pnlGuardarLayout.setVerticalGroup(
             pnlGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlGuardarLayout.createSequentialGroup()
-                .addGroup(pnlGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlGuardarLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(btnSeleccionar)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtNomImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnGuardarCambios, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlGuardarLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel1.add(pnlGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 360, 400, 230));
+        jPanel1.add(pnlGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, 430, 240));
 
         cbxTipoComida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxTipoComida.setForeground(new java.awt.Color(102, 102, 102));
@@ -348,15 +317,36 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/ingre.png"))); // NOI18N
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
 
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/ensalada1.png"))); // NOI18N
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 310, -1, -1));
-
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/preparacion.png"))); // NOI18N
         jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
 
         txtNomIngrediente.setEditable(false);
         txtNomIngrediente.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jPanel1.add(txtNomIngrediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 140, -1));
+
+        btnGuardarCambios.setBackground(new java.awt.Color(241, 208, 75));
+        btnGuardarCambios.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        btnGuardarCambios.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardarCambios.setText("Guardar");
+        btnGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarCambiosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnGuardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 570, 90, 30));
+
+        btnSeleccionar.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        btnSeleccionar.setForeground(new java.awt.Color(102, 102, 102));
+        btnSeleccionar.setText("Buscar foto");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 110, -1));
+
+        txtNomImagen.setEditable(false);
+        jPanel1.add(txtNomImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, 146, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -410,12 +400,6 @@ public class admin_recetas extends javax.swing.JPanel {
 //        pd = new PersonaDao();
 //        p = pd.listarUno(codigo);
 //
-//        //Modificar datos
-//        p.setDni(txtDNIProfe.getText());
-//        p.setNombre(txtNombreProfe.getText());
-//        p.setApellido(txtApellidosProfe.getText());
-//        p.setEmail(txtCorreoProfe.getText());
-//        pd.modificar(p);
 //
 //        //Si se requiere agregar y/o modificar la foto
 //        if(file!=null){
@@ -440,29 +424,29 @@ public class admin_recetas extends javax.swing.JPanel {
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
-//        // Crear un filtro para permitir solo archivos con extensión JPEG (JPG, JPEG)
-//        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg");
-//        // Crear un selector de archivos
-//        JFileChooser archivo = new JFileChooser();
-//        // Añadir el filtro al selector de archivos
-//        archivo.addChoosableFileFilter(filtro);
-//        // Establecer el título del diálogo del selector de archivos
-//        archivo.setDialogTitle("Abrir archivo");
-//        // Mostrar el diálogo de selección de archivos y guardar la respuesta del usuario
-//        int ventana = archivo.showOpenDialog(null);
-//        // Verificar si el usuario seleccionó un archivo (aprobó la selección)
-//        if (ventana == JFileChooser.APPROVE_OPTION) {
-//            // Obtener el archivo seleccionado
-//            file = archivo.getSelectedFile();
-//            // Establecer la ruta del archivo seleccionado en un campo de texto (txtNomImagen)
-//            txtNomImagen.setText(String.valueOf(file));
-//            // Cargar la imagen desde la ruta del archivo
-//            Image foto = getToolkit().getImage(txtNomImagen.getText());
-//            // Escalar la imagen a un tamaño de 200x200 píxeles
-//            foto = foto.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
-//            // Establecer la imagen escalada como un icono en una etiqueta (lblFoto)
-//            lblFoto.setIcon(new ImageIcon(foto));
-//        }
+        // Crear un filtro para permitir solo archivos con extensión JPEG (JPG, JPEG)
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("Formatos de archivos JPEG(*.JPG;*.JPEG)", "jpg", "jpeg");
+        // Crear un selector de archivos
+        JFileChooser archivo = new JFileChooser();
+        // Añadir el filtro al selector de archivos
+        archivo.addChoosableFileFilter(filtro);
+        // Establecer el título del diálogo del selector de archivos
+        archivo.setDialogTitle("Abrir archivo");
+        // Mostrar el diálogo de selección de archivos y guardar la respuesta del usuario
+        int ventana = archivo.showOpenDialog(null);
+        // Verificar si el usuario seleccionó un archivo (aprobó la selección)
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            // Obtener el archivo seleccionado
+            file = archivo.getSelectedFile();
+            // Establecer la ruta del archivo seleccionado en un campo de texto (txtNomImagen)
+            txtNomImagen.setText(String.valueOf(file));
+            // Cargar la imagen desde la ruta del archivo
+            Image foto = getToolkit().getImage(txtNomImagen.getText());
+            // Escalar la imagen a un tamaño de 200x200 píxeles
+            foto = foto.getScaledInstance(312, 234, Image.SCALE_DEFAULT);
+            // Establecer la imagen escalada como un icono en una etiqueta (lblFoto)
+            lblFoto.setIcon(new ImageIcon(foto));
+        }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void btnAgregarIngreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarIngreActionPerformed
@@ -544,12 +528,10 @@ public class admin_recetas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

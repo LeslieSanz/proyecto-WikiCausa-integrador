@@ -186,7 +186,9 @@ public class buscarIngredientes extends javax.swing.JFrame {
             mostrarTablaIngredientes();
         }else{
              mostrarTablaIngrexTipo(tipIng);
-        } 
+             aplicarFiltro();
+        }
+        
     }//GEN-LAST:event_cbxTipoIngreActionPerformed
     
     public void aplicarFiltro(){
