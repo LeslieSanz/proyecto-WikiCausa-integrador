@@ -116,7 +116,6 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         txtNomIngrediente = new javax.swing.JTextField();
-        btnGuardarCambios = new javax.swing.JButton();
         btnSeleccionar = new javax.swing.JButton();
         txtNomImagen = new javax.swing.JTextField();
 
@@ -329,17 +328,6 @@ public class admin_recetas extends javax.swing.JPanel {
         txtNomIngrediente.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jPanel1.add(txtNomIngrediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 140, -1));
 
-        btnGuardarCambios.setBackground(new java.awt.Color(241, 208, 75));
-        btnGuardarCambios.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        btnGuardarCambios.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardarCambios.setText("Guardar");
-        btnGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarCambiosActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnGuardarCambios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 570, 90, 30));
-
         btnSeleccionar.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         btnSeleccionar.setForeground(new java.awt.Color(102, 102, 102));
         btnSeleccionar.setText("Buscar foto");
@@ -400,7 +388,7 @@ public class admin_recetas extends javax.swing.JPanel {
         if (resultado) {
             // Copiar el archivo de imagen a la carpeta del proyecto
             if (file != null) {
-                String carpetaDestino = "recetas"; 
+                String carpetaDestino = "recetas";
                 File destino = new File(carpetaDestino, file.getName());
                 try {
                     Files.copy(file.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
@@ -429,33 +417,6 @@ public class admin_recetas extends javax.swing.JPanel {
         buscarIngredientes busIng =new buscarIngredientes();
         busIng.setVisible(true);
     }//GEN-LAST:event_btnBuscarIngredientesActionPerformed
-
-    private void btnGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarCambiosActionPerformed
-//        pd = new PersonaDao();
-//        p = pd.listarUno(codigo);
-//
-//
-//        //Si se requiere agregar y/o modificar la foto
-//        if(file!=null){
-//            // Obtener solo el nombre del archivo sin la ruta
-//            String nombreArchivo = file.getName();
-//            p.setNom_imagen(nombreArchivo);
-//            p.setArchivoFoto(file);
-//            try {
-//                pd.agregarFoto(p);
-//            } catch (FileNotFoundException ex) {
-//                Logger.getLogger(admin_profes.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//
-//        JOptionPane.showMessageDialog(null, "Cambios guardados", "Información", JOptionPane.INFORMATION_MESSAGE);
-//        limpiarCampos();
-//        lblTitulo.setText("Registro de profesores");
-//        btnAgregarProfe.setVisible(true);
-//        //btnEliminarProfe.setVisible(true);
-//        mostrarProfes();
-//        pnlGuardar.setVisible(false);
-    }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
         // Crear un filtro para permitir solo archivos con extensión JPEG (JPG, JPEG)
@@ -551,7 +512,6 @@ public class admin_recetas extends javax.swing.JPanel {
     private javax.swing.JButton btnAgregarIngre;
     private javax.swing.JButton btnBuscarIngredientes;
     private javax.swing.JButton btnEliminarIngre;
-    private javax.swing.JButton btnGuardarCambios;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JComboBox<String> cbxTipoComida;
