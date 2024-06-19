@@ -42,7 +42,6 @@ public class admin_sidebar extends javax.swing.JFrame {
         logowiki = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -139,23 +138,15 @@ public class admin_sidebar extends javax.swing.JFrame {
 
         content.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Comidas/probando.png"))); // NOI18N
-
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel5)
-                .addContainerGap(676, Short.MAX_VALUE))
+            .addGap(0, 1050, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(jLabel5)
-                .addContainerGap(386, Short.MAX_VALUE))
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 1050, 720));
@@ -276,7 +267,6 @@ public class admin_sidebar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel logowiki;
     private javax.swing.JPanel sidebar;
     // End of variables declaration//GEN-END:variables

@@ -191,7 +191,7 @@ public class admin_recetas extends javax.swing.JPanel {
 
         cbxUnidadMedida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxUnidadMedida.setForeground(new java.awt.Color(102, 102, 102));
-        cbxUnidadMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Presas", "Tazas", "Cucharadas", "Pedazo" }));
+        cbxUnidadMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Unidades", "Tazas", "Cucharadas", "Cucharaditas", "Gramos", "Presas" }));
         jPanel1.add(cbxUnidadMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 130, -1));
 
         txtCant.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -446,7 +446,7 @@ public class admin_recetas extends javax.swing.JPanel {
 
     private void btnAgregarIngreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarIngreActionPerformed
         //Obteniendo los datos de los campos
-        int cant = Integer.parseInt(txtCant.getText());
+        double cant = Double.parseDouble(txtCant.getText());
         String medida = cbxUnidadMedida.getSelectedItem().toString();
         
         //Buscando ingrediente

@@ -231,12 +231,14 @@
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
+              <StringArray count="7">
                 <StringItem index="0" value="Seleccionar"/>
-                <StringItem index="1" value="Presas"/>
+                <StringItem index="1" value="Unidades"/>
                 <StringItem index="2" value="Tazas"/>
                 <StringItem index="3" value="Cucharadas"/>
-                <StringItem index="4" value="Pedazo"/>
+                <StringItem index="4" value="Cucharaditas"/>
+                <StringItem index="5" value="Gramos"/>
+                <StringItem index="6" value="Presas"/>
               </StringArray>
             </Property>
           </Properties>
