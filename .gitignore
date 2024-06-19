@@ -1,2 +1,8 @@
 *.class
 target/
+
+recetas/*.jpg
+recetas/*.jpeg
+recetas/*.png
+recetas/*.gif
+

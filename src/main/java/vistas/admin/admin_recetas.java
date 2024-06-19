@@ -2,9 +2,14 @@ package vistas.admin;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import modelo.IngredienteDTO;
@@ -378,7 +383,36 @@ public class admin_recetas extends javax.swing.JPanel {
         r.setTiempo(Integer.parseInt(txtTiempo.getText()));
         r.setCalorias(Double.parseDouble(txtCalorias.getText()));
         r.setPreparacion(taPreparacion.getText());
-        rd.agregar(r);
+        
+        //Para agregar la foto
+        if(file!=null){
+            // Obtener solo el nombre del archivo sin la ruta
+            String nombreArchivo = file.getName();
+            System.out.println("El nombre del archivo es"+nombreArchivo);
+            r.setImagen(nombreArchivo);
+            
+        }
+        
+         // Llamar al método agregar del DAO
+        boolean resultado = rd.agregar(r);
+
+        // Verificar si la receta se agregó correctamente
+        if (resultado) {
+            // Copiar el archivo de imagen a la carpeta del proyecto
+            if (file != null) {
+                String carpetaDestino = "recetas"; 
+                File destino = new File(carpetaDestino, file.getName());
+                try {
+                    Files.copy(file.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    JOptionPane.showMessageDialog(this, "Receta agregada exitosamente con imagen");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Receta agregada, pero error al copiar la imagen");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Receta agregada exitosamente");
+            }
+        }
         
         //Luego, sus detalles
         //Agregando detalles de cada ingrediente a la receta

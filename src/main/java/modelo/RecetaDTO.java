@@ -8,7 +8,7 @@ public class RecetaDTO {
     private int porcion;
     private int tiempo;
     private double calorias;
-
+    private String Imagen;
 
     public String getNombre() {
         return nombre;
@@ -66,6 +66,14 @@ public class RecetaDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getImagen() {
+        return Imagen;
+    }
+
+    public void setImagen(String Imagen) {
+        this.Imagen = Imagen;
     }
 
     

@@ -14,7 +14,7 @@ public class Conexion {
 		String usr = "root";
 		String psw = ""; 
 		con = DriverManager.getConnection(url,usr,psw); 
-		System.out.println("conexion ok");
+		//System.out.println("conexion ok");
 		} catch (ClassNotFoundException ex)
 		{ System.out.println("No hay Driver!!"); } 
 		catch (SQLException ex) { System.out.println("Error con la BD "); }

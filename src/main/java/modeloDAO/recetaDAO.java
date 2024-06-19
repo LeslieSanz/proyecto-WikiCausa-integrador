@@ -20,10 +20,11 @@ public class recetaDAO implements RecetaInterface{
     @Override
     public boolean agregar(RecetaDTO r) {
         try {
-            String sql = "insert into receta (idReceta, Nombre, TipoComida_idTipo, Preparacion, Porcion, TiempoPreparacion, Calorias)"
-                    + " values (?, ?, ?, ?, ?, ?, ?)";
+            
+            String sql = "insert into receta (idReceta, Nombre, TipoComida_idTipo, Preparacion, Porcion, TiempoPreparacion, Calorias, Imagen)"
+                       + " values (?, ?, ?, ?, ?, ?, ?, ?)";
             conn = con.getConexion();
-            ps = conn.prepareStatement(sql);
+            PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, r.getId());
             ps.setString(2, r.getNombre());
             ps.setInt(3, r.getTipo().getId());
@@ -31,11 +32,13 @@ public class recetaDAO implements RecetaInterface{
             ps.setInt(5, r.getPorcion());
             ps.setInt(6, r.getTiempo());
             ps.setDouble(7, r.getCalorias());
+            ps.setString(8, r.getImagen());
             ps.executeUpdate();
+            return true; 
         } catch (SQLException ex) {
             Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return false; 
     }
 
     @Override
