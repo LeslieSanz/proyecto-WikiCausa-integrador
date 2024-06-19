@@ -1,5 +1,6 @@
 package vistas.general;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import modeloDAO.UsurarioDAO;
@@ -15,6 +16,8 @@ public class iniciar_sesion extends javax.swing.JFrame {
     
     public iniciar_sesion() {
         initComponents();
+        hidePsww.setVisible(false);
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -29,8 +32,8 @@ public class iniciar_sesion extends javax.swing.JFrame {
         mostrarPsww = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        txtUsuario = new javax.swing.JTextField();
-        contrasena = new javax.swing.JPasswordField();
+        txtCorreo = new javax.swing.JTextField();
+        txtcontrasena = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         logowiki = new javax.swing.JLabel();
         frmLogin = new javax.swing.JLabel();
@@ -62,9 +65,19 @@ public class iniciar_sesion extends javax.swing.JFrame {
         background.add(ingreseCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
 
         hidePsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/hidePssw.png"))); // NOI18N
+        hidePsww.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hidePswwMouseClicked(evt);
+            }
+        });
         background.add(hidePsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 455, -1, -1));
 
         mostrarPsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/showPssw.png"))); // NOI18N
+        mostrarPsww.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mostrarPswwMouseClicked(evt);
+            }
+        });
         background.add(mostrarPsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 458, -1, -1));
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/regresar.png"))); // NOI18N
@@ -86,10 +99,25 @@ public class iniciar_sesion extends javax.swing.JFrame {
             }
         });
         background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, -1, 60));
-        background.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, 310, 30));
 
-        contrasena.setText("jPasswordField1");
-        background.add(contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 450, 310, 30));
+        txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
+        txtCorreo.setText("Ingrese su correo");
+        txtCorreo.setToolTipText(" ");
+        txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtCorreoMousePressed(evt);
+            }
+        });
+        background.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, 310, 30));
+
+        txtcontrasena.setForeground(new java.awt.Color(204, 204, 204));
+        txtcontrasena.setText("**********");
+        txtcontrasena.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtcontrasenaMousePressed(evt);
+            }
+        });
+        background.add(txtcontrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 450, 310, 30));
         background.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 280, 410, 20));
 
         logowiki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/wikilogo2.png"))); // NOI18N
@@ -135,8 +163,8 @@ public class iniciar_sesion extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         
-        String correo=txtUsuario.getText();
-        String password=contrasena.getText();
+        String correo=txtCorreo.getText();
+        String password=txtcontrasena.getText();
         Usuario usu=usDao.validarUsu(correo, password);
         
         if (usu!=null) {
@@ -149,6 +177,43 @@ public class iniciar_sesion extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void mostrarPswwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarPswwMouseClicked
+        txtcontrasena.setEchoChar((char)0);
+        hidePsww.setVisible(true);
+        mostrarPsww.setVisible(false);
+    }//GEN-LAST:event_mostrarPswwMouseClicked
+
+    private void hidePswwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePswwMouseClicked
+        txtcontrasena.setEchoChar('*');
+        mostrarPsww.setVisible(true);
+        hidePsww.setVisible(false);
+    }//GEN-LAST:event_hidePswwMouseClicked
+
+    private void txtcontrasenaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtcontrasenaMousePressed
+        if (String.valueOf(txtcontrasena.getPassword()).equals("**********")) {
+            txtcontrasena.setText(null);
+            txtcontrasena.setForeground(Color.black);
+        }
+        
+        if (txtCorreo.getText().isEmpty()) {
+            txtCorreo.setText("Ingrese su correo");
+            txtCorreo.setForeground(new Color(204,204,204));
+        }
+        
+    }//GEN-LAST:event_txtcontrasenaMousePressed
+
+    private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
+        if (txtCorreo.getText().equals("Ingrese su correo")) {
+            txtCorreo.setText("");
+            txtCorreo.setForeground(Color.black);
+        }
+        
+        if (String.valueOf(txtcontrasena.getPassword()).isEmpty()) {
+            txtcontrasena.setText("**********");
+            txtcontrasena.setForeground(new Color(204,204,204));
+        }
+    }//GEN-LAST:event_txtCorreoMousePressed
 
     /**
      * @param args the command line arguments
@@ -189,7 +254,6 @@ public class iniciar_sesion extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegresar;
-    private javax.swing.JPasswordField contrasena;
     private javax.swing.JLabel elipse1;
     private javax.swing.JLabel elipse2;
     private javax.swing.JLabel elipse3;
@@ -203,6 +267,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
     private javax.swing.JLabel mostrarPsww;
     private javax.swing.JLabel personas;
     private javax.swing.JLabel titulo;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JPasswordField txtcontrasena;
     // End of variables declaration//GEN-END:variables
 }
