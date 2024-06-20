@@ -245,7 +245,7 @@ public class registro extends javax.swing.JFrame {
 
         txtEmail1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         txtEmail1.setForeground(new java.awt.Color(147, 147, 147));
-        txtEmail1.setText("Ingrese email");
+        txtEmail1.setText("wiki@email.com");
         txtEmail1.setToolTipText("");
         txtEmail1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtEmail1.setName(""); // NOI18N
@@ -343,12 +343,12 @@ public class registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApeMaActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-
+        
         validarCampos();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtEmail1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmail1MousePressed
-        if (txtEmail1.getText().equals("Ingrese email")) {
+        if (txtEmail1.getText().equals("wiki@email.com")) {
             txtEmail1.setText("");
             txtEmail1.setForeground(Color.black);
         }
@@ -385,7 +385,7 @@ public class registro extends javax.swing.JFrame {
             txtApeP.setForeground(Color.black);
         }
         if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
+            txtEmail1.setText("wiki@email.com");
             txtEmail1.setForeground(new Color(204, 204, 204));
         }
 
@@ -420,7 +420,7 @@ public class registro extends javax.swing.JFrame {
             txtNom.setForeground(Color.black);
         }
         if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
+            txtEmail1.setText("wiki@email.com");
             txtEmail1.setForeground(new Color(204, 204, 204));
         }
         if (txtPssw1.getText().isEmpty()) {
@@ -449,7 +449,7 @@ public class registro extends javax.swing.JFrame {
             txtApeP.setForeground(Color.black);
         }
         if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
+            txtEmail1.setText("wiki@email.com");
             txtEmail1.setForeground(new Color(204, 204, 204));
         }
         if (txtPssw1.getText().isEmpty()) {
@@ -479,7 +479,7 @@ public class registro extends javax.swing.JFrame {
         }
 
         if (txtRepPssw.getText().isEmpty()) {
-            txtRepPssw.setText("Ingrese email");
+            txtRepPssw.setText("wiki@email.com");
             txtRepPssw.setForeground(new Color(204, 204, 204));
         }
 
@@ -516,7 +516,7 @@ public class registro extends javax.swing.JFrame {
         }
 
         if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
+            txtEmail1.setText("wiki@email.com");
             txtEmail1.setForeground(new Color(204, 204, 204));
         }
 
@@ -538,12 +538,15 @@ public class registro extends javax.swing.JFrame {
 
     public void validarCampos() {
         if (verificacionEmail() != true) {
-            JOptionPane.showMessageDialog(rootPane, "Email Incorrecto");
-        } else if (ConfirmarContra() != true) {
-            JOptionPane.showMessageDialog(rootPane, "Contraseñas no coinciden");
-        } else if (CamposVacios() != true) {
+            CorrNoValido.setText("*Correo no valido");
+        } 
+        if (ConfirmarContra() != true) {
+            ConNoCoindice.setText("*Su contraseña no coincide");
+        } 
+        if (CamposVacios() != true) {
             JOptionPane.showMessageDialog(rootPane, "Complete los campos");
-        } else {
+              }
+        else {
             JOptionPane.showMessageDialog(rootPane, "UsuarioAgregado");
             RegistrarUsu();
         }
@@ -551,13 +554,27 @@ public class registro extends javax.swing.JFrame {
     }
 
     public boolean CamposVacios() {
-        if (txtEmail1.getText().isEmpty() || txtNom.getText().isEmpty() || txtApeP.getText().isEmpty()
-                || txtApeMa.getText().isEmpty() || txtPssw1.getText().isEmpty() || txtRepPssw.getText().isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+    // Obtener texto actual de cada campo
+    String email = txtEmail1.getText();
+    String nombre = txtNom.getText();
+    String apellidoPaterno = txtApeP.getText();
+    String apellidoMaterno = txtApeMa.getText();
+    String contrasena = txtPssw1.getText();
+    String repetirContrasena = txtRepPssw.getText();
+
+    // Verificar si algún campo está vacío o igual al texto de sugerencia
+    if (email.isEmpty() || email.equals("wiki@email.com") ||
+        nombre.isEmpty() || nombre.equals("Nombre") ||
+        apellidoPaterno.isEmpty() || apellidoPaterno.equals("Apellido paterno") ||
+        apellidoMaterno.isEmpty() || apellidoMaterno.equals("Apellido materno") ||
+        contrasena.isEmpty() || contrasena.equals("**********") ||
+        repetirContrasena.isEmpty() || repetirContrasena.equals("**********")) {
+        return false; // Al menos un campo no está completo
+    } else {
+        return true; // Todos los campos están completos
     }
+}
+
 
     public void RegistrarUsu() {
         try {
@@ -584,6 +601,7 @@ public class registro extends javax.swing.JFrame {
         if (contra1.equalsIgnoreCase(contra2)) {
             return true;
         } else {
+            ConNoCoindice.setVisible(true);
             return false;
         }
     }
@@ -602,11 +620,13 @@ public class registro extends javax.swing.JFrame {
         if (dotIndex == -1 || !txtEmail1.getText().substring(dotIndex).equals(".com")) {
             a = -1;
         }
+        
+        
 
         if (a == 0) {
             return true;
         } else {
-            CorrNoValido.setText("Ingrese un correo válido");
+          
             CorrNoValido.setVisible(true);
             return false;
         }
@@ -624,7 +644,7 @@ public class registro extends javax.swing.JFrame {
             txtPssw1.setForeground(new Color(204, 204, 204));
         }
         if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
+            txtEmail1.setText("wiki@email.com");
             txtEmail1.setForeground(new Color(204, 204, 204));
         }
 
