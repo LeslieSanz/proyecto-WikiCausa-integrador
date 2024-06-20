@@ -27,6 +27,7 @@ public class UsurarioDAO {
                     user.setNombre(rs.getString("Nombres"));
                     user.setApellidoP(rs.getString("ApellidoP"));
                     user.setApellidoM(rs.getString("ApellidoM"));
+                    user.setRol(rs.getString("Rol"));
                 }
             }
         } catch (SQLException ex) {

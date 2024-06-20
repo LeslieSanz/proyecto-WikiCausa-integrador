@@ -8,6 +8,7 @@ public class Usuario {
     private String nombre;
     private String apellidoP;
     private String apellidoM;
+    private String rol;
 
     public Usuario() {
     }
@@ -58,6 +59,14 @@ public class Usuario {
 
     public void setApellidoM(String apellidoM) {
         this.apellidoM = apellidoM;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
     
 }

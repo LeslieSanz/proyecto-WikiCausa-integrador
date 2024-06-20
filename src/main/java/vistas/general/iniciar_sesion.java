@@ -4,6 +4,7 @@ import java.awt.Color;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import modeloDAO.UsurarioDAO;
+import vistas.admin.admin_sidebar;
 import vistas.cliente.cliente_sidebar;
 
 /**
@@ -166,12 +167,19 @@ public class iniciar_sesion extends javax.swing.JFrame {
         String correo=txtCorreo.getText();
         String password=txtcontrasena.getText();
         Usuario usu=usDao.validarUsu(correo, password);
+        String rol=usu.getRol();
         
         if (usu!=null) {
-            System.out.println("Wuenas "+usu.getNombre());
-            cliente_sidebar cliSi= new cliente_sidebar();
-            cliSi.setVisible(true);
-            this.dispose();
+            if (rol.equalsIgnoreCase("C")) {
+                cliente_sidebar cliSi= new cliente_sidebar();
+                cliSi.setVisible(true);
+                this.dispose();
+            }
+            if (rol.equalsIgnoreCase("A")) {
+                admin_sidebar adSi= new admin_sidebar();
+                adSi.setVisible(true);
+                this.dispose();
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Piña Usuario y/o contraseña no encontrado");
         }
