@@ -343,7 +343,7 @@ public class registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApeMaActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        
+
         validarCampos();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
@@ -367,7 +367,7 @@ public class registro extends javax.swing.JFrame {
             txtApeMa.setForeground(new Color(204, 204, 204));
         }
 
-       if (txtPssw1.getText().isEmpty()) {
+        if (txtPssw1.getText().isEmpty()) {
             txtPssw1.setText("**********");
             txtPssw1.setForeground(new Color(204, 204, 204));
         }
@@ -389,7 +389,7 @@ public class registro extends javax.swing.JFrame {
             txtEmail1.setForeground(new Color(204, 204, 204));
         }
 
-       if (txtPssw1.getText().isEmpty()) {
+        if (txtPssw1.getText().isEmpty()) {
             txtPssw1.setText("**********");
             txtPssw1.setForeground(new Color(204, 204, 204));
         }
@@ -537,46 +537,54 @@ public class registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPssw1MousePressed
 
     public void validarCampos() {
-        if (verificacionEmail() != true) {
+        boolean emailValido = verificacionEmail();
+        boolean contrasenaValida = ConfirmarContra();
+        boolean camposLlenos = CamposVacios(); // Asumiendo que CamposVacios() es otro método que verifica que todos los campos estén llenos.
+
+        if (!emailValido) {
             CorrNoValido.setText("*Correo no valido");
-        } 
-        if (ConfirmarContra() != true) {
+        }
+        if (!contrasenaValida) {
             ConNoCoindice.setText("*Su contraseña no coincide");
-        } 
-        if (CamposVacios() != true) {
+        }
+        if (!camposLlenos) {
             JOptionPane.showMessageDialog(rootPane, "Complete los campos");
-              }
-        else {
-            JOptionPane.showMessageDialog(rootPane, "UsuarioAgregado");
-            RegistrarUsu();
+        }
+
+        // Solo intentar registrar el usuario si todas las validaciones son exitosas
+        if (emailValido && contrasenaValida && camposLlenos) {
+            if (RegistrarUsu()) {
+                JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario no agregado");
+            }
         }
 
     }
 
     public boolean CamposVacios() {
-    // Obtener texto actual de cada campo
-    String email = txtEmail1.getText();
-    String nombre = txtNom.getText();
-    String apellidoPaterno = txtApeP.getText();
-    String apellidoMaterno = txtApeMa.getText();
-    String contrasena = txtPssw1.getText();
-    String repetirContrasena = txtRepPssw.getText();
+        // Obtener texto actual de cada campo
+        String email = txtEmail1.getText();
+        String nombre = txtNom.getText();
+        String apellidoPaterno = txtApeP.getText();
+        String apellidoMaterno = txtApeMa.getText();
+        String contrasena = txtPssw1.getText();
+        String repetirContrasena = txtRepPssw.getText();
 
-    // Verificar si algún campo está vacío o igual al texto de sugerencia
-    if (email.isEmpty() || email.equals("wiki@email.com") ||
-        nombre.isEmpty() || nombre.equals("Nombre") ||
-        apellidoPaterno.isEmpty() || apellidoPaterno.equals("Apellido paterno") ||
-        apellidoMaterno.isEmpty() || apellidoMaterno.equals("Apellido materno") ||
-        contrasena.isEmpty() || contrasena.equals("**********") ||
-        repetirContrasena.isEmpty() || repetirContrasena.equals("**********")) {
-        return false; // Al menos un campo no está completo
-    } else {
-        return true; // Todos los campos están completos
+        // Verificar si algún campo está vacío o igual al texto de sugerencia
+        if (email.isEmpty() || email.equals("wiki@email.com")
+                || nombre.isEmpty() || nombre.equals("Nombre")
+                || apellidoPaterno.isEmpty() || apellidoPaterno.equals("Apellido paterno")
+                || apellidoMaterno.isEmpty() || apellidoMaterno.equals("Apellido materno")
+                || contrasena.isEmpty() || contrasena.equals("**********")
+                || repetirContrasena.isEmpty() || repetirContrasena.equals("**********")) {
+            return false; // Al menos un campo no está completo
+        } else {
+            return true; // Todos los campos están completos
+        }
     }
-}
 
-
-    public void RegistrarUsu() {
+    public boolean RegistrarUsu() {
         try {
             Usuario usu = new Usuario();
             usu.setCorreo(txtEmail1.getText());
@@ -588,8 +596,10 @@ public class registro extends javax.swing.JFrame {
             iniciar_sesion ini = new iniciar_sesion();
             ini.setVisible(true);
             this.setVisible(false);
+            return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Usuario no agregado");
+            JOptionPane.showMessageDialog(null, "Error al registrar usuario: " + e.getMessage());
+            return false;
         }
     }
 
@@ -598,47 +608,37 @@ public class registro extends javax.swing.JFrame {
         String contra1 = String.valueOf(txtPssw1.getPassword());
         String contra2 = String.valueOf(txtRepPssw.getPassword());
 
-        if (contra1.equalsIgnoreCase(contra2)) {
+        if (contra1.equals(contra2)) {
             return true;
         } else {
             ConNoCoindice.setVisible(true);
             return false;
         }
+
     }
 
     public boolean verificacionEmail() {
 
-        int a = 0;
-        // Verificar si el correo electrónico contiene exactamente un '@'
-        int atIndex = txtEmail1.getText().indexOf('@');
-        if (atIndex == -1 || txtEmail1.getText().indexOf('@', atIndex + 1) != -1) {
-            a = -1;
-        }
+        String email = txtEmail1.getText();
+        int atIndex = email.indexOf('@');
+        int dotIndex = email.lastIndexOf('.');
 
-        // Verificar si el dominio termina en '.com'
-        int dotIndex = txtEmail1.getText().lastIndexOf('.');
-        if (dotIndex == -1 || !txtEmail1.getText().substring(dotIndex).equals(".com")) {
-            a = -1;
-        }
-        
-        
-
-        if (a == 0) {
+        // Verificar si el correo electrónico contiene exactamente un '@' y termina con '.com'
+        if (atIndex > 0 && dotIndex > atIndex && email.substring(dotIndex).equals(".com")) {
             return true;
         } else {
-          
             CorrNoValido.setVisible(true);
             return false;
         }
     }
 
     private void txtRepPsswMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRepPsswMousePressed
-        
-         if (txtRepPssw.getText().equals("**********")) {
+
+        if (txtRepPssw.getText().equals("**********")) {
             txtRepPssw.setText("");
             txtRepPssw.setForeground(Color.black);
         }
-        
+
         if (txtPssw1.getText().isEmpty()) {
             txtPssw1.setText("**********");
             txtPssw1.setForeground(new Color(204, 204, 204));
@@ -674,16 +674,16 @@ public class registro extends javax.swing.JFrame {
 
     private void hidePswwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePswwMouseClicked
         txtPssw1.setEchoChar('*');
-    hidePsww.setVisible(false); // Cambiar visibilidad después de hacer clic
-    mostrarPsww.setVisible(true);
+        hidePsww.setVisible(false); // Cambiar visibilidad después de hacer clic
+        mostrarPsww.setVisible(true);
     }//GEN-LAST:event_hidePswwMouseClicked
 
     private void mostrarPswwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarPswwMouseClicked
 
-      txtPssw1.setEchoChar((char) 0);
-    mostrarPsww.setVisible(false); // Cambiar visibilidad después de hacer clic
-    hidePsww.setVisible(true);
-        
+        txtPssw1.setEchoChar((char) 0);
+        mostrarPsww.setVisible(false); // Cambiar visibilidad después de hacer clic
+        hidePsww.setVisible(true);
+
     }//GEN-LAST:event_mostrarPswwMouseClicked
 
     private void RephidePsswMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RephidePsswMouseClicked
