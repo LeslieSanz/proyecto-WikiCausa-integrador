@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import modelo.Usuario;
 
 public class UsurarioDAO {
@@ -28,6 +29,8 @@ public class UsurarioDAO {
                     user.setApellidoP(rs.getString("ApellidoP"));
                     user.setApellidoM(rs.getString("ApellidoM"));
                     user.setRol(rs.getString("Rol"));
+                }else{
+                    JOptionPane.showMessageDialog(null, "Correo y/o contraseña incorrectos");
                 }
             }
         } catch (SQLException ex) {

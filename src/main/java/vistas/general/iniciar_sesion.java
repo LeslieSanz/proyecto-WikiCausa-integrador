@@ -1,5 +1,6 @@
 package vistas.general;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
@@ -253,6 +254,12 @@ public class iniciar_sesion extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        try {
+            //UIManager.setLookAndFeel(new FlatLightLaf());
+            FlatLightLaf.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new iniciar_sesion().setVisible(true);
