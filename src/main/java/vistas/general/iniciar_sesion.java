@@ -215,6 +215,8 @@ public class iniciar_sesion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtCorreoMousePressed
 
+    
+    
     /**
      * @param args the command line arguments
      */
