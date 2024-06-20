@@ -478,9 +478,9 @@ public class registro extends javax.swing.JFrame {
             txtApeMa.setForeground(Color.black);
         }
 
-        if (txtRepPssw.getText().isEmpty()) {
-            txtRepPssw.setText("wiki@email.com");
-            txtRepPssw.setForeground(new Color(204, 204, 204));
+        if (txtEmail1.getText().isEmpty()) {
+            txtEmail1.setText("wiki@email.com");
+            txtEmail1.setForeground(new Color(204, 204, 204));
         }
 
         if (txtNom.getText().isEmpty()) {
