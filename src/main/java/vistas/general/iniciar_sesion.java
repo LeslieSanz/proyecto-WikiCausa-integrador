@@ -66,7 +66,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
         ingreseCorreo.setText("Ingrese su correo");
         background.add(ingreseCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
 
-        hidePsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/hidePssw.png"))); // NOI18N
+        hidePsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/showPssw.png"))); // NOI18N
         hidePsww.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 hidePswwMouseClicked(evt);
@@ -74,13 +74,13 @@ public class iniciar_sesion extends javax.swing.JFrame {
         });
         background.add(hidePsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 455, -1, -1));
 
-        mostrarPsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/showPssw.png"))); // NOI18N
+        mostrarPsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/hidePssw.png"))); // NOI18N
         mostrarPsww.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mostrarPswwMouseClicked(evt);
             }
         });
-        background.add(mostrarPsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 458, -1, -1));
+        background.add(mostrarPsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 452, -1, -1));
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/regresar.png"))); // NOI18N
         btnRegresar.setContentAreaFilled(false);
