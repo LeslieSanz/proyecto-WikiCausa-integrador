@@ -43,7 +43,6 @@ public class cliente_inicio extends javax.swing.JPanel {
 
         fraseMotivadora.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         fraseMotivadora.setForeground(new java.awt.Color(46, 46, 46));
-        fraseMotivadora.setText("Te quiero mucho <3");
         jPanel1.add(fraseMotivadora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
