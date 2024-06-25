@@ -1,5 +1,6 @@
 package vistas.general;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
@@ -11,6 +12,11 @@ public class registro extends javax.swing.JFrame {
 
     public registro() {
         initComponents();
+        ConNoCoindice.setVisible(false);
+        hidePsww.setVisible(false);
+        RephidePssw.setVisible(false);
+        CorrNoValido.setVisible(false);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -33,7 +39,6 @@ public class registro extends javax.swing.JFrame {
         lineaizq2 = new javax.swing.JLabel();
         contrasena = new javax.swing.JLabel();
         lineaizq3 = new javax.swing.JLabel();
-        SuContrasenadebe = new javax.swing.JLabel();
         repetircontrasela = new javax.swing.JLabel();
         ingreseapellido = new javax.swing.JLabel();
         lineader3 = new javax.swing.JLabel();
@@ -45,9 +50,11 @@ public class registro extends javax.swing.JFrame {
         txtNom = new javax.swing.JTextField();
         txtApeP = new javax.swing.JTextField();
         txtApeMa = new javax.swing.JTextField();
-        txtRepPssw = new javax.swing.JTextField();
         txtEmail1 = new javax.swing.JTextField();
-        txtPssw1 = new javax.swing.JTextField();
+        txtPssw1 = new javax.swing.JPasswordField();
+        txtRepPssw = new javax.swing.JPasswordField();
+        CorrNoValido = new javax.swing.JLabel();
+        ConNoCoindice = new javax.swing.JLabel();
         contenedor = new javax.swing.JLabel();
         esfera = new javax.swing.JLabel();
 
@@ -98,7 +105,7 @@ public class registro extends javax.swing.JFrame {
 
         email.setFont(new java.awt.Font("Poppins", 1, 15)); // NOI18N
         email.setForeground(new java.awt.Color(118, 118, 118));
-        email.setText("Email");
+        email.setText("Correo");
         background.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 120, 30));
 
         lineaizq1.setBackground(new java.awt.Color(255, 255, 255));
@@ -116,11 +123,6 @@ public class registro extends javax.swing.JFrame {
         lineaizq3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/lineaIzq.png"))); // NOI18N
         background.add(lineaizq3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, -1, 20));
 
-        SuContrasenadebe.setFont(new java.awt.Font("Poppins", 0, 11)); // NOI18N
-        SuContrasenadebe.setForeground(new java.awt.Color(232, 162, 24));
-        SuContrasenadebe.setText("*Su contraseña debe contener al menos 8 caracteres");
-        background.add(SuContrasenadebe, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 500, -1, 30));
-
         repetircontrasela.setFont(new java.awt.Font("Poppins", 1, 15)); // NOI18N
         repetircontrasela.setForeground(new java.awt.Color(118, 118, 118));
         repetircontrasela.setText("Repetir Contraseña");
@@ -134,16 +136,36 @@ public class registro extends javax.swing.JFrame {
         lineader3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/lineaIzq.png"))); // NOI18N
         background.add(lineader3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 480, -1, 20));
 
-        RephidePssw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/hidePssw.png"))); // NOI18N
-        background.add(RephidePssw, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 460, -1, -1));
+        RephidePssw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/showPssw.png"))); // NOI18N
+        RephidePssw.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RephidePsswMouseClicked(evt);
+            }
+        });
+        background.add(RephidePssw, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 466, -1, 20));
 
-        repmostrarPssw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/showPssw.png"))); // NOI18N
-        background.add(repmostrarPssw, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 465, -1, -1));
+        repmostrarPssw.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/hidePssw.png"))); // NOI18N
+        repmostrarPssw.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                repmostrarPsswMouseClicked(evt);
+            }
+        });
+        background.add(repmostrarPssw, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 464, -1, 20));
 
-        hidePsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/hidePssw.png"))); // NOI18N
-        background.add(hidePsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 390, -1, -1));
+        hidePsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/showPssw.png"))); // NOI18N
+        hidePsww.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                hidePswwMouseClicked(evt);
+            }
+        });
+        background.add(hidePsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 399, -1, -1));
 
-        mostrarPsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/showPssw.png"))); // NOI18N
+        mostrarPsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/hidePssw.png"))); // NOI18N
+        mostrarPsww.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mostrarPswwMouseClicked(evt);
+            }
+        });
         background.add(mostrarPsww, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 395, -1, -1));
 
         btnIngresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/Registrar.png"))); // NOI18N
@@ -168,9 +190,9 @@ public class registro extends javax.swing.JFrame {
                 txtNomMousePressed(evt);
             }
         });
-        txtNom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomActionPerformed(evt);
+        txtNom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomKeyTyped(evt);
             }
         });
         background.add(txtNom, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 320, 280, -1));
@@ -191,6 +213,11 @@ public class registro extends javax.swing.JFrame {
                 txtApePActionPerformed(evt);
             }
         });
+        txtApeP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApePKeyTyped(evt);
+            }
+        });
         background.add(txtApeP, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, 280, -1));
 
         txtApeMa.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
@@ -209,14 +236,51 @@ public class registro extends javax.swing.JFrame {
                 txtApeMaActionPerformed(evt);
             }
         });
+        txtApeMa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApeMaKeyTyped(evt);
+            }
+        });
         background.add(txtApeMa, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, 280, -1));
+
+        txtEmail1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
+        txtEmail1.setForeground(new java.awt.Color(147, 147, 147));
+        txtEmail1.setText("wiki@email.com");
+        txtEmail1.setToolTipText("");
+        txtEmail1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtEmail1.setName(""); // NOI18N
+        txtEmail1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtEmail1MousePressed(evt);
+            }
+        });
+        txtEmail1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEmail1KeyTyped(evt);
+            }
+        });
+        background.add(txtEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 323, 280, -1));
+
+        txtPssw1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
+        txtPssw1.setForeground(new java.awt.Color(147, 147, 147));
+        txtPssw1.setText("**********");
+        txtPssw1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtPssw1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                txtPssw1MousePressed(evt);
+            }
+        });
+        txtPssw1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPssw1KeyTyped(evt);
+            }
+        });
+        background.add(txtPssw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 395, 280, -1));
 
         txtRepPssw.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         txtRepPssw.setForeground(new java.awt.Color(147, 147, 147));
-        txtRepPssw.setText("Repetir contraseña");
-        txtRepPssw.setToolTipText("");
+        txtRepPssw.setText("**********");
         txtRepPssw.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtRepPssw.setName(""); // NOI18N
         txtRepPssw.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtRepPsswMousePressed(evt);
@@ -227,43 +291,22 @@ public class registro extends javax.swing.JFrame {
                 txtRepPsswActionPerformed(evt);
             }
         });
-        background.add(txtRepPssw, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 460, 280, -1));
+        txtRepPssw.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRepPsswKeyTyped(evt);
+            }
+        });
+        background.add(txtRepPssw, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 465, 280, -1));
 
-        txtEmail1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
-        txtEmail1.setForeground(new java.awt.Color(147, 147, 147));
-        txtEmail1.setText("Ingrese email");
-        txtEmail1.setToolTipText("");
-        txtEmail1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtEmail1.setName(""); // NOI18N
-        txtEmail1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtEmail1MousePressed(evt);
-            }
-        });
-        txtEmail1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmail1ActionPerformed(evt);
-            }
-        });
-        background.add(txtEmail1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 323, 280, -1));
+        CorrNoValido.setFont(new java.awt.Font("Poppins", 0, 10)); // NOI18N
+        CorrNoValido.setForeground(new java.awt.Color(232, 162, 24));
+        CorrNoValido.setText("*Correo no valido");
+        background.add(CorrNoValido, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 345, -1, 30));
 
-        txtPssw1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
-        txtPssw1.setForeground(new java.awt.Color(147, 147, 147));
-        txtPssw1.setText("Ingrese contraseña");
-        txtPssw1.setToolTipText("");
-        txtPssw1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtPssw1.setName(""); // NOI18N
-        txtPssw1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtPssw1MousePressed(evt);
-            }
-        });
-        txtPssw1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPssw1ActionPerformed(evt);
-            }
-        });
-        background.add(txtPssw1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, 280, -1));
+        ConNoCoindice.setFont(new java.awt.Font("Poppins", 0, 10)); // NOI18N
+        ConNoCoindice.setForeground(new java.awt.Color(232, 162, 24));
+        ConNoCoindice.setText("*Su contraseña no coincide");
+        background.add(ConNoCoindice, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 485, -1, 30));
 
         contenedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/form_registro.png"))); // NOI18N
         background.add(contenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 730, -1));
@@ -291,22 +334,6 @@ public class registro extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void txtRepPsswActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepPsswActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRepPsswActionPerformed
-
-    private void txtEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmail1ActionPerformed
-
-    private void txtPssw1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPssw1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPssw1ActionPerformed
-
-    private void txtNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomActionPerformed
-
     private void txtApeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApeActionPerformed
@@ -317,6 +344,247 @@ public class registro extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
+        validarCampos();
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void txtEmail1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmail1MousePressed
+        if (txtEmail1.getText().equals("wiki@email.com")) {
+            txtEmail1.setText("");
+            txtEmail1.setForeground(Color.black);
+        }
+
+        if (txtNom.getText().isEmpty()) {
+            txtNom.setText("Nombre");
+            txtNom.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtApeP.getText().isEmpty()) {
+            txtApeP.setText("Apellido paterno");
+            txtApeP.setForeground(new Color(204, 204, 204));
+        }
+        if (txtApeMa.getText().isEmpty()) {
+            txtApeMa.setText("Apellido materno");
+            txtApeMa.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtPssw1.getText().isEmpty()) {
+            txtPssw1.setText("**********");
+            txtPssw1.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtRepPssw.getText().isEmpty()) {
+            txtRepPssw.setText("**********");
+            txtRepPssw.setForeground(new Color(204, 204, 204));
+        }
+
+    }//GEN-LAST:event_txtEmail1MousePressed
+
+    private void txtApePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApePActionPerformed
+        if (txtApeP.getText().equals("Apellido paterno")) {
+            txtApeP.setText("");
+            txtApeP.setForeground(Color.black);
+        }
+        if (txtEmail1.getText().isEmpty()) {
+            txtEmail1.setText("wiki@email.com");
+            txtEmail1.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtPssw1.getText().isEmpty()) {
+            txtPssw1.setText("**********");
+            txtPssw1.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtRepPssw.getText().isEmpty()) {
+            txtRepPssw.setText("**********");
+            txtRepPssw.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtNom.getText().isEmpty()) {
+            txtNom.setText("Nombre");
+            txtNom.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtEmail1.getText().isEmpty()) {
+            txtEmail1.setText("Ingrese Ingrese email");
+            txtEmail1.setForeground(new Color(204, 204, 204));
+        }
+        if (txtApeMa.getText().isEmpty()) {
+            txtApeMa.setText("Apellido materno");
+            txtApeMa.setForeground(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_txtApePActionPerformed
+
+    private void txtNomMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomMousePressed
+        if (txtNom.getText().equals("Nombre")) {
+            txtNom.setText("");
+            txtNom.setForeground(Color.black);
+        }
+        if (txtEmail1.getText().isEmpty()) {
+            txtEmail1.setText("wiki@email.com");
+            txtEmail1.setForeground(new Color(204, 204, 204));
+        }
+        if (txtPssw1.getText().isEmpty()) {
+            txtPssw1.setText("**********");
+            txtPssw1.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtRepPssw.getText().isEmpty()) {
+            txtRepPssw.setText("**********");
+            txtRepPssw.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtApeP.getText().isEmpty()) {
+            txtApeP.setText("Apellido paterno");
+            txtApeP.setForeground(new Color(204, 204, 204));
+        }
+        if (txtApeMa.getText().isEmpty()) {
+            txtApeMa.setText("Apellido materno");
+            txtApeMa.setForeground(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_txtNomMousePressed
+
+    private void txtApePMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApePMousePressed
+        if (txtApeP.getText().equals("Apellido paterno")) {
+            txtApeP.setText("");
+            txtApeP.setForeground(Color.black);
+        }
+        if (txtEmail1.getText().isEmpty()) {
+            txtEmail1.setText("wiki@email.com");
+            txtEmail1.setForeground(new Color(204, 204, 204));
+        }
+        if (txtPssw1.getText().isEmpty()) {
+            txtPssw1.setText("**********");
+            txtPssw1.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtRepPssw.getText().isEmpty()) {
+            txtRepPssw.setText("**********");
+            txtRepPssw.setForeground(new Color(204, 204, 204));
+        }
+        if (txtNom.getText().isEmpty()) {
+            txtNom.setText("Nombre");
+            txtNom.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtApeMa.getText().isEmpty()) {
+            txtApeMa.setText("Apellido materno");
+            txtApeMa.setForeground(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_txtApePMousePressed
+
+    private void txtApeMaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApeMaMousePressed
+        if (txtApeMa.getText().equals("Apellido materno")) {
+            txtApeMa.setText("");
+            txtApeMa.setForeground(Color.black);
+        }
+
+        if (txtEmail1.getText().isEmpty()) {
+            txtEmail1.setText("wiki@email.com");
+            txtEmail1.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtNom.getText().isEmpty()) {
+            txtNom.setText("Nombre");
+            txtNom.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtApeP.getText().isEmpty()) {
+            txtApeP.setText("Apellido paterno");
+            txtApeP.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtPssw1.getText().isEmpty()) {
+            txtPssw1.setText("**********");
+            txtPssw1.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtRepPssw.getText().isEmpty()) {
+            txtRepPssw.setText("**********");
+            txtRepPssw.setForeground(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_txtApeMaMousePressed
+
+    private void txtPssw1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPssw1MousePressed
+        if (txtPssw1.getText().equals("**********")) {
+            txtPssw1.setText("");
+            txtPssw1.setForeground(Color.black);
+        }
+
+        if (txtRepPssw.getText().isEmpty()) {
+            txtRepPssw.setText("**********");
+            txtRepPssw.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtEmail1.getText().isEmpty()) {
+            txtEmail1.setText("wiki@email.com");
+            txtEmail1.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtNom.getText().isEmpty()) {
+            txtNom.setText("Nombre");
+            txtNom.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtApeP.getText().isEmpty()) {
+            txtApeP.setText("Apellido paterno");
+            txtApeP.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtApeMa.getText().isEmpty()) {
+            txtApeMa.setText("Apellido materno");
+            txtApeMa.setForeground(new Color(204, 204, 204));
+        }
+    }//GEN-LAST:event_txtPssw1MousePressed
+
+    public void validarCampos() {
+        boolean emailValido = verificacionEmail();
+        boolean contrasenaValida = ConfirmarContra();
+        boolean camposLlenos = CamposVacios(); // Asumiendo que CamposVacios() es otro método que verifica que todos los campos estén llenos.
+
+        if (!emailValido) {
+            CorrNoValido.setText("*Correo no valido");
+        }
+        if (!contrasenaValida) {
+            ConNoCoindice.setText("*Su contraseña no coincide");
+        }
+        if (!camposLlenos) {
+            JOptionPane.showMessageDialog(rootPane, "Complete los campos");
+        }
+
+        // Solo intentar registrar el usuario si todas las validaciones son exitosas
+        if (emailValido && contrasenaValida && camposLlenos) {
+            if (RegistrarUsu()) {
+                JOptionPane.showMessageDialog(null, "Usuario registrado exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuario no agregado");
+            }
+        }
+
+    }
+
+    public boolean CamposVacios() {
+        // Obtener texto actual de cada campo
+        String email = txtEmail1.getText();
+        String nombre = txtNom.getText();
+        String apellidoPaterno = txtApeP.getText();
+        String apellidoMaterno = txtApeMa.getText();
+        String contrasena = txtPssw1.getText();
+        String repetirContrasena = txtRepPssw.getText();
+
+        // Verificar si algún campo está vacío o igual al texto de sugerencia
+        if (email.isEmpty() || email.equals("wiki@email.com")
+                || nombre.isEmpty() || nombre.equals("Nombre")
+                || apellidoPaterno.isEmpty() || apellidoPaterno.equals("Apellido paterno")
+                || apellidoMaterno.isEmpty() || apellidoMaterno.equals("Apellido materno")
+                || contrasena.isEmpty() || contrasena.equals("**********")
+                || repetirContrasena.isEmpty() || repetirContrasena.equals("**********")) {
+            return false; // Al menos un campo no está completo
+        } else {
+            return true; // Todos los campos están completos
+        }
+    }
+
+    public boolean RegistrarUsu() {
         try {
             Usuario usu = new Usuario();
             usu.setCorreo(txtEmail1.getText());
@@ -325,215 +593,139 @@ public class registro extends javax.swing.JFrame {
             usu.setApellidoP(txtApeP.getText());
             usu.setApellidoM(txtApeMa.getText());
             usDao.AgregarUsu(usu);
-            
+            iniciar_sesion ini = new iniciar_sesion();
+            ini.setVisible(true);
+            this.setVisible(false);
+            return true;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Usuario no agregado");
+            JOptionPane.showMessageDialog(null, "Error al registrar usuario: " + e.getMessage());
+            return false;
         }
-    }//GEN-LAST:event_btnIngresarActionPerformed
+    }
 
-    private void txtEmail1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEmail1MousePressed
-     if (txtEmail1.getText().equals("Ingrese email")) {
-            txtEmail1.setText("");
-            txtEmail1.setForeground(Color.black);
-        }
-     if (txtPssw1.getText().isEmpty()) {
-            txtPssw1.setText("Ingrese contraseña");
-            txtPssw1.setForeground(new Color(204, 204, 204));
-        }
-     if (txtRepPssw.getText().isEmpty()) {
-            txtRepPssw.setText("Repetir contraseña");
-            txtRepPssw.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtNom.getText().isEmpty()) {
-            txtNom.setText("Nombre");
-            txtNom.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtApeP.getText().isEmpty()) {
-            txtApeP.setText("Apellido paterno");
-            txtApeP.setForeground(new Color(204, 204, 204));
-        }
-     if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
-        }
-     
-    }//GEN-LAST:event_txtEmail1MousePressed
+    public boolean ConfirmarContra() {
 
-    private void txtApePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApePActionPerformed
-     if (txtApeP.getText().equals("Apellido paterno")) {
-            txtApeP.setText("");
-            txtApeP.setForeground(Color.black);
-        }
-     if (txtPssw1.getText().isEmpty()) {
-            txtPssw1.setText("Ingrese contraseña");
-            txtPssw1.setForeground(new Color(204, 204, 204));
-        }
-     if (txtRepPssw.getText().isEmpty()) {
-            txtRepPssw.setText("Repetir contraseña");
-            txtRepPssw.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtNom.getText().isEmpty()) {
-            txtNom.setText("Nombre");
-            txtNom.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
-            txtEmail1.setForeground(new Color(204, 204, 204));
-        }
-     if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
-        }
-    }//GEN-LAST:event_txtApePActionPerformed
+        String contra1 = String.valueOf(txtPssw1.getPassword());
+        String contra2 = String.valueOf(txtRepPssw.getPassword());
 
-    private void txtPssw1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPssw1MousePressed
-     if (txtPssw1.getText().equals("Ingrese contraseña")) {
-            txtPssw1.setText("");
-            txtPssw1.setForeground(Color.black);
+        if (contra1.equals(contra2)) {
+            return true;
+        } else {
+            ConNoCoindice.setVisible(true);
+            return false;
         }
-     if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
-            txtEmail1.setForeground(new Color(204, 204, 204));
+
+    }
+
+    public boolean verificacionEmail() {
+
+        String email = txtEmail1.getText();
+        int atIndex = email.indexOf('@');
+        int dotIndex = email.lastIndexOf('.');
+
+        // Verificar si el correo electrónico contiene exactamente un '@' y termina con '.com'
+        if (atIndex > 0 && dotIndex > atIndex && email.substring(dotIndex).equals(".com")) {
+            return true;
+        } else {
+            CorrNoValido.setVisible(true);
+            return false;
         }
-     if (txtRepPssw.getText().isEmpty()) {
-            txtRepPssw.setText("Repetir contraseña");
-            txtRepPssw.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtNom.getText().isEmpty()) {
-            txtNom.setText("Nombre");
-            txtNom.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtApeP.getText().isEmpty()) {
-            txtApeP.setText("Apellido paterno");
-            txtApeP.setForeground(new Color(204, 204, 204));
-        }
-     if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
-        }
-    }//GEN-LAST:event_txtPssw1MousePressed
+    }
 
     private void txtRepPsswMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtRepPsswMousePressed
-       if (txtRepPssw.getText().equals("Repetir contraseña")) {
+
+        if (txtRepPssw.getText().equals("**********")) {
             txtRepPssw.setText("");
             txtRepPssw.setForeground(Color.black);
         }
-     if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
-            txtEmail1.setForeground(new Color(204, 204, 204));
-        }
-     if (txtPssw1.getText().isEmpty()) {
-            txtPssw1.setText("Ingrese contraseña");
+
+        if (txtPssw1.getText().isEmpty()) {
+            txtPssw1.setText("**********");
             txtPssw1.setForeground(new Color(204, 204, 204));
         }
-     
-     if (txtNom.getText().isEmpty()) {
+        if (txtEmail1.getText().isEmpty()) {
+            txtEmail1.setText("wiki@email.com");
+            txtEmail1.setForeground(new Color(204, 204, 204));
+        }
+
+        if (txtNom.getText().isEmpty()) {
             txtNom.setText("Nombre");
             txtNom.setForeground(new Color(204, 204, 204));
         }
-     
-     if (txtApeP.getText().isEmpty()) {
+
+        if (txtApeP.getText().isEmpty()) {
             txtApeP.setText("Apellido paterno");
             txtApeP.setForeground(new Color(204, 204, 204));
         }
-     if (txtApeMa.getText().isEmpty()) {
+
+        if (txtApeMa.getText().isEmpty()) {
             txtApeMa.setText("Apellido materno");
             txtApeMa.setForeground(new Color(204, 204, 204));
         }
     }//GEN-LAST:event_txtRepPsswMousePressed
 
-    private void txtNomMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNomMousePressed
-        if (txtNom.getText().equals("Nombre")) {
-            txtNom.setText("");
-            txtNom.setForeground(Color.black);
-        }
-     if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
-            txtEmail1.setForeground(new Color(204, 204, 204));
-        }
-     if (txtRepPssw.getText().isEmpty()) {
-            txtRepPssw.setText("Repetir contraseña");
-            txtRepPssw.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtPssw1.getText().isEmpty()) {
-            txtPssw1.setText("Ingrese contraseña");
-            txtPssw1.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtApeP.getText().isEmpty()) {
-            txtApeP.setText("Apellido paterno");
-            txtApeP.setForeground(new Color(204, 204, 204));
-        }
-     if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
-        }
-    }//GEN-LAST:event_txtNomMousePressed
+    private void txtRepPsswKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepPsswKeyTyped
+        ConNoCoindice.setVisible(false);
+    }//GEN-LAST:event_txtRepPsswKeyTyped
 
-    private void txtApePMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApePMousePressed
-       if (txtApeP.getText().equals("Apellido paterno")) {
-            txtApeP.setText("");
-            txtApeP.setForeground(Color.black);
-        }
-     if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
-            txtEmail1.setForeground(new Color(204, 204, 204));
-        }
-     if (txtRepPssw.getText().isEmpty()) {
-            txtRepPssw.setText("Repetir contraseña");
-            txtRepPssw.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtNom.getText().isEmpty()) {
-            txtNom.setText("Nombre");
-            txtNom.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtPssw1.getText().isEmpty()) {
-            txtPssw1.setText("Ingrese contraseña");
-            txtPssw1.setForeground(new Color(204, 204, 204));
-        }
-     if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
-        }
-    }//GEN-LAST:event_txtApePMousePressed
+    private void txtPssw1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPssw1KeyTyped
+        ConNoCoindice.setVisible(false);
+    }//GEN-LAST:event_txtPssw1KeyTyped
 
-    private void txtApeMaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApeMaMousePressed
-       if (txtApeMa.getText().equals("Apellido materno")) {
-            txtApeMa.setText("");
-            txtApeMa.setForeground(Color.black);
+    private void hidePswwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_hidePswwMouseClicked
+        txtPssw1.setEchoChar('*');
+        hidePsww.setVisible(false); // Cambiar visibilidad después de hacer clic
+        mostrarPsww.setVisible(true);
+    }//GEN-LAST:event_hidePswwMouseClicked
+
+    private void mostrarPswwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarPswwMouseClicked
+
+        txtPssw1.setEchoChar((char) 0);
+        mostrarPsww.setVisible(false); // Cambiar visibilidad después de hacer clic
+        hidePsww.setVisible(true);
+
+    }//GEN-LAST:event_mostrarPswwMouseClicked
+
+    private void RephidePsswMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RephidePsswMouseClicked
+        txtRepPssw.setEchoChar('*');
+        repmostrarPssw.setVisible(true);
+        RephidePssw.setVisible(false);
+    }//GEN-LAST:event_RephidePsswMouseClicked
+
+    private void repmostrarPsswMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_repmostrarPsswMouseClicked
+        txtRepPssw.setEchoChar((char) 0);
+        RephidePssw.setVisible(true);
+        repmostrarPssw.setVisible(false);
+    }//GEN-LAST:event_repmostrarPsswMouseClicked
+
+    private void txtEmail1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmail1KeyTyped
+        CorrNoValido.setVisible(false);
+    }//GEN-LAST:event_txtEmail1KeyTyped
+
+    private void txtNomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
         }
-     if (txtEmail1.getText().isEmpty()) {
-            txtEmail1.setText("Ingrese email");
-            txtEmail1.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_txtNomKeyTyped
+
+    private void txtApePKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApePKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
         }
-     if (txtRepPssw.getText().isEmpty()) {
-            txtRepPssw.setText("Repetir contraseña");
-            txtRepPssw.setForeground(new Color(204, 204, 204));
+    }//GEN-LAST:event_txtApePKeyTyped
+
+    private void txtApeMaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApeMaKeyTyped
+        char c = evt.getKeyChar();
+        if (Character.isDigit(c)) {
+            evt.consume();
         }
-     
-     if (txtNom.getText().isEmpty()) {
-            txtNom.setText("Nombre");
-            txtNom.setForeground(new Color(204, 204, 204));
-        }
-     
-     if (txtApeP.getText().isEmpty()) {
-            txtApeP.setText("Apellido paterno");
-            txtApeP.setForeground(new Color(204, 204, 204));
-        }
-     if (txtPssw1.getText().isEmpty()) {
-            txtPssw1.setText("Ingrese contraseña");
-            txtPssw1.setForeground(new Color(204, 204, 204));
-        }
-    }//GEN-LAST:event_txtApeMaMousePressed
+    }//GEN-LAST:event_txtApeMaKeyTyped
+
+    private void txtRepPsswActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepPsswActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRepPsswActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -560,6 +752,12 @@ public class registro extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        try {
+            //UIManager.setLookAndFeel(new FlatLightLaf());
+            FlatLightLaf.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new registro().setVisible(true);
@@ -568,9 +766,10 @@ public class registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ConNoCoindice;
+    private javax.swing.JLabel CorrNoValido;
     private javax.swing.JLabel IngreseSuNombre;
     private javax.swing.JLabel RephidePssw;
-    private javax.swing.JLabel SuContrasenadebe;
     private javax.swing.JPanel background;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnRegresar;
@@ -599,7 +798,7 @@ public class registro extends javax.swing.JFrame {
     private javax.swing.JTextField txtApeP;
     private javax.swing.JTextField txtEmail1;
     private javax.swing.JTextField txtNom;
-    private javax.swing.JTextField txtPssw1;
-    private javax.swing.JTextField txtRepPssw;
+    private javax.swing.JPasswordField txtPssw1;
+    private javax.swing.JPasswordField txtRepPssw;
     // End of variables declaration//GEN-END:variables
 }

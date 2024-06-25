@@ -10,6 +10,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+import vistas.general.bienvenida;
 
 /**
  *
@@ -140,6 +141,11 @@ public class cliente_sidebar extends javax.swing.JFrame {
         jButton1.setContentAreaFilled(false);
         jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/salir2.png"))); // NOI18N
         jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/salir2.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         sidebar.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, -1, -1));
 
         logowiki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/wikilogo_sidebar.png"))); // NOI18N
@@ -211,6 +217,12 @@ public class cliente_sidebar extends javax.swing.JFrame {
         p = new cliente_perfil();
         mostrarPanel(p);
     }//GEN-LAST:event_btnMiPerfilMousePressed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        bienvenida bi = new bienvenida();
+        bi.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

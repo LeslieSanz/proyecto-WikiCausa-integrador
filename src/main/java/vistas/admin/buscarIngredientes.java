@@ -73,9 +73,17 @@ public class buscarIngredientes extends javax.swing.JFrame {
         cbxTipoIngre = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblIngredientes = new javax.swing.JTable();
+<<<<<<< HEAD
         txtNomIngre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnAgregarIngrediente = new javax.swing.JButton();
+=======
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        txtNomIngre = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+>>>>>>> main
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,21 +92,38 @@ public class buscarIngredientes extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
         jLabel1.setText("¡Encuentra los ingredientes y agrégalos a la receta!");
+<<<<<<< HEAD
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setText("Categoría");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
+=======
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Nombre");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
+>>>>>>> main
 
         jLabel3.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
         jLabel3.setText("Buscar");
+<<<<<<< HEAD
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, -1, -1));
 
         txtBuscar.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         txtBuscar.setForeground(new java.awt.Color(102, 102, 102));
         jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 310, -1));
+=======
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+
+        txtBuscar.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtBuscar.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 310, -1));
+>>>>>>> main
 
         cbxTipoIngre.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxTipoIngre.setForeground(new java.awt.Color(102, 102, 102));
@@ -108,7 +133,11 @@ public class buscarIngredientes extends javax.swing.JFrame {
                 cbxTipoIngreActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         jPanel1.add(cbxTipoIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, -1, -1));
+=======
+        jPanel1.add(cbxTipoIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, -1, -1));
+>>>>>>> main
 
         tblIngredientes.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         tblIngredientes.setForeground(new java.awt.Color(102, 102, 102));
@@ -130,6 +159,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblIngredientes);
 
+<<<<<<< HEAD
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 126, 379, 281));
         jPanel1.add(txtNomIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 180, -1));
 
@@ -143,16 +173,48 @@ public class buscarIngredientes extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnAgregarIngrediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, -1, -1));
+=======
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 379, 190));
+
+        jButton1.setText("Eliminar");
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 110, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel4.setText("¿No encontraste un ingrediente?");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setText("Categoría");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 350, -1, -1));
+        jPanel1.add(txtNomIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 350, 120, -1));
+
+        jButton2.setText("Agregar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
+>>>>>>> main
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+=======
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> main
         );
 
         pack();
@@ -175,6 +237,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
 //             mostrarTablaIngrexTipo(tipIng);
 //             aplicarFiltro();
 //        }
+<<<<<<< HEAD
         
     }//GEN-LAST:event_cbxTipoIngreActionPerformed
 
@@ -190,6 +253,25 @@ public class buscarIngredientes extends javax.swing.JFrame {
         id.agregar(i);
         mostrarTablaIngredientes();
     }//GEN-LAST:event_btnAgregarIngredienteActionPerformed
+=======
+
+        //Agregar un ingrediente
+        i = new IngredienteDTO();
+        id = new ingredienteDAO();
+        i.setNombre(txtNomIngre.getText());
+        //Para asignar el tipo de ingrediente
+        int indice_ingre = cbxTipoIngre.getSelectedIndex();
+        i.setTipo(listaTipos.get(indice_ingre-1));
+        
+        id.agregar(i);
+        mostrarTablaIngredientes();
+        
+    }//GEN-LAST:event_cbxTipoIngreActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+>>>>>>> main
     
     public void aplicarFiltro(){
         txtBuscar.addKeyListener(new KeyAdapter(){
@@ -283,10 +365,16 @@ public class buscarIngredientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarIngrediente;
     private javax.swing.JComboBox<String> cbxTipoIngre;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+<<<<<<< HEAD
+=======
+    private javax.swing.JLabel jLabel6;
+>>>>>>> main
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblIngredientes;
