@@ -118,6 +118,7 @@ public class admin_recetas extends javax.swing.JPanel {
         txtNomIngrediente = new javax.swing.JTextField();
         btnSeleccionar = new javax.swing.JButton();
         txtNomImagen = new javax.swing.JTextField();
+        btnValidar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(245, 245, 245));
 
@@ -341,6 +342,14 @@ public class admin_recetas extends javax.swing.JPanel {
         txtNomImagen.setEditable(false);
         jPanel1.add(txtNomImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, 146, -1));
 
+        btnValidar.setText("Validar");
+        btnValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnValidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 250, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -465,6 +474,33 @@ public class admin_recetas extends javax.swing.JPanel {
         txtCant.setText(null);
         mostrarTablaDetalle();
     }//GEN-LAST:event_btnAgregarIngreActionPerformed
+
+    private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
+    // Obtener el texto ingresado en el textarea
+    String textoPreparacion = taPreparacion.getText().toLowerCase();
+    
+    System.out.println(textoPreparacion);
+
+    // StringBuilder para ingredientes faltantes
+    StringBuilder ingredientesFaltantes = new StringBuilder();
+
+    // Verificar si todos los ingredientes están presentes
+    for (int i = 0; i < listaDetalle.size(); i++) {
+        if (!textoPreparacion.contains(listaDetalle.get(i).getIngrediente().getNombre().toLowerCase())) {
+            if (ingredientesFaltantes.length() > 0) {
+                ingredientesFaltantes.append(", ");
+            }
+            ingredientesFaltantes.append(listaDetalle.get(i).getIngrediente().getNombre().toLowerCase());
+        }
+    }
+
+    // Mostrar el resultado en un JLabel o JOptionPane
+    if (ingredientesFaltantes.length() == 0) {
+        JOptionPane.showMessageDialog(this, "Todos los ingredientes están incluidos.", "Resultado", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(this, "Faltan ingredientes: " + ingredientesFaltantes.toString(), "Resultado", JOptionPane.WARNING_MESSAGE);
+    }
+    }//GEN-LAST:event_btnValidarActionPerformed
     
     public void limpiarCampos() {
         txtIdReceta.setText(null);
@@ -514,6 +550,7 @@ public class admin_recetas extends javax.swing.JPanel {
     private javax.swing.JButton btnEliminarIngre;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSeleccionar;
+    private javax.swing.JButton btnValidar;
     private javax.swing.JComboBox<String> cbxTipoComida;
     private javax.swing.JComboBox<String> cbxUnidadMedida;
     private javax.swing.JLabel jLabel1;
