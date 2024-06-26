@@ -723,11 +723,73 @@ public class admin_recetas extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBuscarIngredientesActionPerformed
 
     private void btnSig1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSig1ActionPerformed
-         pnlIngredientes.setVisible(true);
+    // Verificar que todos los campos estén llenos
+    if (txtNombreReceta.getText().isEmpty() ||
+        cbxTipoComida.getSelectedItem().equals("Seleccionar") ||
+        txtPorcion.getText().isEmpty() ||
+        txtTiempo.getText().isEmpty() ||
+        txtCalorias.getText().isEmpty()) {
+
+        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos.");
+        return; 
+    }
+
+    // Validar que txtNombreReceta solo tenga letras
+    String nombreReceta = txtNombreReceta.getText();
+    if (!nombreReceta.matches("[a-zA-Z\\s]+")) {
+        JOptionPane.showMessageDialog(null, "Solo se aceptan letras en el nombre de la receta.");
+        txtNombreReceta.requestFocus();
+        return; 
+    }
+
+    // Validar que cbxTipoComida tenga una opción seleccionada distinta de "Seleccionar"
+    if (cbxTipoComida.getSelectedItem().equals("Seleccionar")) {
+        JOptionPane.showMessageDialog(null, "Debe seleccionar una opción válida para el tipo de comida.");
+        cbxTipoComida.requestFocus();
+        return; 
+    }
+
+    // Validar que txtPorcion solo tenga números enteros
+    try {
+        Integer.parseInt(txtPorcion.getText());
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Solo se aceptan números enteros en la porción.");
+        txtPorcion.requestFocus();
+        return; 
+    }
+
+    // Validar que txtTiempo solo tenga números enteros
+    try {
+        Integer.parseInt(txtTiempo.getText());
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Solo se aceptan números enteros en el tiempo.");
+        txtTiempo.requestFocus();
+        return; 
+    }
+
+    // Validar que txtCalorias solo tenga números con decimales
+    try {
+        Double.parseDouble(txtCalorias.getText());
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Solo se aceptan números con decimales en las calorías.");
+        txtCalorias.requestFocus();
+        return; 
+    }
+
+    // Si todas las validaciones pasan, hacer visible pnlIngredientes
+    pnlIngredientes.setVisible(true);
     }//GEN-LAST:event_btnSig1ActionPerformed
 
     private void btnSig2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSig2ActionPerformed
+    // Validar que haya al menos un ingrediente agregado
+    if (listaDetalle.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "No se ha seleccionado ingredientes");
+        btnBuscarIngredientes.requestFocus();
+    }else{
         pnlPreparacion.setVisible(true);
+    }
+        
+    
     }//GEN-LAST:event_btnSig2ActionPerformed
     
     public void limpiarCampos() {
