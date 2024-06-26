@@ -53,6 +53,11 @@ public class admin_recetas extends javax.swing.JPanel {
         mostrarTipoComida();
         generaCodigoAutomatico();
         establecerColumnas2();
+        
+        //Ocultar paneles
+        pnlIngredientes.setVisible(false);
+        pnlPreparacion.setVisible(false);
+        pnlFoto.setVisible(false);
     }
 
     private void establecerColumnas2(){
@@ -77,48 +82,52 @@ public class admin_recetas extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtIdReceta = new javax.swing.JTextField();
+        pnlDatosBasicos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txtNombreReceta = new javax.swing.JTextField();
-        btnEliminarIngre = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        cbxTipoComida = new javax.swing.JComboBox<>();
         txtPorcion = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         txtTiempo = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblDetalle = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        cbxUnidadMedida = new javax.swing.JComboBox<>();
-        txtCant = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         txtCalorias = new javax.swing.JTextField();
-        btnRegistrar = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        btnSig1 = new javax.swing.JButton();
+        pnlIngredientes = new javax.swing.JPanel();
         txtCodIngre = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        txtIdReceta = new javax.swing.JTextField();
         btnBuscarIngredientes = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        txtNomIngrediente = new javax.swing.JTextField();
+        txtCant = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        btnAgregarIngre = new javax.swing.JButton();
+        btnEliminarIngre = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblDetalle = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        cbxUnidadMedida = new javax.swing.JComboBox<>();
+        btnSig2 = new javax.swing.JButton();
+        pnlPreparacion = new javax.swing.JPanel();
+        btnValidar = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         taPreparacion = new javax.swing.JTextArea();
-        pnlGuardar = new javax.swing.JPanel();
-        lblFoto = new javax.swing.JLabel();
-        cbxTipoComida = new javax.swing.JComboBox<>();
-        btnAgregarIngre = new javax.swing.JButton();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        txtNomIngrediente = new javax.swing.JTextField();
+        lblFalta = new javax.swing.JLabel();
+        pnlFoto = new javax.swing.JPanel();
+        btnRegistrar = new javax.swing.JButton();
         btnSeleccionar = new javax.swing.JButton();
         txtNomImagen = new javax.swing.JTextField();
-        btnValidar = new javax.swing.JButton();
+        pnlGuardar = new javax.swing.JPanel();
+        lblFoto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(245, 245, 245));
 
@@ -128,14 +137,179 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 89, 19));
         jLabel1.setText("Agregar receta");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel5.setText("Porción :");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, 10));
+
+        txtIdReceta.setEditable(false);
+        txtIdReceta.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jPanel1.add(txtIdReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 80, -1));
 
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel2.setText("Nombre :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         txtNombreReceta.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtNombreReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 220, -1));
+
+        jLabel14.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel14.setText("Tipo :");
+
+        cbxTipoComida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        cbxTipoComida.setForeground(new java.awt.Color(102, 102, 102));
+        cbxTipoComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+
+        txtPorcion.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/people.png"))); // NOI18N
+
+        txtTiempo.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel11.setText("Tiempo de preparación :");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/relojcito.png"))); // NOI18N
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/info.png"))); // NOI18N
+
+        jLabel10.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel10.setText("Calorías :");
+
+        txtCalorias.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+
+        jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setText("kcal/porción");
+
+        jLabel19.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel19.setText("minutos.");
+
+        btnSig1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/sig.png"))); // NOI18N
+        btnSig1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSig1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlDatosBasicosLayout = new javax.swing.GroupLayout(pnlDatosBasicos);
+        pnlDatosBasicos.setLayout(pnlDatosBasicosLayout);
+        pnlDatosBasicosLayout.setHorizontalGroup(
+            pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(63, 63, 63)
+                        .addComponent(txtPorcion, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7))
+                    .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                        .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNombreReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel14))
+                            .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSig1))
+                            .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxTipoComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(28, 38, Short.MAX_VALUE))
+        );
+        pnlDatosBasicosLayout.setVerticalGroup(
+            pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtNombreReceta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(cbxTipoComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtPorcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtCalorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(pnlDatosBasicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(98, 98, 98))
+                    .addGroup(pnlDatosBasicosLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSig1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
+        jPanel1.add(pnlDatosBasicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 520, 180));
+
+        txtCodIngre.setEditable(false);
+        txtCodIngre.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+
+        btnBuscarIngredientes.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        btnBuscarIngredientes.setForeground(new java.awt.Color(102, 102, 102));
+        btnBuscarIngredientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/buscar.png"))); // NOI18N
+        btnBuscarIngredientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarIngredientesActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        jLabel17.setText("Ingredientes");
+
+        jLabel13.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel13.setText("Ingrediente :");
+
+        txtNomIngrediente.setEditable(false);
+        txtNomIngrediente.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+
+        txtCant.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Cant: ");
+
+        btnAgregarIngre.setBackground(new java.awt.Color(18, 91, 0));
+        btnAgregarIngre.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        btnAgregarIngre.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarIngre.setText("Agregar");
+        btnAgregarIngre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarIngreActionPerformed(evt);
+            }
+        });
 
         btnEliminarIngre.setBackground(new java.awt.Color(210, 76, 0));
         btnEliminarIngre.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -146,22 +320,6 @@ public class admin_recetas extends javax.swing.JPanel {
                 btnEliminarIngreActionPerformed(evt);
             }
         });
-        jPanel1.add(btnEliminarIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 500, 90, 30));
-
-        jLabel5.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel5.setText("Porción :");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, 10));
-
-        txtPorcion.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtPorcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 110, -1));
-
-        txtTiempo.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 100, -1));
-
-        jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setText("kcal.");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, 30));
 
         tblDetalle.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         tblDetalle.setForeground(new java.awt.Color(102, 102, 102));
@@ -178,78 +336,183 @@ public class admin_recetas extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblDetalle);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 460, 320, 160));
-
-        jLabel8.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel8.setText("Cant: ");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, 20));
-
         jLabel9.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("Unidad de medida :");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 410, -1, 30));
 
         cbxUnidadMedida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxUnidadMedida.setForeground(new java.awt.Color(102, 102, 102));
         cbxUnidadMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Unidades", "Tazas", "Cucharadas", "Cucharaditas", "Gramos", "Presas" }));
-        jPanel1.add(cbxUnidadMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, 130, -1));
 
-        txtCant.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 100, -1));
-
-        jLabel10.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel10.setText("Calorías :");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 169, -1, 30));
-
-        txtCalorias.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, 100, -1));
-
-        btnRegistrar.setBackground(new java.awt.Color(18, 91, 0));
-        btnRegistrar.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrar.setText("Registrar receta");
-        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+        btnSig2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/sig.png"))); // NOI18N
+        btnSig2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                btnSig2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 600, 150, 30));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 930, 20));
 
-        txtCodIngre.setEditable(false);
-        txtCodIngre.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtCodIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 40, -1));
+        javax.swing.GroupLayout pnlIngredientesLayout = new javax.swing.GroupLayout(pnlIngredientes);
+        pnlIngredientes.setLayout(pnlIngredientesLayout);
+        pnlIngredientesLayout.setHorizontalGroup(
+            pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbxUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNomIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIngredientesLayout.createSequentialGroup()
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIngredientesLayout.createSequentialGroup()
+                        .addContainerGap(39, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnEliminarIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAgregarIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                                .addGap(88, 88, 88)
+                                .addComponent(btnSig2))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIngredientesLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(btnBuscarIngredientes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtCodIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27))
+        );
+        pnlIngredientesLayout.setVerticalGroup(
+            pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBuscarIngredientes)
+                    .addComponent(txtCodIngre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel17)))
+                .addGap(18, 18, 18)
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
+                        .addComponent(btnAgregarIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEliminarIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSig2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
 
-        jLabel13.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel13.setText("Ingrediente :");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 360, -1, 30));
+        jPanel1.add(pnlIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 520, 330));
 
-        jLabel14.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel14.setText("Tipo :");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
-
-        txtIdReceta.setEditable(false);
-        txtIdReceta.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtIdReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, 80, -1));
-
-        btnBuscarIngredientes.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        btnBuscarIngredientes.setForeground(new java.awt.Color(102, 102, 102));
-        btnBuscarIngredientes.setText("Buscar");
-        btnBuscarIngredientes.addActionListener(new java.awt.event.ActionListener() {
+        btnValidar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/sig.png"))); // NOI18N
+        btnValidar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarIngredientesActionPerformed(evt);
+                btnValidarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnBuscarIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 90, 30));
+
+        jLabel18.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        jLabel18.setText("Preparación");
+
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/preparacion.png"))); // NOI18N
 
         taPreparacion.setColumns(20);
         taPreparacion.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         taPreparacion.setRows(5);
         jScrollPane1.setViewportView(taPreparacion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 410, 140));
+        lblFalta.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
+        lblFalta.setForeground(new java.awt.Color(204, 51, 0));
+        lblFalta.setBorder(new javax.swing.border.MatteBorder(null));
+
+        javax.swing.GroupLayout pnlPreparacionLayout = new javax.swing.GroupLayout(pnlPreparacion);
+        pnlPreparacion.setLayout(pnlPreparacionLayout);
+        pnlPreparacionLayout.setHorizontalGroup(
+            pnlPreparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPreparacionLayout.createSequentialGroup()
+                .addGroup(pnlPreparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnlPreparacionLayout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(pnlPreparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlPreparacionLayout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel18))
+                            .addGroup(pnlPreparacionLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlPreparacionLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(lblFalta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnValidar)))
+                .addContainerGap(35, Short.MAX_VALUE))
+        );
+        pnlPreparacionLayout.setVerticalGroup(
+            pnlPreparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPreparacionLayout.createSequentialGroup()
+                .addGroup(pnlPreparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlPreparacionLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlPreparacionLayout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel18)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlPreparacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnValidar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFalta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(pnlPreparacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 30, 450, 290));
+
+        btnRegistrar.setBackground(new java.awt.Color(18, 91, 0));
+        btnRegistrar.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        btnRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegistrar.setText("Registrar ");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+
+        btnSeleccionar.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        btnSeleccionar.setForeground(new java.awt.Color(102, 102, 102));
+        btnSeleccionar.setText("Buscar foto");
+        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeleccionarActionPerformed(evt);
+            }
+        });
+
+        txtNomImagen.setEditable(false);
 
         pnlGuardar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -260,7 +523,7 @@ public class admin_recetas extends javax.swing.JPanel {
         pnlGuardarLayout.setHorizontalGroup(
             pnlGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlGuardarLayout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(lblFoto)
                 .addGap(57, 57, 57))
         );
@@ -272,89 +535,43 @@ public class admin_recetas extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel1.add(pnlGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 340, 430, 240));
+        javax.swing.GroupLayout pnlFotoLayout = new javax.swing.GroupLayout(pnlFoto);
+        pnlFoto.setLayout(pnlFotoLayout);
+        pnlFotoLayout.setHorizontalGroup(
+            pnlFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFotoLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(pnlFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(pnlGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(pnlFotoLayout.createSequentialGroup()
+                            .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtNomImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        pnlFotoLayout.setVerticalGroup(
+            pnlFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFotoLayout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(pnlFotoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSeleccionar)
+                    .addComponent(txtNomImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17))
+        );
 
-        cbxTipoComida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        cbxTipoComida.setForeground(new java.awt.Color(102, 102, 102));
-        cbxTipoComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        jPanel1.add(cbxTipoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 120, -1, -1));
-
-        btnAgregarIngre.setBackground(new java.awt.Color(18, 91, 0));
-        btnAgregarIngre.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        btnAgregarIngre.setForeground(new java.awt.Color(255, 255, 255));
-        btnAgregarIngre.setText("Agregar");
-        btnAgregarIngre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarIngreActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAgregarIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 90, 30));
-
-        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 30, 340));
-
-        jLabel17.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
-        jLabel17.setText("Ingredientes");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, -1, -1));
-
-        jLabel18.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
-        jLabel18.setText("Preparación");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, -1, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/relojcito.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
-
-        jLabel11.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jLabel11.setText("Tiempo de preparación :");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, -1, 30));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/info.png"))); // NOI18N
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, -1, -1));
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/people.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
-
-        jLabel19.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel19.setText("minutos.");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, -1, 30));
-
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/ingre.png"))); // NOI18N
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
-
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/preparacion.png"))); // NOI18N
-        jPanel1.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 50, -1, -1));
-
-        txtNomIngrediente.setEditable(false);
-        txtNomIngrediente.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        jPanel1.add(txtNomIngrediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 140, -1));
-
-        btnSeleccionar.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        btnSeleccionar.setForeground(new java.awt.Color(102, 102, 102));
-        btnSeleccionar.setText("Buscar foto");
-        btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSeleccionarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnSeleccionar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 300, 110, -1));
-
-        txtNomImagen.setEditable(false);
-        jPanel1.add(txtNomImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 300, 146, -1));
-
-        btnValidar.setText("Validar");
-        btnValidar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnValidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 250, -1, -1));
+        jPanel1.add(pnlFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 330, 450, 360));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1050, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,11 +638,6 @@ public class admin_recetas extends javax.swing.JPanel {
         //Limpiar los txt la próxima receta
         limpiarCampos();
     }//GEN-LAST:event_btnRegistrarActionPerformed
-
-    private void btnBuscarIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIngredientesActionPerformed
-        buscarIngredientes busIng =new buscarIngredientes();
-        busIng.setVisible(true);
-    }//GEN-LAST:event_btnBuscarIngredientesActionPerformed
 
     private void btnSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeleccionarActionPerformed
         // Crear un filtro para permitir solo archivos con extensión JPEG (JPG, JPEG)
@@ -494,13 +706,29 @@ public class admin_recetas extends javax.swing.JPanel {
         }
     }
 
-    // Mostrar el resultado en un JLabel o JOptionPane
+    // Mostrar el resultado el un panel
     if (ingredientesFaltantes.length() == 0) {
-        JOptionPane.showMessageDialog(this, "Todos los ingredientes están incluidos.", "Resultado", JOptionPane.INFORMATION_MESSAGE);
+        //JOptionPane.showMessageDialog(this, "Todos los ingredientes están incluidos.", "Resultado", JOptionPane.INFORMATION_MESSAGE);
+        lblFalta.setText("Todos los ingredientes están incluidos c: ");
+        pnlFoto.setVisible(true);
     } else {
-        JOptionPane.showMessageDialog(this, "Faltan ingredientes: " + ingredientesFaltantes.toString(), "Resultado", JOptionPane.WARNING_MESSAGE);
+        lblFalta.setText("Faltan ingredientes: "+ingredientesFaltantes.toString());
+        //JOptionPane.showMessageDialog(this, "Faltan ingredientes: " + ingredientesFaltantes.toString(), "Resultado", JOptionPane.WARNING_MESSAGE);
     }
     }//GEN-LAST:event_btnValidarActionPerformed
+
+    private void btnBuscarIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIngredientesActionPerformed
+        buscarIngredientes busIng =new buscarIngredientes();
+        busIng.setVisible(true);
+    }//GEN-LAST:event_btnBuscarIngredientesActionPerformed
+
+    private void btnSig1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSig1ActionPerformed
+         pnlIngredientes.setVisible(true);
+    }//GEN-LAST:event_btnSig1ActionPerformed
+
+    private void btnSig2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSig2ActionPerformed
+        pnlPreparacion.setVisible(true);
+    }//GEN-LAST:event_btnSig2ActionPerformed
     
     public void limpiarCampos() {
         txtIdReceta.setText(null);
@@ -550,13 +778,14 @@ public class admin_recetas extends javax.swing.JPanel {
     private javax.swing.JButton btnEliminarIngre;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JButton btnSeleccionar;
+    private javax.swing.JButton btnSig1;
+    private javax.swing.JButton btnSig2;
     private javax.swing.JButton btnValidar;
     private javax.swing.JComboBox<String> cbxTipoComida;
     private javax.swing.JComboBox<String> cbxUnidadMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel17;
@@ -574,10 +803,13 @@ public class admin_recetas extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblFalta;
     private javax.swing.JLabel lblFoto;
+    private javax.swing.JPanel pnlDatosBasicos;
+    private javax.swing.JPanel pnlFoto;
     private javax.swing.JPanel pnlGuardar;
+    private javax.swing.JPanel pnlIngredientes;
+    private javax.swing.JPanel pnlPreparacion;
     private javax.swing.JTextArea taPreparacion;
     private javax.swing.JTable tblDetalle;
     private javax.swing.JTextField txtCalorias;
