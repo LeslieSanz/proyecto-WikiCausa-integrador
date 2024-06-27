@@ -184,8 +184,8 @@ public class cliente_sidebar extends javax.swing.JFrame {
     public void Prueba(){
         System.out.println("Dni: "+dni);
         Usuario us= usDao.ObtenerUsuario(dni);
-        
         System.out.println(us.getNombre());
+        
     }
     
     
@@ -196,7 +196,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiPerfil);
 
         // Abrir sección
-        i = new cliente_inicio();
+        i = new cliente_inicio(dni);
         mostrarPanel(i);
     }//GEN-LAST:event_btnInicioMousePressed
 
@@ -207,7 +207,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiPerfil);
 
         // Abrir sección
-        d = new cliente_despensa();
+        d = new cliente_despensa(dni);
         mostrarPanel(d);
     }//GEN-LAST:event_btnMiDespensaMousePressed
 
@@ -218,7 +218,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiPerfil);
 
         // Abrir sección
-        m = new cliente_menu();
+        m = new cliente_menu(dni);
         mostrarPanel(m);
     }//GEN-LAST:event_btnMiMenuMousePressed
 
@@ -229,7 +229,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiMenu);
 
         // Abrir sección
-        p = new cliente_perfil();
+        p = new cliente_perfil(dni);
         mostrarPanel(p);
     }//GEN-LAST:event_btnMiPerfilMousePressed
 

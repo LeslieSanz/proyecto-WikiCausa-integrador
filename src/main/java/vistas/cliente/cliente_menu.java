@@ -1,9 +1,21 @@
 package vistas.cliente;
 
+import modelo.Usuario;
+import modeloDAO.UsurarioDAO;
+
 public class cliente_menu extends javax.swing.JPanel {
     
+    String dni;
+    UsurarioDAO usDao= new UsurarioDAO();
+    
     public cliente_menu() {
+        
+    }
+    
+    public cliente_menu(String dniob){
         initComponents();
+        dni=dniob;
+        prueba();
     }
 
     @SuppressWarnings("unchecked")
@@ -13,6 +25,8 @@ public class cliente_menu extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLNombre = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(245, 245, 245));
 
@@ -24,6 +38,14 @@ public class cliente_menu extends javax.swing.JPanel {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/fondo_default.png"))); // NOI18N
 
+        jLNombre.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
+        jLNombre.setForeground(new java.awt.Color(170, 89, 19));
+        jLNombre.setText("nombre");
+
+        jLabel4.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(170, 89, 19));
+        jLabel4.setText("de");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -32,7 +54,11 @@ public class cliente_menu extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(66, 66, 66)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLNombre))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(205, 205, 205)
                         .addComponent(jLabel2)))
@@ -42,7 +68,10 @@ public class cliente_menu extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLNombre)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addContainerGap(78, Short.MAX_VALUE))
@@ -60,10 +89,19 @@ public class cliente_menu extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void prueba(){
+        System.out.println(dni);
+        Usuario us= usDao.ObtenerUsuario(dni);
+        System.out.println(us.getNombre()+" cli_menu");
+        jLNombre.setText(us.getNombre());
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,11 +1,31 @@
 package vistas.cliente;
 
+import modelo.Usuario;
+import modeloDAO.UsurarioDAO;
+
 public class cliente_inicio extends javax.swing.JPanel {
 
+    String dni;
+    UsurarioDAO usDao= new UsurarioDAO();
+    
     public cliente_inicio() {
+        
+    }
+    
+    public cliente_inicio(String dniob){
         initComponents();
+        dni=dniob;
+        prueba();
     }
 
+    public void prueba(){
+        System.out.println(dni);
+        Usuario us= usDao.ObtenerUsuario(dni);
+        System.out.println(us.getNombre()+" Cli_inicio");
+        jLNombre.setText(us.getNombre());
+        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -13,6 +33,7 @@ public class cliente_inicio extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         fraseMotivadora = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLNombre = new javax.swing.JLabel();
         bannerPequeñoAmarillo = new javax.swing.JLabel();
         QueCocinareHoy = new javax.swing.JLabel();
         imagenAmigos = new javax.swing.JLabel();
@@ -49,6 +70,11 @@ public class cliente_inicio extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(170, 89, 19));
         jLabel2.setText("FECHA");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        jLNombre.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
+        jLNombre.setForeground(new java.awt.Color(170, 89, 19));
+        jLNombre.setText("Nombre");
+        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
 
         bannerPequeñoAmarillo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/bannerDerechaAmarillo.png"))); // NOI18N
         jPanel1.add(bannerPequeñoAmarillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
@@ -201,6 +227,7 @@ public class cliente_inicio extends javax.swing.JPanel {
     private javax.swing.JPanel estofado;
     private javax.swing.JLabel fraseMotivadora;
     private javax.swing.JLabel imagenAmigos;
+    private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
