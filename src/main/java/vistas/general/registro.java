@@ -49,7 +49,7 @@ public class registro extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         txtNom = new javax.swing.JTextField();
         txtApeP = new javax.swing.JTextField();
-        txtApeMa = new javax.swing.JTextField();
+        txtDNI = new javax.swing.JTextField();
         txtEmail1 = new javax.swing.JTextField();
         txtPssw1 = new javax.swing.JPasswordField();
         txtRepPssw = new javax.swing.JPasswordField();
@@ -100,7 +100,7 @@ public class registro extends javax.swing.JFrame {
 
         ingreseapellidoapw.setFont(new java.awt.Font("Poppins", 1, 15)); // NOI18N
         ingreseapellidoapw.setForeground(new java.awt.Color(118, 118, 118));
-        ingreseapellidoapw.setText("Ingrese apellido paterno");
+        ingreseapellidoapw.setText("Ingrese apellidos");
         background.add(ingreseapellidoapw, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 360, -1, 30));
 
         email.setFont(new java.awt.Font("Poppins", 1, 15)); // NOI18N
@@ -130,7 +130,7 @@ public class registro extends javax.swing.JFrame {
 
         ingreseapellido.setFont(new java.awt.Font("Poppins", 1, 15)); // NOI18N
         ingreseapellido.setForeground(new java.awt.Color(118, 118, 118));
-        ingreseapellido.setText("Ingrese apellido materno");
+        ingreseapellido.setText("Ingrese DNI");
         background.add(ingreseapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, -1, 30));
 
         lineader3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/lineaIzq.png"))); // NOI18N
@@ -199,7 +199,7 @@ public class registro extends javax.swing.JFrame {
 
         txtApeP.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         txtApeP.setForeground(new java.awt.Color(147, 147, 147));
-        txtApeP.setText("Apellido paterno");
+        txtApeP.setText("Apellidos");
         txtApeP.setToolTipText("");
         txtApeP.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         txtApeP.setName(""); // NOI18N
@@ -220,28 +220,28 @@ public class registro extends javax.swing.JFrame {
         });
         background.add(txtApeP, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, 280, -1));
 
-        txtApeMa.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
-        txtApeMa.setForeground(new java.awt.Color(147, 147, 147));
-        txtApeMa.setText("Apellido materno");
-        txtApeMa.setToolTipText("");
-        txtApeMa.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        txtApeMa.setName(""); // NOI18N
-        txtApeMa.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtDNI.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
+        txtDNI.setForeground(new java.awt.Color(147, 147, 147));
+        txtDNI.setText("DNI");
+        txtDNI.setToolTipText("");
+        txtDNI.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        txtDNI.setName(""); // NOI18N
+        txtDNI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtApeMaMousePressed(evt);
+                txtDNIMousePressed(evt);
             }
         });
-        txtApeMa.addActionListener(new java.awt.event.ActionListener() {
+        txtDNI.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApeMaActionPerformed(evt);
+                txtDNIActionPerformed(evt);
             }
         });
-        txtApeMa.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtApeMaKeyTyped(evt);
+                txtDNIKeyTyped(evt);
             }
         });
-        background.add(txtApeMa, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, 280, -1));
+        background.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, 280, -1));
 
         txtEmail1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         txtEmail1.setForeground(new java.awt.Color(147, 147, 147));
@@ -338,9 +338,9 @@ public class registro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApeActionPerformed
 
-    private void txtApeMaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApeMaActionPerformed
+    private void txtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtApeMaActionPerformed
+    }//GEN-LAST:event_txtDNIActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
@@ -359,12 +359,12 @@ public class registro extends javax.swing.JFrame {
         }
 
         if (txtApeP.getText().isEmpty()) {
-            txtApeP.setText("Apellido paterno");
+            txtApeP.setText("Apellidos");
             txtApeP.setForeground(new Color(204, 204, 204));
         }
-        if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
+        if (txtDNI.getText().isEmpty()) {
+            txtDNI.setText("DNI");
+            txtDNI.setForeground(new Color(204, 204, 204));
         }
 
         if (txtPssw1.getText().isEmpty()) {
@@ -380,7 +380,7 @@ public class registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEmail1MousePressed
 
     private void txtApePActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApePActionPerformed
-        if (txtApeP.getText().equals("Apellido paterno")) {
+        if (txtApeP.getText().equals("Apellidos")) {
             txtApeP.setText("");
             txtApeP.setForeground(Color.black);
         }
@@ -408,9 +408,9 @@ public class registro extends javax.swing.JFrame {
             txtEmail1.setText("Ingrese Ingrese email");
             txtEmail1.setForeground(new Color(204, 204, 204));
         }
-        if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
+        if (txtDNI.getText().isEmpty()) {
+            txtDNI.setText("DNI");
+            txtDNI.setForeground(new Color(204, 204, 204));
         }
     }//GEN-LAST:event_txtApePActionPerformed
 
@@ -434,17 +434,17 @@ public class registro extends javax.swing.JFrame {
         }
 
         if (txtApeP.getText().isEmpty()) {
-            txtApeP.setText("Apellido paterno");
+            txtApeP.setText("Apellidos");
             txtApeP.setForeground(new Color(204, 204, 204));
         }
-        if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
+        if (txtDNI.getText().isEmpty()) {
+            txtDNI.setText("DNI");
+            txtDNI.setForeground(new Color(204, 204, 204));
         }
     }//GEN-LAST:event_txtNomMousePressed
 
     private void txtApePMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApePMousePressed
-        if (txtApeP.getText().equals("Apellido paterno")) {
+        if (txtApeP.getText().equals("Apellidos")) {
             txtApeP.setText("");
             txtApeP.setForeground(Color.black);
         }
@@ -466,16 +466,16 @@ public class registro extends javax.swing.JFrame {
             txtNom.setForeground(new Color(204, 204, 204));
         }
 
-        if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
+        if (txtDNI.getText().isEmpty()) {
+            txtDNI.setText("DNI");
+            txtDNI.setForeground(new Color(204, 204, 204));
         }
     }//GEN-LAST:event_txtApePMousePressed
 
-    private void txtApeMaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtApeMaMousePressed
-        if (txtApeMa.getText().equals("Apellido materno")) {
-            txtApeMa.setText("");
-            txtApeMa.setForeground(Color.black);
+    private void txtDNIMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDNIMousePressed
+        if (txtDNI.getText().equals("DNI")) {
+            txtDNI.setText("");
+            txtDNI.setForeground(Color.black);
         }
 
         if (txtEmail1.getText().isEmpty()) {
@@ -489,7 +489,7 @@ public class registro extends javax.swing.JFrame {
         }
 
         if (txtApeP.getText().isEmpty()) {
-            txtApeP.setText("Apellido paterno");
+            txtApeP.setText("Apellidos");
             txtApeP.setForeground(new Color(204, 204, 204));
         }
 
@@ -502,7 +502,7 @@ public class registro extends javax.swing.JFrame {
             txtRepPssw.setText("**********");
             txtRepPssw.setForeground(new Color(204, 204, 204));
         }
-    }//GEN-LAST:event_txtApeMaMousePressed
+    }//GEN-LAST:event_txtDNIMousePressed
 
     private void txtPssw1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPssw1MousePressed
         if (txtPssw1.getText().equals("**********")) {
@@ -526,13 +526,13 @@ public class registro extends javax.swing.JFrame {
         }
 
         if (txtApeP.getText().isEmpty()) {
-            txtApeP.setText("Apellido paterno");
+            txtApeP.setText("Apellidos");
             txtApeP.setForeground(new Color(204, 204, 204));
         }
 
-        if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
+        if (txtDNI.getText().isEmpty()) {
+            txtDNI.setText("DNI");
+            txtDNI.setForeground(new Color(204, 204, 204));
         }
     }//GEN-LAST:event_txtPssw1MousePressed
 
@@ -567,15 +567,15 @@ public class registro extends javax.swing.JFrame {
         String email = txtEmail1.getText();
         String nombre = txtNom.getText();
         String apellidoPaterno = txtApeP.getText();
-        String apellidoMaterno = txtApeMa.getText();
+        String apellidoMaterno = txtDNI.getText();
         String contrasena = txtPssw1.getText();
         String repetirContrasena = txtRepPssw.getText();
 
         // Verificar si algún campo está vacío o igual al texto de sugerencia
         if (email.isEmpty() || email.equals("wiki@email.com")
                 || nombre.isEmpty() || nombre.equals("Nombre")
-                || apellidoPaterno.isEmpty() || apellidoPaterno.equals("Apellido paterno")
-                || apellidoMaterno.isEmpty() || apellidoMaterno.equals("Apellido materno")
+                || apellidoPaterno.isEmpty() || apellidoPaterno.equals("Apellidos")
+                || apellidoMaterno.isEmpty() || apellidoMaterno.equals("DNI")
                 || contrasena.isEmpty() || contrasena.equals("**********")
                 || repetirContrasena.isEmpty() || repetirContrasena.equals("**********")) {
             return false; // Al menos un campo no está completo
@@ -590,8 +590,8 @@ public class registro extends javax.swing.JFrame {
             usu.setCorreo(txtEmail1.getText());
             usu.setPassword(txtPssw1.getText());
             usu.setNombre(txtNom.getText());
-            usu.setApellidoP(txtApeP.getText());
-            usu.setApellidoM(txtApeMa.getText());
+            usu.setApellidos(txtApeP.getText());
+            usu.setDni(txtDNI.getText());
             usDao.AgregarUsu(usu);
             iniciar_sesion ini = new iniciar_sesion();
             ini.setVisible(true);
@@ -654,13 +654,13 @@ public class registro extends javax.swing.JFrame {
         }
 
         if (txtApeP.getText().isEmpty()) {
-            txtApeP.setText("Apellido paterno");
+            txtApeP.setText("Apellidos");
             txtApeP.setForeground(new Color(204, 204, 204));
         }
 
-        if (txtApeMa.getText().isEmpty()) {
-            txtApeMa.setText("Apellido materno");
-            txtApeMa.setForeground(new Color(204, 204, 204));
+        if (txtDNI.getText().isEmpty()) {
+            txtDNI.setText("DNI");
+            txtDNI.setForeground(new Color(204, 204, 204));
         }
     }//GEN-LAST:event_txtRepPsswMousePressed
 
@@ -716,12 +716,9 @@ public class registro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtApePKeyTyped
 
-    private void txtApeMaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApeMaKeyTyped
-        char c = evt.getKeyChar();
-        if (Character.isDigit(c)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtApeMaKeyTyped
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+        
+    }//GEN-LAST:event_txtDNIKeyTyped
 
     private void txtRepPsswActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepPsswActionPerformed
         // TODO add your handling code here:
@@ -794,8 +791,8 @@ public class registro extends javax.swing.JFrame {
     private javax.swing.JLabel mostrarPsww;
     private javax.swing.JLabel repetircontrasela;
     private javax.swing.JLabel repmostrarPssw;
-    private javax.swing.JTextField txtApeMa;
     private javax.swing.JTextField txtApeP;
+    private javax.swing.JTextField txtDNI;
     private javax.swing.JTextField txtEmail1;
     private javax.swing.JTextField txtNom;
     private javax.swing.JPasswordField txtPssw1;
