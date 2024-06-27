@@ -19,16 +19,7 @@ import vistas.general.bienvenida;
 public class cliente_sidebar extends javax.swing.JFrame {
 
     public cliente_sidebar() {
-        initComponents();
-//        Para mostrar por defecto el panel del dashboard
-        i = new cliente_inicio();
-        i.setSize(1040, 620);
-        i.setLocation(0, 0);
-
-        content.removeAll();
-        content.add(i, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
+        
     }
 
     cliente_inicio i;
@@ -174,6 +165,28 @@ public class cliente_sidebar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public cliente_sidebar(String dniOb){
+        initComponents();
+        dni=dniOb;
+//        Para mostrar por defecto el panel del dashboard
+        i = new cliente_inicio();
+        i.setSize(1040, 620);
+        i.setLocation(0, 0);
+
+        content.removeAll();
+        content.add(i, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+        Prueba();
+        
+    }
+    String dni;
+    
+    public void Prueba(){
+        System.out.println("Dni: "+dni);
+    }
+    
+    
     private void btnInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMousePressed
         setColor(btnInicio);
         resetColor(btnMiDespensa);
