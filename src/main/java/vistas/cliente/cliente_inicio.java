@@ -11,6 +11,7 @@ public class cliente_inicio extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtNombre = new javax.swing.JLabel();
         fraseMotivadora = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         bannerPequeñoAmarillo = new javax.swing.JLabel();
@@ -40,6 +41,10 @@ public class cliente_inicio extends javax.swing.JPanel {
         jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(1049, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtNombre.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        txtNombre.setText("Nombre de usuario");
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 80, 180, -1));
 
         fraseMotivadora.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         fraseMotivadora.setForeground(new java.awt.Color(46, 46, 46));
@@ -212,5 +217,6 @@ public class cliente_inicio extends javax.swing.JPanel {
     private javax.swing.JLabel panelAmarillo;
     private javax.swing.JPanel panelDerechoTuDespensa;
     private javax.swing.JPanel sopa;
+    private javax.swing.JLabel txtNombre;
     // End of variables declaration//GEN-END:variables
 }
