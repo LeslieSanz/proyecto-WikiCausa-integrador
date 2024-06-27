@@ -2,23 +2,22 @@ package modelo;
 
 public class Usuario {
     
-    private String idUsu;
+    private String dni;
     private String correo;
     private String password;
     private String nombre;
-    private String apellidoP;
-    private String apellidoM;
+    private String apellidos;
     private String rol;
 
     public Usuario() {
     }
     
-    public String getIdUsu() {
-        return idUsu;
+    public String getDni() {
+        return dni;
     }
 
-    public void setIdUsu(String idUsu) {
-        this.idUsu = idUsu;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getCorreo() {
@@ -45,20 +44,12 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getApellidoP() {
-        return apellidoP;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellidoP(String apellidoP) {
-        this.apellidoP = apellidoP;
-    }
-
-    public String getApellidoM() {
-        return apellidoM;
-    }
-
-    public void setApellidoM(String apellidoM) {
-        this.apellidoM = apellidoM;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getRol() {

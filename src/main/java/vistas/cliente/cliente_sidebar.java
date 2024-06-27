@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vistas.cliente;
 
 import com.formdev.flatlaf.FlatLightLaf;
@@ -12,6 +8,8 @@ import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+import modelo.Usuario;
+import modeloDAO.UsurarioDAO;
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatAtomOneLightIJTheme;
 import com.formdev.flatlaf.themes.FlatMacLightLaf;
 import vistas.general.bienvenida;
@@ -23,16 +21,7 @@ import vistas.general.bienvenida;
 public class cliente_sidebar extends javax.swing.JFrame {
 
     public cliente_sidebar() {
-        initComponents();
-//        Para mostrar por defecto el panel del dashboard
-        i = new cliente_inicio();
-        i.setSize(1040, 620);
-        i.setLocation(0, 0);
-
-        content.removeAll();
-        content.add(i, BorderLayout.CENTER);
-        content.revalidate();
-        content.repaint();
+        
     }
 
     cliente_inicio i;
@@ -178,6 +167,32 @@ public class cliente_sidebar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public cliente_sidebar(String dniOb){
+        initComponents();
+        dni=dniOb;
+//      Para mostrar por defecto el panel del dashboard
+        i = new cliente_inicio();
+        i.setSize(1040, 620);
+        i.setLocation(0, 0);
+        content.removeAll();
+        content.add(i, BorderLayout.CENTER);
+        content.revalidate();
+        content.repaint();
+        Prueba();
+        
+    }
+    String dni;
+    UsurarioDAO usDao= new UsurarioDAO();
+
+    
+    public void Prueba(){
+        System.out.println("Dni: "+dni);
+        Usuario us= usDao.ObtenerUsuario(dni);
+        System.out.println(us.getNombre());
+        
+    }
+    
+    
     private void btnInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMousePressed
         setColor(btnInicio);
         resetColor(btnMiDespensa);
@@ -185,7 +200,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiPerfil);
 
         // Abrir sección
-        i = new cliente_inicio();
+        i = new cliente_inicio(dni);
         mostrarPanel(i);
     }//GEN-LAST:event_btnInicioMousePressed
 
@@ -196,7 +211,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiPerfil);
 
         // Abrir sección
-        d = new cliente_despensa();
+        d = new cliente_despensa(dni);
         mostrarPanel(d);
     }//GEN-LAST:event_btnMiDespensaMousePressed
 
@@ -207,7 +222,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiPerfil);
 
         // Abrir sección
-        m = new cliente_menu();
+        m = new cliente_menu(dni);
         mostrarPanel(m);
     }//GEN-LAST:event_btnMiMenuMousePressed
 
@@ -218,7 +233,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiMenu);
 
         // Abrir sección
-        p = new cliente_perfil();
+        p = new cliente_perfil(dni);
         mostrarPanel(p);
     }//GEN-LAST:event_btnMiPerfilMousePressed
 
