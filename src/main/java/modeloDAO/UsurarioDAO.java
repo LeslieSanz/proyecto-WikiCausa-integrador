@@ -12,7 +12,7 @@ public class UsurarioDAO {
     
     public Usuario validarUsu(String correo, String password){
         
-        String sql = "SELECT * FROM usuario WHERE Correo=? AND Password=?";
+        String sql = "SELECT * FROM usuario WHERE DNI=? AND Password=?";
         Usuario user = null;
         
         try(Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)){
@@ -22,15 +22,14 @@ public class UsurarioDAO {
             try (ResultSet rs= st.executeQuery()){
                 if (rs.next()) {
                     user = new Usuario();
-                    user.setIdUsu(rs.getString("idUsu"));
+                    user.setDni(rs.getString("DNI"));
                     user.setCorreo(rs.getString("Correo"));
                     user.setPassword(rs.getString("Password"));
                     user.setNombre(rs.getString("Nombres"));
-                    user.setApellidoP(rs.getString("ApellidoP"));
-                    user.setApellidoM(rs.getString("ApellidoM"));
+                    user.setApellidos(rs.getString("Apellidos"));
                     user.setRol(rs.getString("Rol"));
                 }else{
-                    JOptionPane.showMessageDialog(null, "Correo y/o contraseña incorrectos");
+                    JOptionPane.showMessageDialog(null, "DNI y/o contraseña incorrectos");
                 }
             }
         } catch (SQLException ex) {
@@ -41,15 +40,14 @@ public class UsurarioDAO {
     
     public void AgregarUsu(Usuario usu){
         
-        String sql="INSERT INTO usuario (idUsu,Correo,Password,Nombres,ApellidoP,ApellidoM,Rol) values(?,?,?,?,?,?,?)";
+        String sql="INSERT INTO usuario (DNI,Correo,Password,Nombres,Apellidos,Rol) values(?,?,?,?,?,?)";
         try (Connection cn= Conexion.getConexion();PreparedStatement st= cn.prepareStatement(sql)){
-            st.setString(1, usu.getIdUsu());
+            st.setString(1, usu.getDni());
             st.setString(2, usu.getCorreo());
             st.setString(3, usu.getPassword());
             st.setString(4, usu.getNombre());
-            st.setString(5, usu.getApellidoP());
-            st.setString(6, usu.getApellidoM());
-            st.setString(7, "C");
+            st.setString(5, usu.getApellidos());
+            st.setString(6, "C");
             st.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Error al agregar usuario: "+ex.getMessage());

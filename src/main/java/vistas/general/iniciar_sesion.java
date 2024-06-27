@@ -34,7 +34,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
         mostrarPsww = new javax.swing.JLabel();
         btnRegresar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        txtCorreo = new javax.swing.JTextField();
+        txtDNI = new javax.swing.JTextField();
         txtcontrasena = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         logowiki = new javax.swing.JLabel();
@@ -63,7 +63,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
 
         ingreseCorreo.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         ingreseCorreo.setForeground(new java.awt.Color(102, 102, 102));
-        ingreseCorreo.setText("Ingrese su correo");
+        ingreseCorreo.setText("Ingrese su DNI");
         background.add(ingreseCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, -1));
 
         hidePsww.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/showPssw.png"))); // NOI18N
@@ -102,15 +102,15 @@ public class iniciar_sesion extends javax.swing.JFrame {
         });
         background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, -1, 60));
 
-        txtCorreo.setForeground(new java.awt.Color(204, 204, 204));
-        txtCorreo.setText("Ingrese su correo");
-        txtCorreo.setToolTipText(" ");
-        txtCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtDNI.setForeground(new java.awt.Color(204, 204, 204));
+        txtDNI.setText("Ingrese su DNI");
+        txtDNI.setToolTipText(" ");
+        txtDNI.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                txtCorreoMousePressed(evt);
+                txtDNIMousePressed(evt);
             }
         });
-        background.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, 310, 30));
+        background.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, 310, 30));
 
         txtcontrasena.setForeground(new java.awt.Color(204, 204, 204));
         txtcontrasena.setText("**********");
@@ -165,9 +165,9 @@ public class iniciar_sesion extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         
-        String correo=txtCorreo.getText();
+        String dni=txtDNI.getText();
         String password=txtcontrasena.getText();
-        Usuario usu=usDao.validarUsu(correo, password);
+        Usuario usu=usDao.validarUsu(dni, password);
         String rol=usu.getRol();
         
         if (usu!=null) {
@@ -205,24 +205,24 @@ public class iniciar_sesion extends javax.swing.JFrame {
             txtcontrasena.setForeground(Color.black);
         }
         
-        if (txtCorreo.getText().isEmpty()) {
-            txtCorreo.setText("Ingrese su correo");
-            txtCorreo.setForeground(new Color(204,204,204));
+        if (txtDNI.getText().isEmpty()) {
+            txtDNI.setText("Ingrese su DNI");
+            txtDNI.setForeground(new Color(204,204,204));
         }
         
     }//GEN-LAST:event_txtcontrasenaMousePressed
 
-    private void txtCorreoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCorreoMousePressed
-        if (txtCorreo.getText().equals("Ingrese su correo")) {
-            txtCorreo.setText("");
-            txtCorreo.setForeground(Color.black);
+    private void txtDNIMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDNIMousePressed
+        if (txtDNI.getText().equals("Ingrese su DNI")) {
+            txtDNI.setText("");
+            txtDNI.setForeground(Color.black);
         }
         
         if (String.valueOf(txtcontrasena.getPassword()).isEmpty()) {
             txtcontrasena.setText("**********");
             txtcontrasena.setForeground(new Color(204,204,204));
         }
-    }//GEN-LAST:event_txtCorreoMousePressed
+    }//GEN-LAST:event_txtDNIMousePressed
 
     
     
@@ -284,7 +284,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
     private javax.swing.JLabel mostrarPsww;
     private javax.swing.JLabel personas;
     private javax.swing.JLabel titulo;
-    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDNI;
     private javax.swing.JPasswordField txtcontrasena;
     // End of variables declaration//GEN-END:variables
 }
