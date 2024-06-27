@@ -172,7 +172,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
         
         if (usu!=null) {
             if (rol.equalsIgnoreCase("C")) {
-                cliente_sidebar cliSi= new cliente_sidebar();
+                cliente_sidebar cliSi= new cliente_sidebar(dni);
                 cliSi.setVisible(true);
                 this.dispose();
             }
