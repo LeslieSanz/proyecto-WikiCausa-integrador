@@ -243,7 +243,7 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="jTextField5">
+            <Component class="javax.swing.JTextField" name="txtpassAct">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="30" y="80" width="140" height="-1"/>
@@ -260,10 +260,13 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="btnValidarPassword">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Validar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnValidarPasswordActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="190" y="80" width="-1" height="-1"/>
@@ -291,14 +294,14 @@
                           <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPasswordField1" min="-2" pref="130" max="-2" attributes="0"/>
+                              <Component id="txtContraNue1" min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jPasswordField2" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Component id="txtContraNue2" min="-2" pref="130" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnActPassword" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -316,9 +319,9 @@
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPasswordField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jPasswordField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnActPassword" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtContraNue1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtContraNue2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       </Group>
@@ -326,22 +329,25 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JButton" name="jButton5">
+                <Component class="javax.swing.JButton" name="btnActPassword">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Actualizar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActPasswordActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel8">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Contrase&#xf1;a nueva"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+                <Component class="javax.swing.JPasswordField" name="txtContraNue1">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jPasswordField1"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JPasswordField" name="jPasswordField2">
+                <Component class="javax.swing.JPasswordField" name="txtContraNue2">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="jPasswordField2"/>
                   </Properties>
