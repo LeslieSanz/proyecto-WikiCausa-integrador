@@ -4,15 +4,19 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
+import modelo.DespensaDTO;
 import modelo.IngredienteDTO;
 import modelo.Usuario;
+import modeloDAO.DespensaDAO;
 import modeloDAO.UsurarioDAO;
 import modeloDAO.ingredienteDAO;
 
 public class cliente_despensa extends javax.swing.JPanel {
-    
+     DefaultTableModel modelo = new DefaultTableModel();
     String dni;
     UsurarioDAO usDao= new UsurarioDAO();
+    DespensaDAO despDao;
 
     public cliente_despensa() {
         
@@ -22,7 +26,8 @@ public class cliente_despensa extends javax.swing.JPanel {
         initComponents();
         dni=dniob;
         prueba();
-      
+       establecerColumnas();
+        mostrarTabla();
     }
     
     @SuppressWarnings("unchecked")
@@ -50,7 +55,7 @@ public class cliente_despensa extends javax.swing.JPanel {
         jButton6 = new javax.swing.JButton();
         cbxAlimentos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblDespensa = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
         unidad = new javax.swing.JTextField();
         txtBuscar = new javax.swing.JTextField();
@@ -178,7 +183,7 @@ public class cliente_despensa extends javax.swing.JPanel {
         });
         jPanel1.add(cbxAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 150, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblDespensa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -190,7 +195,7 @@ public class cliente_despensa extends javax.swing.JPanel {
                 "Alimnento", "Cantidad", "Medida", "Fecha de ingreso"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblDespensa);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 480, 210));
 
@@ -332,11 +337,38 @@ public class cliente_despensa extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton lacteos;
     private javax.swing.JButton pastas;
+    private javax.swing.JTable tblDespensa;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField unidad;
     // End of variables declaration//GEN-END:variables
+
+    private void establecerColumnas() {
+          modelo.addColumn("Alimento");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Medida");
+        
+        
+        tblDespensa.setModel(modelo);
+    }
+
+    private void mostrarTabla() {
+         modelo.setRowCount(0);
+            despDao = new DespensaDAO();
+            ArrayList<DespensaDTO> lista = new ArrayList<>();
+            lista= despDao.listarTodos(dni);
+            for (int i=0;i<lista.size();i++){
+                Object[] data = {
+                    lista.get(i).getNombre(),
+                    lista.get(i).getCantidad(),
+                    lista.get(i).getMedida(),
+                 
+                    
+                };
+                modelo.addRow(data);
+            }
+
+    }
 }

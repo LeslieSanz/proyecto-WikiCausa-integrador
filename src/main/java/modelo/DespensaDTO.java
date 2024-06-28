@@ -11,9 +11,22 @@ package modelo;
 public class DespensaDTO {
 
     private String idDespensa;
-    private Usuario dniUsuario; 
+    private String nombre;
+    private String fecha;
+    private int cantidad;
+    private String medida;
+
+    public DespensaDTO(String nombre, int cantidad, String medida) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        this.medida = medida;
+    }
+
+    public DespensaDTO() {
+    }
     
     
+
     public String getIdDespensa() {
         return idDespensa;
     }
@@ -22,13 +35,38 @@ public class DespensaDTO {
         this.idDespensa = idDespensa;
     }
 
-    public Usuario getDniUsuario() {
-        return dniUsuario;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setDniUsuario(Usuario dniUsuario) {
-        this.dniUsuario = dniUsuario;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getMedida() {
+        return medida;
+    }
+
+    public void setMedida(String medida) {
+        this.medida = medida;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     
     
     
