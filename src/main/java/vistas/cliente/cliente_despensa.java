@@ -1,8 +1,13 @@
 package vistas.cliente;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import modelo.IngredienteDTO;
 import modelo.Usuario;
 import modeloDAO.UsurarioDAO;
+import modeloDAO.ingredienteDAO;
 
 public class cliente_despensa extends javax.swing.JPanel {
     
@@ -17,6 +22,7 @@ public class cliente_despensa extends javax.swing.JPanel {
         initComponents();
         dni=dniob;
         prueba();
+      
     }
     
     @SuppressWarnings("unchecked")
@@ -42,7 +48,7 @@ public class cliente_despensa extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxAlimentos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jTextField1 = new javax.swing.JTextField();
@@ -69,22 +75,52 @@ public class cliente_despensa extends javax.swing.JPanel {
         jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 180, -1));
 
         frutasVerduras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/frutasVerduras.png"))); // NOI18N
+        frutasVerduras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frutasVerdurasActionPerformed(evt);
+            }
+        });
         jPanel1.add(frutasVerduras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         lacteos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/lacteos.png"))); // NOI18N
+        lacteos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lacteosActionPerformed(evt);
+            }
+        });
         jPanel1.add(lacteos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, -1));
 
         abarrotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/abarrotes.png"))); // NOI18N
+        abarrotes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abarrotesActionPerformed(evt);
+            }
+        });
         jPanel1.add(abarrotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, -1, -1));
 
         carnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/carnes.png"))); // NOI18N
         carnes.setToolTipText("");
+        carnes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carnesActionPerformed(evt);
+            }
+        });
         jPanel1.add(carnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
 
         pastas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/pastas.png"))); // NOI18N
+        pastas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pastasActionPerformed(evt);
+            }
+        });
         jPanel1.add(pastas, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, -1, -1));
 
         congelados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/enlatados.png"))); // NOI18N
+        congelados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                congeladosActionPerformed(evt);
+            }
+        });
         jPanel1.add(congelados, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 130, 150, -1));
 
         jLabel10.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
@@ -133,9 +169,14 @@ public class cliente_despensa extends javax.swing.JPanel {
         jButton6.setText("Eliminar");
         jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 590, -1, 30));
 
-        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " " }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 150, 30));
+        cbxAlimentos.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
+        cbxAlimentos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", " " }));
+        cbxAlimentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxAlimentosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbxAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 150, 30));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -222,17 +263,65 @@ public class cliente_despensa extends javax.swing.JPanel {
 
     }//GEN-LAST:event_unidadMousePressed
 
+    private void frutasVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frutasVerdurasActionPerformed
+     cargarComboBox(cbxAlimentos, 1);
+    }//GEN-LAST:event_frutasVerdurasActionPerformed
+
+    private void cbxAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAlimentosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxAlimentosActionPerformed
+
+    private void lacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lacteosActionPerformed
+    cargarComboBox(cbxAlimentos, 2);
+    }//GEN-LAST:event_lacteosActionPerformed
+
+    private void abarrotesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abarrotesActionPerformed
+    cargarComboBox(cbxAlimentos, 3);
+    }//GEN-LAST:event_abarrotesActionPerformed
+
+    private void carnesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carnesActionPerformed
+    cargarComboBox(cbxAlimentos, 4);        // TODO add your handling code here:
+    }//GEN-LAST:event_carnesActionPerformed
+
+    private void pastasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pastasActionPerformed
+    cargarComboBox(cbxAlimentos, 5);        // TODO add your handling code here:
+    }//GEN-LAST:event_pastasActionPerformed
+
+    private void congeladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congeladosActionPerformed
+    cargarComboBox(cbxAlimentos, 6);        // TODO add your handling code here:
+    }//GEN-LAST:event_congeladosActionPerformed
+
+   
+    
+    private void cargarComboBox(JComboBox c, int tipoIngredienteId) {
+    DefaultComboBoxModel<String> comboModel = new DefaultComboBoxModel<>();
+    c.setModel(comboModel);
+
+    // Agregar el primer elemento de selección
+    comboModel.addElement("Seleccione");
+
+    // Llamar al DAO para obtener la lista de ingredientes por tipo
+    ingredienteDAO ingredienteDAO = new ingredienteDAO();
+    ArrayList<IngredienteDTO> ingredientes = ingredienteDAO.listaIngrexTipo(tipoIngredienteId);
+
+    // Agregar los nombres de los ingredientes al ComboBoxModel
+    for (IngredienteDTO ingrediente : ingredientes) {
+        comboModel.addElement(ingrediente.getNombre()); // Agrega cada nombre de ingrediente recuperado
+    }
+}
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel QueCocinareHoy;
     private javax.swing.JButton abarrotes;
     private javax.swing.JButton carnes;
+    private javax.swing.JComboBox<String> cbxAlimentos;
     private javax.swing.JButton congelados;
     private javax.swing.JButton frutasVerduras;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

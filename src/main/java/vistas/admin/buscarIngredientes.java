@@ -226,21 +226,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
         }
     }
     
-     private void mostrarTablaIngrexTipo(String tipIng){      
-         modelo.setRowCount(0);
-         id = new ingredienteDAO();   
-        ArrayList<IngredienteDTO> listaIngredientes = new ArrayList<>();
-        listaIngredientes = id.listaIngrexTipo(tipIng);
-        
-         for (int i=0;i<listaIngredientes.size();i++) {
-             Object v[]={
-                listaIngredientes.get(i).getId(), 
-                listaIngredientes.get(i).getNombre(),
-                listaIngredientes.get(i).getTipo().getNombre()
-             };
-             modelo.addRow(v);
-         }
-    }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

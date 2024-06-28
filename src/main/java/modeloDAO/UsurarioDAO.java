@@ -1,6 +1,7 @@
 package modeloDAO;
 
 import config.Conexion;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,6 +50,16 @@ public class UsurarioDAO {
             st.setString(5, usu.getApellidos());
             st.setString(6, "C");
             st.executeUpdate();
+            
+              String sqlProcedimiento = "CALL generarIdDespensa(?)";
+        try (CallableStatement cstmt = cn.prepareCall(sqlProcedimiento)) {
+            cstmt.setString(1, usu.getDni());
+            cstmt.execute();
+        } catch (SQLException ex) {
+            System.out.println("Error al llamar al procedimiento almacenado generarIdDespensa: " + ex.getMessage());
+        }
+
+            
         } catch (SQLException ex) {
             System.out.println("Error al agregar usuario: "+ex.getMessage());
         }
