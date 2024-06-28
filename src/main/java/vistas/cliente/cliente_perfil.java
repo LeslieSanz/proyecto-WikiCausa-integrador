@@ -1,5 +1,8 @@
 package vistas.cliente;
 
+import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import modelo.Usuario;
 import modeloDAO.UsurarioDAO;
 
@@ -8,18 +11,100 @@ public class cliente_perfil extends javax.swing.JPanel {
     String dni;
     UsurarioDAO usDao= new UsurarioDAO();
     
+    
     public cliente_perfil(String dniob){
         initComponents();
+        btnModificar.setEnabled(false);
         dni=dniob;
-        prueba();
+        MostrarDatosUsu(dniob);
+        txtContraNue1.setEnabled(false);
+        txtContraNue2.setEnabled(false);
+        btnActPassword.setEnabled(false);
+        
+        
+        //Detecta algun cambio en el jtextfield
+        txtNombre.getDocument().addDocumentListener(new CambioDocumentListener());
+        txtApe.getDocument().addDocumentListener(new CambioDocumentListener());
+        txtCorreo.getDocument().addDocumentListener(new CambioDocumentListener());
+        txtContraNue1.getDocument().addDocumentListener(new CambioDocumentListener());
+        txtContraNue2.getDocument().addDocumentListener(new CambioDocumentListener());
+
     }
     
-    public void prueba(){
-        System.out.println(dni);
+    
+    public void MostrarDatosUsu(String dni){
         Usuario us= usDao.ObtenerUsuario(dni);
-        System.out.println(us.getNombre()+" cli_perfil");
+        txtDni.setText(dni);
+        txtNombre.setText(us.getNombre());
+        txtApe.setText(us.getApellidos());
+        txtCorreo.setText(us.getCorreo());
         jLNombre.setText(us.getNombre());
+        btnModificar.setEnabled(false);
+        System.out.println(us.getCorreo());
+    }
+    
+    public boolean validarPassword(){
+        Usuario us= usDao.obtenerPassword(dni);
+        String contra=us.getPassword();
+        if (contra.equalsIgnoreCase(txtpassAct.getText())) {
+            txtContraNue1.setEnabled(true);
+            txtContraNue2.setEnabled(true);
+            btnActPassword.setEnabled(true);
+            return true;
+        }else{
+            txtContraNue1.setEnabled(false);
+            txtContraNue2.setEnabled(false);
+            JOptionPane.showMessageDialog(null, "Contraseña actual incorrecta");
+            return false;
+        }
+    }
+    
+    public void VerificarCambioPassword(){
+        if (txtContraNue1.getText().equalsIgnoreCase(txtContraNue2.getText())&& validarPassword()) {
+            usDao.editarContraUsu(txtContraNue1.getText(), dni);
+        }else{
+            JOptionPane.showMessageDialog(null, "Contraseña no coincide");
+        }
+    }
+    
+    public boolean VerificarCambiosTXT(String nombres,String Ape, String Correo){
+        Usuario us= usDao.ObtenerUsuario(dni);
+        String nomAc=us.getNombre();
+        String apeAc=us.getApellidos();
+        String corrAc=us.getCorreo();
         
+        if (!nomAc.equalsIgnoreCase(nombres)|| !apeAc.equalsIgnoreCase(Ape) || !corrAc.equalsIgnoreCase(Correo)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void habilitarbtnMod(){
+        
+        if (VerificarCambiosTXT(txtNombre.getText(), txtApe.getText(), txtCorreo.getText())) {
+            btnModificar.setEnabled(true);
+        } else {
+            btnModificar.setEnabled(false);
+        }
+    }
+    
+    private class CambioDocumentListener implements DocumentListener {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            habilitarbtnMod();
+            
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            habilitarbtnMod();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            // No relevante para JTextComponent
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -31,25 +116,25 @@ public class cliente_perfil extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtApe = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtDni = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        txtCorreo = new javax.swing.JTextField();
+        btnModificar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jTextField5 = new javax.swing.JTextField();
+        txtpassAct = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        btnValidarPassword = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        btnActPassword = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        txtContraNue1 = new javax.swing.JPasswordField();
+        txtContraNue2 = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -75,22 +160,29 @@ public class cliente_perfil extends javax.swing.JPanel {
 
         jLabel3.setText("Nombre");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 188, -1));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 188, -1));
 
         jLabel4.setText("Apellidos");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 190, -1));
+        jPanel2.add(txtApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 190, -1));
 
         jLabel5.setText("DNI");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 185, -1));
+
+        txtDni.setEditable(false);
+        jPanel2.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 185, -1));
 
         jLabel6.setText("Correo");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 190, -1));
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 190, -1));
 
-        jButton4.setText("Modificar");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
         jButton1.setText("Subir foto");
 
@@ -98,23 +190,33 @@ public class cliente_perfil extends javax.swing.JPanel {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Poppins Medium", 0, 18), new java.awt.Color(102, 102, 102))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel3.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 140, -1));
+        jPanel3.add(txtpassAct, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 140, -1));
 
         jLabel7.setText("Contraseña actual");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
-        jButton2.setText("Validar");
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
+        btnValidarPassword.setText("Validar");
+        btnValidarPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarPasswordActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnValidarPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 80, -1, -1));
 
         jPanel4.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jButton5.setText("Actualizar");
+        btnActPassword.setText("Actualizar");
+        btnActPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActPasswordActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Contraseña nueva");
 
-        jPasswordField1.setText("jPasswordField1");
+        txtContraNue1.setText("jPasswordField1");
 
-        jPasswordField2.setText("jPasswordField2");
+        txtContraNue2.setText("jPasswordField2");
 
         jLabel9.setText("Confirmar contraseña");
 
@@ -126,13 +228,13 @@ public class cliente_perfil extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtContraNue1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtContraNue2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jButton5))
+                        .addComponent(btnActPassword))
                     .addComponent(jLabel9))
                 .addContainerGap(122, Short.MAX_VALUE))
         );
@@ -145,9 +247,9 @@ public class cliente_perfil extends javax.swing.JPanel {
                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnActPassword)
+                    .addComponent(txtContraNue1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtContraNue2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26))
         );
 
@@ -280,13 +382,30 @@ public class cliente_perfil extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        Usuario us= usDao.ObtenerUsuario(dni);
+        us.setNombre(txtNombre.getText());
+        us.setApellidos(txtApe.getText());
+        us.setCorreo(txtCorreo.getText());
+        usDao.editarDatosUsu(dni,us);
+        jLNombre.setText(us.getNombre());
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnValidarPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarPasswordActionPerformed
+        validarPassword();
+    }//GEN-LAST:event_btnValidarPasswordActionPerformed
+
+    private void btnActPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActPasswordActionPerformed
+        VerificarCambioPassword();
+    }//GEN-LAST:event_btnActPasswordActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnActPassword;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JButton btnValidarPassword;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLNombre;
@@ -307,15 +426,15 @@ public class cliente_perfil extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txtApe;
+    private javax.swing.JPasswordField txtContraNue1;
+    private javax.swing.JPasswordField txtContraNue2;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDni;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtpassAct;
     // End of variables declaration//GEN-END:variables
 }

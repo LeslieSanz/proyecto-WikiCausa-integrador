@@ -92,4 +92,52 @@ public class UsurarioDAO {
         return user;
     }
     
+    public Usuario editarDatosUsu(String dni,Usuario user){
+        String sql = "Update usuario set Nombres=?, Apellidos=?,Correo=? where DNI='"+dni+"'";
+        try(Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)){
+            st.setString(1, user.getNombre());
+            st.setString(2, user.getApellidos());
+            st.setString(3, user.getCorreo());
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar Usuario: " + ex.getMessage());
+        }
+        return user;
+    }
+    
+    public Usuario obtenerPassword(String dni){
+        
+        String sql = "SELECT Password FROM usuario WHERE DNI=?";
+        Usuario user = new Usuario();
+        try(Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)){
+            st.setString(1, dni);
+            
+            try (ResultSet rs= st.executeQuery()){
+                if (rs.next()) {
+                    user = new Usuario();
+                    user.setPassword(rs.getString("Password"));
+                }else{
+                    JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al obtener Usuario: " + ex.getMessage());
+        }
+        return user;
+        
+    }
+    
+    public void editarContraUsu(String contra,String dni){
+        String sql = "Update usuario set Password=? where DNI="+dni;
+        
+        try(Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)){
+            st.setString(1, contra);
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null , "Contraseña modificada");
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar Contraseña: " + ex.getMessage());
+        }
+    }
+       
 }
