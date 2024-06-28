@@ -4,6 +4,8 @@
  */
 package vistas.cliente;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 /**
  *
  * @author lesly
@@ -15,8 +17,7 @@ public class cliente_configuracion extends javax.swing.JFrame {
      */
     public cliente_configuracion() {
         initComponents();
-        pnl2.setVisible(false);
-        pnl3.setVisible(false);
+        setLocationRelativeTo(null); // Centrar en la pantalla
     }
 
     /**
@@ -29,118 +30,138 @@ public class cliente_configuracion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        pnl1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
-        pnl2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        pnl3 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/ungrupo.png"))); // NOI18N
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Uno");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jLabel2.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(170, 89, 19));
+        jLabel2.setText("¿Cuál es tu nivel ");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
 
-        javax.swing.GroupLayout pnl1Layout = new javax.swing.GroupLayout(pnl1);
-        pnl1.setLayout(pnl1Layout);
-        pnl1Layout.setHorizontalGroup(
-            pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1Layout.createSequentialGroup()
-                .addContainerGap(415, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18))
-        );
-        pnl1Layout.setVerticalGroup(
-            pnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl1Layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(27, 27, 27))
-        );
+        jLabel7.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(170, 89, 19));
+        jLabel7.setText("de cocina?");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
 
-        jButton2.setText("Dos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_preferencias/Chef.png"))); // NOI18N
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, 140, 140));
 
-        javax.swing.GroupLayout pnl2Layout = new javax.swing.GroupLayout(pnl2);
-        pnl2.setLayout(pnl2Layout);
-        pnl2Layout.setHorizontalGroup(
-            pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(17, 17, 17))
-        );
-        pnl2Layout.setVerticalGroup(
-            pnl2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl2Layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(23, 23, 23))
-        );
+        jRadioButton1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jRadioButton1.setText("Principiante");
+        jPanel2.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
 
-        jButton3.setText("Tres");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jRadioButton2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jRadioButton2.setText("Intermedio");
+        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, -1, -1));
 
-        javax.swing.GroupLayout pnl3Layout = new javax.swing.GroupLayout(pnl3);
-        pnl3.setLayout(pnl3Layout);
-        pnl3Layout.setHorizontalGroup(
-            pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(17, 17, 17))
-        );
-        pnl3Layout.setVerticalGroup(
-            pnl3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnl3Layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(23, 23, 23))
-        );
+        jRadioButton3.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jRadioButton3.setText("Avanzado");
+        jPanel2.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(253, 253, 253)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(pnl1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(pnl2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnl3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 322, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addComponent(pnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addComponent(pnl2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(pnl3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-        );
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 250, 410));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(170, 89, 19));
+        jLabel3.setText("¿Con qué frecuencia ");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(170, 89, 19));
+        jLabel4.setText("repites una comida?");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, -1, -1));
+
+        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1 vez por semana", "1 vez cada dos semanas", "1 vez cada 3 semanas", "1 vez al mes" }));
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 200, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_preferencias/calendar-day.png"))); // NOI18N
+        jPanel3.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 249, 410));
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(170, 89, 19));
+        jLabel5.setText("¿Qué tipo de comida ");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(170, 89, 19));
+        jLabel6.setText("prefieres?");
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, -1, -1));
+
+        jComboBox2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Carnes blancas", "Carnes rojas", "Pescados y mariscos", "Otros" }));
+        jPanel4.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 190, -1));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_preferencias/dish 3.png"))); // NOI18N
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 200, 310, 313));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 11, 327));
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 200, 11, 327));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_preferencias/btnConf1.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_preferencias/btnConf2.png"))); // NOI18N
+        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_preferencias/btnConf2.png"))); // NOI18N
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 520, 190, -1));
+
+        jLabel11.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
+        jLabel11.setText("!Queremos conocerte!");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 570, -1));
+
+        jLabel1.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setText("En esta sección, puedes personalizar tu experiencia seleccionando tus preferencias en tres áreas clave. ");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, -1, -1));
+
+        jLabel12.setBackground(new java.awt.Color(102, 102, 102));
+        jLabel12.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel12.setText("Esto nos ayudará a crear un menú semanal adaptado a tus gustos y necesidades.");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,21 +176,6 @@ public class cliente_configuracion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        pnl1.setVisible(false);
-        pnl2.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        pnl1.setVisible(false);
-        pnl2.setVisible(false);
-        pnl3.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,7 +203,14 @@ public class cliente_configuracion extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(cliente_configuracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        /* Create and display the form */
+        try {
+            //UIManager.setLookAndFeel(new FlatLightLaf());
+            FlatLightLaf.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -208,12 +221,28 @@ public class cliente_configuracion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel pnl1;
-    private javax.swing.JPanel pnl2;
-    private javax.swing.JPanel pnl3;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
