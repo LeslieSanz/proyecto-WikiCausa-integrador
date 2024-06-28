@@ -1,5 +1,7 @@
 package vistas.cliente;
 
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import modelo.Usuario;
 import modeloDAO.UsurarioDAO;
 
@@ -8,18 +10,69 @@ public class cliente_perfil extends javax.swing.JPanel {
     String dni;
     UsurarioDAO usDao= new UsurarioDAO();
     
+    
     public cliente_perfil(String dniob){
         initComponents();
+        btnModificar.setEnabled(false);
         dni=dniob;
-        prueba();
+        MostrarDatosUsu(dniob);
+        
+        
+        //Detecta algun cambio en el jtextfield
+        txtNombre.getDocument().addDocumentListener(new CambioDocumentListener());
+        txtApe.getDocument().addDocumentListener(new CambioDocumentListener());
+        txtCorreo.getDocument().addDocumentListener(new CambioDocumentListener());
+
     }
     
-    public void prueba(){
-        System.out.println(dni);
+    private class CambioDocumentListener implements DocumentListener {
+        @Override
+        public void insertUpdate(DocumentEvent e) {
+            habilitarbtnMod();
+        }
+
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            habilitarbtnMod();
+        }
+
+        @Override
+        public void changedUpdate(DocumentEvent e) {
+            // No relevante para JTextComponent
+        }
+    }
+    
+    public void MostrarDatosUsu(String dni){
         Usuario us= usDao.ObtenerUsuario(dni);
-        System.out.println(us.getNombre()+" cli_perfil");
+        txtDni.setText(dni);
+        txtNombre.setText(us.getNombre());
+        txtApe.setText(us.getApellidos());
+        txtCorreo.setText(us.getCorreo());
         jLNombre.setText(us.getNombre());
+        btnModificar.setEnabled(false);
+        System.out.println(us.getCorreo());
+    }
+    
+    public boolean VerificarCambiosTXT(String nombres,String Ape, String Correo){
+        Usuario us= usDao.ObtenerUsuario(dni);
+        String nomAc=us.getNombre();
+        String apeAc=us.getApellidos();
+        String corrAc=us.getCorreo();
         
+        if (!nomAc.equalsIgnoreCase(nombres)|| !apeAc.equalsIgnoreCase(Ape) || !corrAc.equalsIgnoreCase(Correo)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public void habilitarbtnMod(){
+        
+        if (VerificarCambiosTXT(txtNombre.getText(), txtApe.getText(), txtCorreo.getText())) {
+            btnModificar.setEnabled(true);
+        } else {
+            btnModificar.setEnabled(false);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -31,14 +84,14 @@ public class cliente_perfil extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtApe = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtDni = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        txtCorreo = new javax.swing.JTextField();
+        btnModificar = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -75,22 +128,29 @@ public class cliente_perfil extends javax.swing.JPanel {
 
         jLabel3.setText("Nombre");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 188, -1));
+        jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 188, -1));
 
         jLabel4.setText("Apellidos");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
-        jPanel2.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 190, -1));
+        jPanel2.add(txtApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 190, -1));
 
         jLabel5.setText("DNI");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
-        jPanel2.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 185, -1));
+
+        txtDni.setEditable(false);
+        jPanel2.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 185, -1));
 
         jLabel6.setText("Correo");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
-        jPanel2.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 190, -1));
+        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 190, -1));
 
-        jButton4.setText("Modificar");
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
 
         jButton1.setText("Subir foto");
 
@@ -280,12 +340,21 @@ public class cliente_perfil extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        Usuario us= usDao.ObtenerUsuario(dni);
+        us.setNombre(txtNombre.getText());
+        us.setApellidos(txtApe.getText());
+        us.setCorreo(txtCorreo.getText());
+        usDao.editarDatosUsu(dni,us);
+        jLNombre.setText(us.getNombre());
+    }//GEN-LAST:event_btnModificarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnModificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
@@ -312,10 +381,10 @@ public class cliente_perfil extends javax.swing.JPanel {
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField txtApe;
+    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtDni;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
