@@ -343,6 +343,11 @@ public class admin_recetas extends javax.swing.JPanel {
         cbxUnidadMedida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxUnidadMedida.setForeground(new java.awt.Color(102, 102, 102));
         cbxUnidadMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Unidades", "Tazas", "Cucharadas", "Cucharaditas", "Gramos", "Presas" }));
+        cbxUnidadMedida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxUnidadMedidaActionPerformed(evt);
+            }
+        });
 
         btnSig2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/sig.png"))); // NOI18N
         btnSig2.addActionListener(new java.awt.event.ActionListener() {
@@ -791,6 +796,10 @@ public class admin_recetas extends javax.swing.JPanel {
         
     
     }//GEN-LAST:event_btnSig2ActionPerformed
+
+    private void cbxUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxUnidadMedidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxUnidadMedidaActionPerformed
     
     public void limpiarCampos() {
         txtIdReceta.setText(null);

@@ -7,6 +7,7 @@ import java.sql.*;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modelo.MedidaDTO;
 import modelo.TipoIngrediente;
 
 public class ingredienteDAO implements IngredienteInterface{
@@ -17,6 +18,8 @@ public class ingredienteDAO implements IngredienteInterface{
     ResultSet rs;
     ArrayList<IngredienteDTO> lista = new ArrayList<>(); 
     IngredienteDTO i;
+    MedidaDTO m;
+     ArrayList<MedidaDTO> listaM = new ArrayList<>(); 
     
     //Para acceder al tipo de ingrediente
     TipoIngrediente ti;
@@ -119,5 +122,28 @@ public class ingredienteDAO implements IngredienteInterface{
         }
         return lista;
     } 
+    
+   public ArrayList<MedidaDTO> listarMedidaxIngred(String nom) {
+    ArrayList<MedidaDTO> listaM = new ArrayList<>();
+    
+    try (Connection conn = con.getConexion();
+         CallableStatement st = conn.prepareCall("{call obtenerMedidasPorNombreIngrediente(?)}")) {
+        
+        st.setString(1, nom);
+        try (ResultSet rs = st.executeQuery()) {
+            while (rs.next()) {
+                MedidaDTO m = new MedidaDTO();
+                m.setNombre(rs.getString("NombreMedida")); // Usar el alias correcto
+                listaM.add(m);       
+            }
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    
+    return listaM;
+}
+
+
     
 }

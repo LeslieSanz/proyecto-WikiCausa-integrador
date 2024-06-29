@@ -6,6 +6,7 @@ package modeloDAO;
 
 import java.util.ArrayList;
 import modelo.IngredienteDTO;
+import modelo.MedidaDTO;
 
 /**
  *
@@ -17,16 +18,16 @@ public class prueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         // Crear una instancia de tu clase DAO
-        ingredienteDAO ingredienteDAO = new ingredienteDAO();
-        
-        // Llamar al método con un ID de tipo de ingrediente, por ejemplo, 1 para 'Frutas y Verduras'
-        ArrayList<IngredienteDTO> ingredientes = ingredienteDAO.listaIngrexTipo(2);
+         ingredienteDAO medidaDAO = new ingredienteDAO(); // Crear una instancia de MedidaDAO
 
-        // Iterar sobre la lista de ingredientes y mostrar los nombres
-        for (IngredienteDTO ingrediente : ingredientes) {
-            System.out.println(ingrediente.getNombre());
-        }
+    // Llamar al método listarMedidaxIngred y obtener la lista de medidas para un ingrediente
+    String nombreIngrediente = "Papa"; // Ejemplo de nombre de ingrediente
+    ArrayList<MedidaDTO> medidas = medidaDAO.listarMedidaxIngred(nombreIngrediente);
+
+    // Imprimir las medidas obtenidas
+    for (MedidaDTO medida : medidas) {
+        System.out.println("Nombre de la medida: " + medida.getNombre());
+    }
     }
     
 }

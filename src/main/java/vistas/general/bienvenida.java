@@ -4,6 +4,8 @@
  */
 package vistas.general;
 
+import com.formdev.flatlaf.FlatLightLaf;
+
 /**
  *
  * @author lesly
@@ -152,7 +154,12 @@ public class bienvenida extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        try {
+            //UIManager.setLookAndFeel(new FlatLightLaf());
+            FlatLightLaf.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
