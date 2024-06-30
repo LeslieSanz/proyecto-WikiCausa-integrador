@@ -37,11 +37,26 @@ public class DespensaDAO {
     DespensaDTO i;
 
      public boolean agregar(String dniUsuario, String nomIngre, int cant, String nomMedida) {
-        int idIngrediente = -1;
+        int idDespensa = -1;
+         int idIngrediente = -1;
         int idMedida = -1;
 
         try {
             conn = con.getConexion();
+            
+            //Obtener el idDespensa basado en el dniUsuario
+            String sqlDespensa = "SELECT idDespensa FROM despensa WHERE Usuario_DNI = ?";
+            ps = conn.prepareStatement(sqlDespensa);
+            ps.setString(1, dniUsuario);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                idDespensa = rs.getInt("idDespensa");
+            } else {
+                System.out.println("Despensa no encontrado.");
+                return false;
+            }
+            rs.close();
+            ps.close();
             
             // Obtener idIngrediente basado en el nombre
             String sqlIngrediente = "SELECT idIngrediente FROM ingredientes WHERE Nombre = ?";
@@ -74,7 +89,7 @@ public class DespensaDAO {
             // Llamar al procedimiento almacenado
             String sqlProcedure = "{call agregarIngrediente(?,?,?,?)}";
             CallableStatement cs = conn.prepareCall(sqlProcedure);
-            cs.setString(1, dniUsuario);
+            cs.setInt(1, idDespensa);
             cs.setInt(2, idIngrediente);
             cs.setInt(3, cant);
             cs.setInt(4, idMedida);

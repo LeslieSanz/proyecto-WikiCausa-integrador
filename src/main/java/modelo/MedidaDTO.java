@@ -12,6 +12,8 @@ public class MedidaDTO {
     private int idMedida;
     private String Nombre;
     private TipoIngrediente tipo;
+    
+    
 
     public int getIdMedida() {
         return idMedida;

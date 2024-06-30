@@ -25,15 +25,19 @@ public class ingredienteDAO implements IngredienteInterface{
     TipoIngrediente ti;
     tipoIngredienteDAO tid = new tipoIngredienteDAO();
     
+    MedidaDTO mD;
+    MedidaDAO mDao = new MedidaDAO();
+    
     @Override
     public boolean agregar(IngredienteDTO i) {
         try {
-            String sql = "insert into ingredientes(Nombre,Tipo_Ingrediente_idTipo)"
-                    + " values (?, ?)";
+            String sql = "insert into ingredientes(Nombre,Tipo_Ingrediente_idTipo,idMedida)"
+                    + " values (?, ?,?)";
             conn = con.getConexion();
             ps = conn.prepareStatement(sql);
             ps.setString(1, i.getNombre());
             ps.setInt(2, i.getTipo().getId());
+            ps.setInt(3, i.getMedida().getIdMedida());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -72,8 +76,11 @@ public class ingredienteDAO implements IngredienteInterface{
                 i.setNombre(rs.getString("Nombre"));
                //Para el tipo de ingrediente
                 String cti = rs.getString("Tipo_Ingrediente_idTipo");
+                String cm = rs.getString("idMedida");
                 ti= tid.listarUno(cti);
+                mD= mDao.listarUnom(cm);
                 i.setTipo(ti);
+                i.setMedida(mD);
                 lista.add(i);
             }
             conn.close();
@@ -123,26 +130,91 @@ public class ingredienteDAO implements IngredienteInterface{
         return lista;
     } 
     
-   public ArrayList<MedidaDTO> listarMedidaxIngred(String nom) {
-    ArrayList<MedidaDTO> listaM = new ArrayList<>();
+ public ArrayList<MedidaDTO> listarMedidaxIngred(String nom, String tipo) {
+    ArrayList<MedidaDTO> lista = new ArrayList<>();
     
     try (Connection conn = con.getConexion();
-         CallableStatement st = conn.prepareCall("{call obtenerMedidasPorNombreIngrediente(?)}")) {
+         CallableStatement st = conn.prepareCall("{ CALL obtenerMedidaPorNombreIngredienteYTipo(?,?)}")) {
         
         st.setString(1, nom);
+        st.setString(2, tipo);
         try (ResultSet rs = st.executeQuery()) {
             while (rs.next()) {
                 MedidaDTO m = new MedidaDTO();
                 m.setNombre(rs.getString("NombreMedida")); // Usar el alias correcto
-                listaM.add(m);       
+                lista.add(m);  // Agregar a la lista correcta
             }
         }
     } catch (SQLException ex) {
         ex.printStackTrace();
     }
     
-    return listaM;
+    return lista;
 }
+
+
+ 
+ 
+ 
+ //metodo de yosselin
+   public boolean agregar(String nombre, String nomTipo, String nomMedida) {
+    int idTipo = -1;
+    int idMedida = -1;
+
+    try {
+        conn = con.getConexion();
+
+        // Obtener idTipo basado en el nombre
+        String sqlIngrediente = "SELECT idTipo FROM tipo_ingrediente WHERE Nombre = ?";
+        ps = conn.prepareStatement(sqlIngrediente);
+        ps.setString(1, nomTipo);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            idTipo = rs.getInt("idTipo");
+        } else {
+            System.out.println("Tipo no encontrado: " + nomTipo);
+            return false;
+        }
+        rs.close();
+        ps.close();
+
+        // Obtener idMedida basado en el nombre
+        String sqlMedida = "SELECT idMedida FROM medida WHERE Nombre = ?";
+        ps = conn.prepareStatement(sqlMedida);
+        ps.setString(1, nomMedida);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            idMedida = rs.getInt("idMedida");
+        } else {
+            System.out.println("Medida no encontrada: " + nomMedida);
+            return false;
+        }
+        rs.close();
+        ps.close();
+
+        // Insertar el nuevo ingrediente
+        String sql = "INSERT INTO ingredientes (Nombre, Tipo_Ingrediente_idTipo, idMedida) VALUES (?, ?, ?)";
+        ps = conn.prepareStatement(sql);
+        ps.setString(1, nombre);
+        ps.setInt(2, idTipo);
+        ps.setInt(3, idMedida);
+        ps.executeUpdate();
+
+        return true; // Retorna true si la inserción fue exitosa
+
+    } catch (SQLException ex) {
+        Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        return false;
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
 
 
     

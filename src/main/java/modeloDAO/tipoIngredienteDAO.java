@@ -2,10 +2,10 @@ package modeloDAO;
 import config.Conexion;
 import java.util.ArrayList;
 import java.sql.*;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import misInterfaces.TipoIngredienteInterface;
+import modelo.MedidaDTO;
 import modelo.TipoIngrediente;
 
 public class tipoIngredienteDAO implements TipoIngredienteInterface{
@@ -70,5 +70,7 @@ public class tipoIngredienteDAO implements TipoIngredienteInterface{
         }
         return ti;
     }
+    
+   
     
 }

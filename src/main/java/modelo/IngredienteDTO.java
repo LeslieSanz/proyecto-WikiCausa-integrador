@@ -4,6 +4,7 @@ public class IngredienteDTO {
     private int id;
     private String nombre;
     private TipoIngrediente tipo;
+    private MedidaDTO medida;
 
     public String getNombre() {
         return nombre;
@@ -28,5 +29,14 @@ public class IngredienteDTO {
     public void setTipo(TipoIngrediente tipo) {
         this.tipo = tipo;
     }
+
+    public MedidaDTO getMedida() {
+        return medida;
+    }
+
+    public void setMedida(MedidaDTO medida) {
+        this.medida = medida;
+    }
  
+    
 }

@@ -2,14 +2,19 @@
 package vistas.admin;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import modelo.IngredienteDTO;
+import modelo.MedidaDTO;
 import modelo.TipoIngrediente;
+import modeloDAO.MedidaDAO;
 import modeloDAO.ingredienteDAO;
 import modeloDAO.tipoIngredienteDAO;
 import static vistas.admin.admin_recetas.txtCodIngre;
@@ -21,6 +26,10 @@ public class buscarIngredientes extends javax.swing.JFrame {
     //Declarar un objeto de la clase ingredienteDAO, para listar todos
     ingredienteDAO id;
     
+    //Creando objeto medida
+    
+    MedidaDTO medida = new MedidaDTO();
+    
     //Modelo para la tblIngredientes
     DefaultTableModel modelo = new DefaultTableModel();
     
@@ -28,6 +37,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
     TipoIngrediente ti;
     tipoIngredienteDAO tid = new tipoIngredienteDAO();
     ArrayList<TipoIngrediente> listaTipos = new ArrayList<>();
+    ArrayList<MedidaDTO> medidaD = new ArrayList<>();
     
     //Esto es para el cbxTipoIngrediente
      String tipIng;
@@ -49,6 +59,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
         modelo.addColumn("Codigo");
         modelo.addColumn("Nombre");
         modelo.addColumn("Tipo");
+        modelo.addColumn("Medición");
         tblIngredientes.setModel(modelo);
     }
     
@@ -76,6 +87,8 @@ public class buscarIngredientes extends javax.swing.JFrame {
         txtNomIngre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        cmbMedida = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -88,8 +101,8 @@ public class buscarIngredientes extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Categoría");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
+        jLabel2.setText("Medida");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
@@ -103,12 +116,17 @@ public class buscarIngredientes extends javax.swing.JFrame {
         cbxTipoIngre.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxTipoIngre.setForeground(new java.awt.Color(102, 102, 102));
         cbxTipoIngre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cbxTipoIngre.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbxTipoIngreItemStateChanged(evt);
+            }
+        });
         cbxTipoIngre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTipoIngreActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxTipoIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, -1, -1));
+        jPanel1.add(cbxTipoIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, 140, -1));
 
         tblIngredientes.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         tblIngredientes.setForeground(new java.awt.Color(102, 102, 102));
@@ -142,7 +160,22 @@ public class buscarIngredientes extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, -1, -1));
+
+        jLabel5.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setText("Categoría");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
+
+        cmbMedida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        cmbMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione" }));
+        cmbMedida.setToolTipText("");
+        cmbMedida.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbMedidaItemStateChanged(evt);
+            }
+        });
+        jPanel1.add(cmbMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 140, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,7 +185,7 @@ public class buscarIngredientes extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -180,16 +213,29 @@ public class buscarIngredientes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Agregar un ingrediente
-        i = new IngredienteDTO();
-        id = new ingredienteDAO();
-        i.setNombre(txtNomIngre.getText());
+//        i = new IngredienteDTO();
+//        id = new ingredienteDAO();
+//        i.setNombre(txtNomIngre.getText());
         //Para asignar el tipo de ingrediente
-        int indice_ingre = cbxTipoIngre.getSelectedIndex();
-        i.setTipo(listaTipos.get(indice_ingre-1));
-        
-        id.agregar(i);
+//        int indice_ingre = cbxTipoIngre.getSelectedIndex();
+//         i.setTipo(listaTipos.get(indice_ingre-1));
+//        id.agregar(i);
+        String medida = cmbMedida.getSelectedItem().toString();
+       String tipo = cbxTipoIngre.getSelectedItem().toString();
+       String nombre = txtNomIngre.getText();
         mostrarTablaIngredientes();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cmbMedidaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbMedidaItemStateChanged
+        
+    }//GEN-LAST:event_cmbMedidaItemStateChanged
+
+    private void cbxTipoIngreItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxTipoIngreItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            String tipoIngre = (String) cbxTipoIngre.getSelectedItem();
+            cargarComboBox2(cmbMedida, tipoIngre);
+        }
+    }//GEN-LAST:event_cbxTipoIngreItemStateChanged
     
     public void aplicarFiltro(){
         txtBuscar.addKeyListener(new KeyAdapter(){
@@ -220,7 +266,8 @@ public class buscarIngredientes extends javax.swing.JFrame {
             Object[] data = {
                 listaIngredientes.get(i).getId(), 
                 listaIngredientes.get(i).getNombre(),
-                listaIngredientes.get(i).getTipo().getNombre()
+                listaIngredientes.get(i).getTipo().getNombre(),
+                listaIngredientes.get(i).getMedida().getNombre()
                 };
             modelo.addRow(data);
         }
@@ -268,15 +315,44 @@ public class buscarIngredientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cbxTipoIngre;
+    private javax.swing.JComboBox<String> cmbMedida;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblIngredientes;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtNomIngre;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarComboBox2(JComboBox cmbMedida, String tipoIngre) {
+    DefaultComboBoxModel<String> comboModel = new DefaultComboBoxModel<>();
+    cmbMedida.setModel(comboModel);
+
+    if (tipoIngre == null) {
+        System.out.println("No se ha seleccionado ningún ingrediente en cbxAlimentos.");
+        return;
+    }
+    System.out.println("Ingrediente seleccionado en cbxAlimentos: " + tipoIngre);
+
+    // Llamar al DAO para obtener la lista de medidas por nombre de ingrediente
+    MedidaDAO medidaDAO = new MedidaDAO();
+    ArrayList<MedidaDTO> medidas = medidaDAO.listarMedidaxTipo(tipoIngre);
+
+    // Agregar el primer elemento de selección
+    comboModel.addElement("Seleccione");
+
+    // Agregar las medidas al ComboBoxModel de cmbMedida
+    for (MedidaDTO medida : medidas) {
+        comboModel.addElement(medida.getNombre());
+    }
+}
+    
+
+
+
 }

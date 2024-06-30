@@ -18,11 +18,11 @@ public class prueba {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         ingredienteDAO medidaDAO = new ingredienteDAO(); // Crear una instancia de MedidaDAO
+         MedidaDAO medidaDAO = new MedidaDAO(); // Crear una instancia de MedidaDAO
 
     // Llamar al método listarMedidaxIngred y obtener la lista de medidas para un ingrediente
-    String nombreIngrediente = "Papa"; // Ejemplo de nombre de ingrediente
-    ArrayList<MedidaDTO> medidas = medidaDAO.listarMedidaxIngred(nombreIngrediente);
+    String nombreIngrediente = "Frutas y Verduras"; 
+    ArrayList<MedidaDTO> medidas = medidaDAO.listarMedidaxTipo(nombreIngrediente);
 
     // Imprimir las medidas obtenidas
     for (MedidaDTO medida : medidas) {
