@@ -37,6 +37,11 @@ public class IngredienteDTO {
     public void setMedida(MedidaDTO medida) {
         this.medida = medida;
     }
+    
+    public String obtenerMedidaDesdeCadena(String ingredienteMedida) {
+        String[] partes = ingredienteMedida.split("-");
+        return partes[partes.length - 1];
+    }
  
     
 }

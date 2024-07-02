@@ -22,6 +22,7 @@ public class cliente_despensa extends javax.swing.JPanel {
     UsurarioDAO usDao = new UsurarioDAO();
     DespensaDAO despDao;
     TipoIngrediente tP = new TipoIngrediente();
+    IngredienteDTO ingD = new IngredienteDTO();
 
     public cliente_despensa() {
 
@@ -155,7 +156,7 @@ public class cliente_despensa extends javax.swing.JPanel {
         jLabel13.setFont(new java.awt.Font("Poppins", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(46, 46, 46));
         jLabel13.setText("Cantidad");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 100, -1));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 100, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/Line 135.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 20, -1));
@@ -200,7 +201,7 @@ public class cliente_despensa extends javax.swing.JPanel {
                 cbxAlimentosActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 150, 30));
+        jPanel1.add(cbxAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 240, 30));
 
         tblDespensa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,13 +219,15 @@ public class cliente_despensa extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 480, 210));
 
+        unidad.setEditable(false);
         unidad.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
+        unidad.setText("Kg");
         unidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unidadActionPerformed(evt);
             }
         });
-        jPanel1.add(unidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 490, 70, 30));
+        jPanel1.add(unidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 490, 110, 30));
 
         txtBuscar.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         txtBuscar.setForeground(new java.awt.Color(204, 204, 204));
@@ -242,7 +245,7 @@ public class cliente_despensa extends javax.swing.JPanel {
                 txtCant1ActionPerformed(evt);
             }
         });
-        jPanel1.add(txtCant1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 70, 30));
+        jPanel1.add(txtCant1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, 70, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -269,7 +272,7 @@ public class cliente_despensa extends javax.swing.JPanel {
             txtBuscar.setForeground(Color.black);
         }
 
-     if (unidad.getText().isEmpty()) {
+        if (unidad.getText().isEmpty()) {
             unidad.setText("Kilogramo");
             unidad.setForeground(new Color(204, 204, 204));
         }
@@ -283,7 +286,14 @@ public class cliente_despensa extends javax.swing.JPanel {
     }//GEN-LAST:event_frutasVerdurasActionPerformed
 
     private void cbxAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxAlimentosActionPerformed
+        // Obtener el item seleccionado del ComboBox
+        String selectedItem = (String) cbxAlimentos.getSelectedItem();
 
+        // Obtener la medida utilizando el método obtenerMedidaDesdeCadena
+        String medida = ingD.obtenerMedidaDesdeCadena(selectedItem);
+
+        // Mostrar la medida en el JTextField
+        unidad.setText(medida);
     }//GEN-LAST:event_cbxAlimentosActionPerformed
 
     private void lacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lacteosActionPerformed
@@ -299,19 +309,19 @@ public class cliente_despensa extends javax.swing.JPanel {
     }//GEN-LAST:event_abarrotesActionPerformed
 
     private void carnesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carnesActionPerformed
-        cargarComboBox(cbxAlimentos, 4); 
+        cargarComboBox(cbxAlimentos, 4);
         tP.setNombre("Carnes");
         System.out.println(tP.getNombre());// TODO add your handling code here:
     }//GEN-LAST:event_carnesActionPerformed
 
     private void pastasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pastasActionPerformed
-        cargarComboBox(cbxAlimentos, 5); 
+        cargarComboBox(cbxAlimentos, 5);
         tP.setNombre("Especias");
         System.out.println(tP.getNombre());// TODO add your handling code here:
     }//GEN-LAST:event_pastasActionPerformed
 
     private void congeladosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_congeladosActionPerformed
-        cargarComboBox(cbxAlimentos, 6);  
+        cargarComboBox(cbxAlimentos, 6);
         tP.setNombre("Enlatados");
         System.out.println(tP.getNombre());// TODO add your handling code here:
     }//GEN-LAST:event_congeladosActionPerformed
@@ -321,15 +331,18 @@ public class cliente_despensa extends javax.swing.JPanel {
     }//GEN-LAST:event_unidadActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
-//         String nombreIngrediente = (String) cbxAlimentos.getSelectedItem();
-//         int cant= Integer.parseInt(unidad.getText());
+
+//        String nombreIngrediente = (String) cbxAlimentos.getSelectedItem();
+//        String medida = unidad.getText();
+//
+//         Obtener los IDs de la base de datos
+//        int idIngrediente = obtenerIdIngrediente(nombreIngrediente); // Obtener el ID del ingrediente basado en su nombre
+//        int idMedida = obtenerIdMedida(medida); // Obtener el ID de la medida basado en su nombre
+//        int cant = Integer.parseInt(unidad.getText());
+//        
 //        despDao = new DespensaDAO();
-//        despDao.agregar(dni, nombreIngrediente, cant, nombreMedida);
-//            Vaciar campos y dejar el focus en el txtRegistroUsu
-//            cbxAlimentos.setSelectedIndex(0);
-//            unidad.setText("");
-//         
+//        despDao.agregar(dni, idIngrediente, cant, idMedida);
+//        unidad.setText("");
 //
 //        mostrarTabla();
 
@@ -340,7 +353,7 @@ public class cliente_despensa extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxAlimentosMouseClicked
 
     private void cbxAlimentosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxAlimentosItemStateChanged
-     
+
     }//GEN-LAST:event_cbxAlimentosItemStateChanged
 
     private void txtCant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCant1ActionPerformed
@@ -352,7 +365,7 @@ public class cliente_despensa extends javax.swing.JPanel {
         c.setModel(comboModel);
 
         // Agregar el primer elemento de selección
-        comboModel.addElement("Seleccione");
+        comboModel.addElement("Ingrediente-Medida");
 
         // Llamar al DAO para obtener la lista de ingredientes por tipo
         ingredienteDAO ingredienteDAO = new ingredienteDAO();
@@ -364,8 +377,6 @@ public class cliente_despensa extends javax.swing.JPanel {
             System.out.println("Ingredientes: " + ingrediente.getNombre());
         }
     }
-
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -44,6 +44,29 @@ public class ingredienteDAO implements IngredienteInterface{
         }
         return false;
     }
+    
+    
+    public IngredienteDTO obtenerIdIngrediente(String nomIngre) {
+        try {
+     
+            String sql = "select idIngrediente from ingredientes where Nombre = '"+nomIngre+"'";            
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                i.setId(rs.getInt("idIngrediente"));
+             }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return i;
+            
+            
+            
+    }
+
+    
 
     @Override
     public boolean eliminar(String codigo) {
@@ -113,14 +136,14 @@ public class ingredienteDAO implements IngredienteInterface{
     public ArrayList<IngredienteDTO> listaIngrexTipo(int id){
         try{
             conn = con.getConexion();
-            String sql="{call  obtenerIngredientesPorTipo(?)}";
+            String sql="{call  GetIngredienteMedidaByTipo(?)}";
             CallableStatement st=conn.prepareCall(sql);
             st.setInt(1, id);
             ResultSet rs=st.executeQuery();
 
             while(rs.next()){
                 i = new IngredienteDTO();
-                i.setNombre(rs.getString("Nombre"));
+                i.setNombre(rs.getString("IngredienteMedida"));
                 lista.add(i);       
             }
             conn.close();
@@ -129,6 +152,10 @@ public class ingredienteDAO implements IngredienteInterface{
         }
         return lista;
     } 
+    
+    
+    
+    
     
  public ArrayList<MedidaDTO> listarMedidaxIngred(String nom, String tipo) {
     ArrayList<MedidaDTO> lista = new ArrayList<>();
@@ -151,6 +178,12 @@ public class ingredienteDAO implements IngredienteInterface{
     
     return lista;
 }
+
+
+
+ 
+    
+ 
 
 
  

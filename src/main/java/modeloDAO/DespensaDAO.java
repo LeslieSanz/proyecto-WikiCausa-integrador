@@ -36,74 +36,87 @@ public class DespensaDAO {
     ArrayList<DespensaDTO> lista = new ArrayList<>();
     DespensaDTO i;
 
-     public boolean agregar(String dniUsuario, String nomIngre, int cant, String nomMedida) {
-        int idDespensa = -1;
-         int idIngrediente = -1;
-        int idMedida = -1;
+     public boolean agregar(String dniUsuario, String ingredienteMedida, int cant, String nomMedida) {
+    int idDespensa = -1;
+    int idIngrediente = -1;
+    int idMedida = -1;
 
+    try {
+        conn = con.getConexion();
+        
+        // Obtener el idDespensa basado en el dniUsuario
+        String sqlDespensa = "SELECT idDespensa FROM despensa WHERE Usuario_DNI = ?";
+        ps = conn.prepareStatement(sqlDespensa);
+        ps.setString(1, dniUsuario);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            idDespensa = rs.getInt("idDespensa");
+        } else {
+            System.out.println("Despensa no encontrado.");
+            return false;
+        }
+        rs.close();
+        ps.close();
+        
+        // Dividir la cadena ingredienteMedida en partes
+        String[] partes = ingredienteMedida.split("-");
+        String nomIngre = partes[0]; // Extraer el nombre del ingrediente
+        
+        // Obtener idIngrediente basado en el nombre del ingrediente
+        String sqlIngrediente = "SELECT idIngrediente FROM ingredientes WHERE Nombre = ?";
+        ps = conn.prepareStatement(sqlIngrediente);
+        ps.setString(1, nomIngre);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            idIngrediente = rs.getInt("idIngrediente");
+        } else {
+            System.out.println("Ingrediente no encontrado.");
+            return false;
+        }
+        rs.close();
+        ps.close();
+
+        // Obtener idMedida basado en el nombre de la medida
+        String sqlMedida = "SELECT idMedida FROM medida WHERE Nombre = ?";
+        ps = conn.prepareStatement(sqlMedida);
+        ps.setString(1, nomMedida);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            idMedida = rs.getInt("idMedida");
+        } else {
+            System.out.println("Medida no encontrada.");
+            return false;
+        }
+        rs.close();
+        ps.close();
+
+        // Llamar al procedimiento almacenado
+        String sqlProcedure = "{call agregarIngrediente(?,?,?,?)}";
+        CallableStatement cs = conn.prepareCall(sqlProcedure);
+        cs.setInt(1, idDespensa);
+        cs.setInt(2, idIngrediente);
+        cs.setInt(3, cant);
+        cs.setInt(4, idMedida);
+        
+        int rowsAffected = cs.executeUpdate();
+        return rowsAffected > 0;
+
+    } catch (SQLException ex) {
+        Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        // Cerrar recursos en el bloque finally para asegurar su liberación
         try {
-            conn = con.getConexion();
-            
-            //Obtener el idDespensa basado en el dniUsuario
-            String sqlDespensa = "SELECT idDespensa FROM despensa WHERE Usuario_DNI = ?";
-            ps = conn.prepareStatement(sqlDespensa);
-            ps.setString(1, dniUsuario);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                idDespensa = rs.getInt("idDespensa");
-            } else {
-                System.out.println("Despensa no encontrado.");
-                return false;
-            }
-            rs.close();
-            ps.close();
-            
-            // Obtener idIngrediente basado en el nombre
-            String sqlIngrediente = "SELECT idIngrediente FROM ingredientes WHERE Nombre = ?";
-            ps = conn.prepareStatement(sqlIngrediente);
-            ps.setString(1, nomIngre);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                idIngrediente = rs.getInt("idIngrediente");
-            } else {
-                System.out.println("Ingrediente no encontrado.");
-                return false;
-            }
-            rs.close();
-            ps.close();
-
-            // Obtener idMedida basado en el nombre
-            String sqlMedida = "SELECT idMedida FROM medida WHERE Nombre = ?";
-            ps = conn.prepareStatement(sqlMedida);
-            ps.setString(1, nomMedida);
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                idMedida = rs.getInt("idMedida");
-            } else {
-                System.out.println("Medida no encontrada.");
-                return false;
-            }
-            rs.close();
-            ps.close();
-
-            // Llamar al procedimiento almacenado
-            String sqlProcedure = "{call agregarIngrediente(?,?,?,?)}";
-            CallableStatement cs = conn.prepareCall(sqlProcedure);
-            cs.setInt(1, idDespensa);
-            cs.setInt(2, idIngrediente);
-            cs.setInt(3, cant);
-            cs.setInt(4, idMedida);
-            
-            int rowsAffected = cs.executeUpdate();
-            return rowsAffected > 0;
-
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        return false;
+        }
     }
+    return false;
+}
 
-
+    
 
     public boolean eliminar(String codigo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

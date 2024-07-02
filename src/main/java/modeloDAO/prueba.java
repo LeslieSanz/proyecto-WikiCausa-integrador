@@ -17,17 +17,21 @@ public class prueba {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-         MedidaDAO medidaDAO = new MedidaDAO(); // Crear una instancia de MedidaDAO
+     public static void main(String[] args) {
+         ingredienteDAO dao = new ingredienteDAO();
 
-    // Llamar al método listarMedidaxIngred y obtener la lista de medidas para un ingrediente
-    String nombreIngrediente = "Frutas y Verduras"; 
-    ArrayList<MedidaDTO> medidas = medidaDAO.listarMedidaxTipo(nombreIngrediente);
+    // Llamar al método para obtener el ID del ingrediente
+    String nombreIngrediente = "Papa"; // Nombre del ingrediente que quieres buscar
+    IngredienteDTO ingredienteDTO = dao.obtenerIdIngrediente(nombreIngrediente);
 
-    // Imprimir las medidas obtenidas
-    for (MedidaDTO medida : medidas) {
-        System.out.println("Nombre de la medida: " + medida.getNombre());
-    }
+    // Imprimir el resultado (solo como ejemplo, puedes hacer lo que necesites con el DTO)
+    System.out.println("ID del ingrediente " + nombreIngrediente + ": " + ingredienteDTO.getId());
+          // Ejemplos de uso del método obtenerMedidaDesdeCadena
+//        String medida1 = medidaDAO.obtenerMedidaDesdeCadena("Papa-Unidad");
+//        String medida2 = medidaDAO.obtenerMedidaDesdeCadena("Papa-Kilo");
+//
+//        System.out.println("Medida obtenida 1: " + medida1); // Debería imprimir "Unidad"
+//        System.out.println("Medida obtenida 2: " + medida2);
     }
     
 }
