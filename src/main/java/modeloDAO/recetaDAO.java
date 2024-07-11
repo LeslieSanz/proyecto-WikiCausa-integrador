@@ -53,7 +53,25 @@ public class recetaDAO implements RecetaInterface{
 
     @Override
     public ArrayList<RecetaDTO> listarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "select idReceta, Nombre, Porcion, TiempoPreparacion, Calorias from receta";
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                r = new RecetaDTO();
+                r .setId(rs.getString("idReceta"));
+                r .setNombre(rs.getString("Nombre"));
+                r .setPorcion(rs.getInt("Porcion"));
+                r .setTiempo(rs.getInt("TiempoPreparacion"));
+                r .setCalorias(rs.getDouble("Calorias"));
+                lista.add( r );
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
     }
 
     @Override

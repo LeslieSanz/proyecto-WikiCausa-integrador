@@ -1,25 +1,14 @@
 package vistas.admin;
 
 import java.awt.Image;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import modelo.IngredienteDTO;
 import modelo.RecetaDTO;
 import modelo.RecetaIngredientesDTO;
-import modelo.TipoComida;
-import modeloDAO.ingredienteDAO;
 import modeloDAO.recetaDAO;
 import modeloDAO.recetaIngredientesDAO;
-import modeloDAO.tipoComidaDAO;
+
 
 
 public class admin_verUnaReceta extends javax.swing.JPanel {
@@ -181,6 +170,8 @@ public class admin_verUnaReceta extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 320, 230));
 
+        txtAreaPrep.setEditable(false);
+        txtAreaPrep.setBackground(new java.awt.Color(255, 255, 255));
         txtAreaPrep.setColumns(20);
         txtAreaPrep.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         txtAreaPrep.setRows(5);

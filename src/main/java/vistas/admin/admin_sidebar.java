@@ -16,12 +16,17 @@ public class admin_sidebar extends javax.swing.JFrame {
 
     public admin_sidebar() {
         initComponents();
+        
+        // Abrir sección
+        ad = new admin_dash();
+        mostrarPanel(ad);
     }
 
 
-
-    admin_recetas r;
-    admin_verUnaReceta vr;
+    admin_dash ad;
+    admin_recetas ar;
+    //admin_verUnaReceta v1r;
+    admin_verRecetas vr;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -146,8 +151,9 @@ public class admin_sidebar extends javax.swing.JFrame {
         resetColor(btnAgregarRecetas);
         
         // Abrir sección
-        r = new admin_recetas();
-        mostrarPanel(r);
+        ad = new admin_dash();
+        mostrarPanel(ad);
+        
     }//GEN-LAST:event_btnInicioMousePressed
 
     private void btnVerRecetasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerRecetasMousePressed
@@ -155,19 +161,19 @@ public class admin_sidebar extends javax.swing.JFrame {
         resetColor(btnInicio);
         resetColor(btnAgregarRecetas);
         
-        
-        
+        // Abrir sección
+        vr = new admin_verRecetas();
+        mostrarPanel(vr);
     }//GEN-LAST:event_btnVerRecetasMousePressed
 
     private void btnAgregarRecetasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarRecetasMousePressed
         setColor(btnAgregarRecetas);
         resetColor(btnInicio);
         resetColor(btnVerRecetas);
-        
-        
+
         // Abrir sección
-        r = new admin_recetas();
-        mostrarPanel(r);
+        ar = new admin_recetas();
+        mostrarPanel(ar);
     }//GEN-LAST:event_btnAgregarRecetasMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -242,7 +248,7 @@ public class admin_sidebar extends javax.swing.JFrame {
     private javax.swing.JLabel casita;
     private javax.swing.JLabel casita1;
     private javax.swing.JLabel casita2;
-    private javax.swing.JPanel content;
+    public static javax.swing.JPanel content;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
