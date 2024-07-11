@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 
@@ -138,6 +140,26 @@ public class UsurarioDAO {
         } catch (SQLException ex) {
             System.out.println("Error al modificar Contraseña: " + ex.getMessage());
         }
+    }
+    
+    //Para agregar las preferencias
+    public boolean agregarPreferencias(Usuario user) {
+        
+        String sql = "update usuario set Nivel=?, Frecuencia=?, CalMin=?, CalMax=?"
+        + " where dni = '"+user.getDni()+"'";
+        
+        try(Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)){
+
+            st.setString(1, user.getNivel());
+            st.setInt(2, user.getFrecuencia());
+            st.setDouble(3, user.getCalmin());
+            st.setDouble(4, user.getCalmax());
+            st.executeUpdate();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al modificar Usuario: " + ex.getMessage());
+        }
+        return false; 
     }
        
 }
