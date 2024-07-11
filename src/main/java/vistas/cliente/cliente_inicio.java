@@ -1,5 +1,6 @@
 package vistas.cliente;
 
+import java.time.LocalDate;
 import modelo.Usuario;
 import modeloDAO.UsurarioDAO;
 
@@ -16,13 +17,22 @@ public class cliente_inicio extends javax.swing.JPanel {
         initComponents();
         dni=dniob;
         prueba();
+        
+        //Para mostrar la fecha actual
+        LocalDate now = LocalDate.now();
+        int year = now.getYear();
+        int dia = now.getDayOfMonth();
+        int month = now.getMonthValue();
+        String[] meses = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", " ;septiembre",
+             "octubre", "noviembre", "diciembre"};
+        lblFecha.setText("Hoy es " + dia + " de " + meses[month - 1]);
     }
 
     public void prueba(){
         System.out.println(dni);
         Usuario us= usDao.ObtenerUsuario(dni);
         System.out.println(us.getNombre()+" Cli_inicio");
-        jLNombre.setText(us.getNombre());
+        jLNombre.setText(us.getNombre() +" " + us.getApellidos());
         
     }
     
@@ -33,7 +43,7 @@ public class cliente_inicio extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLNombre = new javax.swing.JLabel();
         fraseMotivadora = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
         bannerPequeñoAmarillo = new javax.swing.JLabel();
         QueCocinareHoy = new javax.swing.JLabel();
         imagenAmigos = new javax.swing.JLabel();
@@ -70,10 +80,11 @@ public class cliente_inicio extends javax.swing.JPanel {
         fraseMotivadora.setForeground(new java.awt.Color(46, 46, 46));
         jPanel1.add(fraseMotivadora, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(170, 89, 19));
-        jLabel2.setText("FECHA");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+        lblFecha.setFont(new java.awt.Font("Poppins", 1, 36)); // NOI18N
+        lblFecha.setForeground(new java.awt.Color(170, 89, 19));
+        lblFecha.setText("Fecha de hoy");
+        lblFecha.setBorder(new javax.swing.border.MatteBorder(null));
+        jPanel1.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 400, -1));
 
         bannerPequeñoAmarillo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/bannerDerechaAmarillo.png"))); // NOI18N
         jPanel1.add(bannerPequeñoAmarillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
@@ -228,13 +239,13 @@ public class cliente_inicio extends javax.swing.JPanel {
     private javax.swing.JLabel imagenAmigos;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel panelAmarillo;
     private javax.swing.JPanel panelDerechoTuDespensa;
     private javax.swing.JPanel sopa;

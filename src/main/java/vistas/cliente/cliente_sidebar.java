@@ -166,15 +166,18 @@ public class cliente_sidebar extends javax.swing.JFrame {
     public cliente_sidebar(String dniOb){
         initComponents();
         dni=dniOb;
-//      Para mostrar por defecto el panel del dashboard
-        i = new cliente_inicio();
-        i.setSize(1040, 620);
+//      Para mostrar por defecto el inicio
+        i = new cliente_inicio(dni);
+        i.setSize(1050, 720);
         i.setLocation(0, 0);
+        
         content.removeAll();
         content.add(i, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
+        
         Prueba();
+        
         
     }
     String dni;
