@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import modelo.Usuario;
 import modeloDAO.UsurarioDAO;
 import vistas.admin.admin_sidebar;
+import vistas.cliente.cliente_configuracion;
 import vistas.cliente.cliente_sidebar;
 
 /**
@@ -170,11 +171,25 @@ public class iniciar_sesion extends javax.swing.JFrame {
         Usuario usu=usDao.validarUsu(dni, password);
         String rol=usu.getRol();
         
+       
+        //System.out.println(nivel);
+        
+        
+        
         if (usu!=null) {
             if (rol.equalsIgnoreCase("C")) {
-                cliente_sidebar cliSi= new cliente_sidebar(dni);
-                cliSi.setVisible(true);
-                this.dispose();
+                //Verificar si tiene preferencias
+                if(usu.getNivel()==null && usu.getFrecuencia()==0 && usu.getCalmax()==0 && usu.getCalmin()==0){
+                    cliente_configuracion cliConf = new cliente_configuracion();
+                    cliConf.setVisible(true);
+                    this.dispose();
+                }else{
+                   cliente_sidebar cliSi= new cliente_sidebar(dni);
+                   cliSi.setVisible(true);
+                   this.dispose();
+                    
+                }
+                 
             }
             if (rol.equalsIgnoreCase("A")) {
                 admin_sidebar adSi= new admin_sidebar();
