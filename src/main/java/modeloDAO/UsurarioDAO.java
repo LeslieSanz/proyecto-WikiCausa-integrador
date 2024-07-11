@@ -31,6 +31,11 @@ public class UsurarioDAO {
                     user.setNombre(rs.getString("Nombres"));
                     user.setApellidos(rs.getString("Apellidos"));
                     user.setRol(rs.getString("Rol"));
+                    
+                    user.setNivel(rs.getString("Nivel"));
+                    user.setFrecuencia(rs.getInt("Frecuencia"));
+                    user.setCalmax(rs.getDouble("CalMin"));
+                    user.setCalmin(rs.getDouble("CalMax"));
                 }else{
                     JOptionPane.showMessageDialog(null, "DNI y/o contraseña incorrectos");
                 }
