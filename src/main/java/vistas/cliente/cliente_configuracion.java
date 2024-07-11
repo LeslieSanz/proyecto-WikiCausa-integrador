@@ -5,6 +5,7 @@
 package vistas.cliente;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.BorderLayout;
 import java.text.DecimalFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -14,19 +15,24 @@ import modeloDAO.UsurarioDAO;
 public class cliente_configuracion extends javax.swing.JFrame {
 
     Usuario u;
-    UsurarioDAO ud;
-    
-   
-    
+    UsurarioDAO ud = new UsurarioDAO();
+    String dni;
+
     
     public cliente_configuracion() {
-        initComponents();
-        setLocationRelativeTo(null); // Centrar en la pantalla
-        pnlResultados.setVisible(false);
+        
     }
     
-
-
+    public cliente_configuracion(String dniOb) {
+        initComponents();
+        setLocationRelativeTo(null); // Centrar en la pantalla
+        dni=dniOb;
+        pnlResultados.setVisible(false);
+        txtDni.setText("DNI:" + dni);
+        
+        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -38,12 +44,12 @@ public class cliente_configuracion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        rbtnAvanza = new javax.swing.JRadioButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        cbxFrec = new javax.swing.JComboBox<>();
+        rbtnInter = new javax.swing.JRadioButton();
         rbtnPrin = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
         btnConfirmar = new javax.swing.JButton();
@@ -76,6 +82,7 @@ public class cliente_configuracion extends javax.swing.JFrame {
         txtCalMax = new javax.swing.JTextField();
         txtCalMin = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
+        txtDni = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,10 +106,10 @@ public class cliente_configuracion extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_preferencias/chef.png"))); // NOI18N
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 60, 60));
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jRadioButton3.setText("Avanzado");
-        jPanel2.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
+        buttonGroup1.add(rbtnAvanza);
+        rbtnAvanza.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        rbtnAvanza.setText("Avanzado");
+        jPanel2.add(rbtnAvanza, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_preferencias/calendar.png"))); // NOI18N
         jLabel9.setText(" ");
@@ -118,14 +125,14 @@ public class cliente_configuracion extends javax.swing.JFrame {
         jLabel4.setText("repites una comida?");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "1 vez por semana", "1 vez cada dos semanas", "1 vez cada 3 semanas", "1 vez al mes" }));
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 200, -1));
+        cbxFrec.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        cbxFrec.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Cada 7 días", "Cada 14 días", "Cada 21 días", " " }));
+        jPanel2.add(cbxFrec, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 200, -1));
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jRadioButton2.setText("Intermedio");
-        jPanel2.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
+        buttonGroup1.add(rbtnInter);
+        rbtnInter.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        rbtnInter.setText("Intermedio");
+        jPanel2.add(rbtnInter, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
 
         buttonGroup1.add(rbtnPrin);
         rbtnPrin.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
@@ -402,6 +409,9 @@ public class cliente_configuracion extends javax.swing.JFrame {
 
         jPanel1.add(pnlResultados, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 440, 380, 110));
 
+        txtDni.setEditable(false);
+        jPanel1.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 140, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -436,9 +446,9 @@ public class cliente_configuracion extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtnFActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-                                                 
-    Usuario u = new Usuario();
-    
+             
+        
+    u = ud.ObtenerUsuario(dni);
     char sexo;
     if (rbtnM.isSelected()) {
         sexo = 'M';
@@ -482,7 +492,25 @@ public class cliente_configuracion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCalMaxActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        
+        String nivel=null;
+        if(rbtnPrin.isSelected()) nivel = "P";
+        if(rbtnInter.isSelected()) nivel = "I";
+        if(rbtnAvanza.isSelected()) nivel = "A";
+        
+        int frec=0;
+        switch(cbxFrec.getSelectedIndex()){
+            case 1: frec = 7;
+            break;
+            case 2: frec = 14;
+            break;
+            case 3: frec = 21;
+            break;
+        }
+        
+        u.setFrecuencia(frec);
+        u.setNivel(nivel);
+        ud.agregarPreferencias(u);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void rbtnMMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnMMousePressed
@@ -540,7 +568,7 @@ public class cliente_configuracion extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbxFrec;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -567,18 +595,19 @@ public class cliente_configuracion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblSilueta;
     private javax.swing.JPanel pnlResultados;
+    private javax.swing.JRadioButton rbtnAvanza;
     private javax.swing.JRadioButton rbtnF;
+    private javax.swing.JRadioButton rbtnInter;
     private javax.swing.JRadioButton rbtnM;
     private javax.swing.JRadioButton rbtnPrin;
     private javax.swing.JTextField txtAltura;
     private javax.swing.JTextField txtCalMax;
     private javax.swing.JTextField txtCalMin;
+    private javax.swing.JTextField txtDni;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtPeso;
     // End of variables declaration//GEN-END:variables

@@ -180,7 +180,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
             if (rol.equalsIgnoreCase("C")) {
                 //Verificar si tiene preferencias
                 if(usu.getNivel()==null && usu.getFrecuencia()==0 && usu.getCalmax()==0 && usu.getCalmin()==0){
-                    cliente_configuracion cliConf = new cliente_configuracion();
+                    cliente_configuracion cliConf = new cliente_configuracion(dni);
                     cliConf.setVisible(true);
                     this.dispose();
                 }else{
