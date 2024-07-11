@@ -31,10 +31,9 @@ public class cliente_inicio extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtNombre = new javax.swing.JLabel();
+        jLNombre = new javax.swing.JLabel();
         fraseMotivadora = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLNombre = new javax.swing.JLabel();
         bannerPequeñoAmarillo = new javax.swing.JLabel();
         QueCocinareHoy = new javax.swing.JLabel();
         imagenAmigos = new javax.swing.JLabel();
@@ -63,9 +62,9 @@ public class cliente_inicio extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(1049, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtNombre.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
-        txtNombre.setText("Nombre de usuario");
-        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 80, 180, -1));
+        jLNombre.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        jLNombre.setText("Nombre de usuario");
+        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 80, 180, -1));
 
         fraseMotivadora.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         fraseMotivadora.setForeground(new java.awt.Color(46, 46, 46));
@@ -75,11 +74,6 @@ public class cliente_inicio extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(170, 89, 19));
         jLabel2.setText("FECHA");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
-
-        jLNombre.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
-        jLNombre.setForeground(new java.awt.Color(170, 89, 19));
-        jLNombre.setText("Nombre");
-        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, -1, -1));
 
         bannerPequeñoAmarillo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/bannerDerechaAmarillo.png"))); // NOI18N
         jPanel1.add(bannerPequeñoAmarillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 500, -1, -1));
@@ -244,6 +238,5 @@ public class cliente_inicio extends javax.swing.JPanel {
     private javax.swing.JLabel panelAmarillo;
     private javax.swing.JPanel panelDerechoTuDespensa;
     private javax.swing.JPanel sopa;
-    private javax.swing.JLabel txtNombre;
     // End of variables declaration//GEN-END:variables
 }

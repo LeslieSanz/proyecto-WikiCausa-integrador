@@ -511,6 +511,11 @@ public class cliente_configuracion extends javax.swing.JFrame {
         u.setFrecuencia(frec);
         u.setNivel(nivel);
         ud.agregarPreferencias(u);
+        
+        
+        cliente_sidebar cliSi= new cliente_sidebar(dni);
+        cliSi.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void rbtnMMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnMMousePressed
