@@ -26,14 +26,25 @@ public class admin_verUnaReceta extends javax.swing.JPanel {
 
     RecetaDTO r;
     recetaDAO rd;
-    
+    DefaultTableModel modelo = new DefaultTableModel();
     String cod;
+    
+    recetaIngredientesDAO id;
     
     public admin_verUnaReceta(String codReceta) {
         initComponents();
         cod = codReceta;
         txtIdReceta.setText(cod);
+        establecerColumnas();
         mostrarDatosReceta();
+        mostrarIngredientes(codReceta);
+    }
+    
+    private void establecerColumnas() {
+        modelo.addColumn("Ingrediente");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Medida");
+        tblIngredientes.setModel(modelo);
     }
 
 
@@ -78,6 +89,21 @@ public class admin_verUnaReceta extends javax.swing.JPanel {
         }
 
     }
+    
+    public void mostrarIngredientes(String codReceta){
+        modelo.setRowCount(0);
+        id =new recetaIngredientesDAO();
+        ArrayList<RecetaIngredientesDTO> lista = new ArrayList<>();
+        lista = id.listarIngredientesPorReceta(codReceta);
+        for(int i=0; i<lista.size(); i++){
+            Object[] data = {
+                lista.get(i).getIngrediente().getNombre(),
+                lista.get(i).getCantidad(), 
+                lista.get(i).getMedida(),
+                };
+            modelo.addRow(data);
+        }
+    }
 
 
     @SuppressWarnings("unchecked")
@@ -93,7 +119,7 @@ public class admin_verUnaReceta extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblIngredientes = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAreaPrep = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
@@ -137,9 +163,10 @@ public class admin_verUnaReceta extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Poppins Medium", 1, 20)); // NOI18N
         jLabel4.setText("Ingredientes");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 150, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 150, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblIngredientes.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        tblIngredientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -150,9 +177,9 @@ public class admin_verUnaReceta extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblIngredientes);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 190, 320, 230));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 190, 320, 230));
 
         txtAreaPrep.setColumns(20);
         txtAreaPrep.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
@@ -173,7 +200,7 @@ public class admin_verUnaReceta extends javax.swing.JPanel {
         jPanel1.add(lblMin, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/ingre.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 130, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, -1, -1));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/preparacion.png"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, -1, -1));
@@ -225,12 +252,12 @@ public class admin_verUnaReceta extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCalorias;
     private javax.swing.JLabel lblFotoReceta;
     private javax.swing.JLabel lblMin;
     private javax.swing.JLabel lblNombreReceta;
     private javax.swing.JLabel lblPorcion;
+    private javax.swing.JTable tblIngredientes;
     private javax.swing.JTextArea txtAreaPrep;
     private javax.swing.JTextField txtIdReceta;
     // End of variables declaration//GEN-END:variables

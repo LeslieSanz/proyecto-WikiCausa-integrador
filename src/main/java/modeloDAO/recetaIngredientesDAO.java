@@ -18,6 +18,9 @@ public class recetaIngredientesDAO implements RecetaIngredienteInterface{
     ArrayList<RecetaIngredientesDTO> lista = new ArrayList<>(); 
     RecetaIngredientesDTO ri;
     
+    IngredienteDTO i;
+    ingredienteDAO id = new ingredienteDAO();
+    
     @Override
     public boolean agregar(RecetaIngredientesDTO ri) {
          try {
@@ -55,4 +58,33 @@ public class recetaIngredientesDAO implements RecetaIngredienteInterface{
     public RecetaIngredientesDTO listarUno(String codigo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     } 
+    
+    //Para listar todos los ingredientes de una receta
+    public ArrayList<RecetaIngredientesDTO> listarIngredientesPorReceta(String codReceta) {
+        try {
+            String sql = "select ingredientes_idIngrediente, Cantidad, Medida\n" +
+            "from receta_ingredientes where Receta_idReceta ='" + codReceta + "'";
+            
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                ri = new RecetaIngredientesDTO();
+                
+                //Para el ingrediente
+                String ci = rs.getString("ingredientes_idIngrediente");
+                i= id.listarUno(ci);
+                ri.setIngrediente(i);
+
+                ri.setCantidad(rs.getDouble("Cantidad"));
+                ri.setMedida(rs.getString("Medida")); 
+                
+                lista.add(ri);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaIngredientesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
 }

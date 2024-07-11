@@ -31,20 +31,16 @@ public class admin_sidebar extends javax.swing.JFrame {
         btnInicio = new javax.swing.JPanel();
         casita = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        btnRecetas = new javax.swing.JPanel();
+        btnAgregarRecetas = new javax.swing.JPanel();
         casita2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnIngredientes = new javax.swing.JPanel();
+        btnVerRecetas = new javax.swing.JPanel();
         casita1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         logowiki = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        txtCodReceta = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -71,41 +67,41 @@ public class admin_sidebar extends javax.swing.JFrame {
 
         sidebar.add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 230, 60));
 
-        btnRecetas.setBackground(new java.awt.Color(241, 208, 75));
-        btnRecetas.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAgregarRecetas.setBackground(new java.awt.Color(241, 208, 75));
+        btnAgregarRecetas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnRecetasMousePressed(evt);
+                btnAgregarRecetasMousePressed(evt);
             }
         });
-        btnRecetas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnAgregarRecetas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         casita2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/mimenu_logo.png"))); // NOI18N
-        btnRecetas.add(casita2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        btnAgregarRecetas.add(casita2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(65, 29, 7));
         jLabel3.setText("Añadir Recetas");
-        btnRecetas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+        btnAgregarRecetas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
-        sidebar.add(btnRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 230, 60));
+        sidebar.add(btnAgregarRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 230, 60));
 
-        btnIngredientes.setBackground(new java.awt.Color(241, 208, 75));
-        btnIngredientes.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnVerRecetas.setBackground(new java.awt.Color(241, 208, 75));
+        btnVerRecetas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                btnIngredientesMousePressed(evt);
+                btnVerRecetasMousePressed(evt);
             }
         });
-        btnIngredientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        btnVerRecetas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         casita1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/midespensa_logo.png"))); // NOI18N
-        btnIngredientes.add(casita1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        btnVerRecetas.add(casita1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(65, 29, 7));
         jLabel2.setText("Ver recetas");
-        btnIngredientes.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+        btnVerRecetas.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
-        sidebar.add(btnIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 230, 60));
+        sidebar.add(btnVerRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 230, 60));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_sidebar/salir1.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -128,49 +124,15 @@ public class admin_sidebar extends javax.swing.JFrame {
 
         content.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel5.setText(":P");
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel6.setText("SIDEBAR_ADMIN");
-
-        jButton2.setText("Una receta");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(contentLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)))
-                    .addGroup(contentLayout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(txtCodReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(750, 750, 750))
+            .addGap(0, 1050, Short.MAX_VALUE)
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel6)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel5)
-                .addGap(29, 29, 29)
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(txtCodReceta))
-                .addContainerGap())
+            .addGap(0, 720, Short.MAX_VALUE)
         );
 
         getContentPane().add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 1050, 720));
@@ -180,45 +142,39 @@ public class admin_sidebar extends javax.swing.JFrame {
 
     private void btnInicioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInicioMousePressed
         setColor(btnInicio);
-        resetColor(btnIngredientes);
-        resetColor(btnRecetas);
+        resetColor(btnVerRecetas);
+        resetColor(btnAgregarRecetas);
         
-        
-        
+        // Abrir sección
+        r = new admin_recetas();
+        mostrarPanel(r);
     }//GEN-LAST:event_btnInicioMousePressed
 
-    private void btnIngredientesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngredientesMousePressed
-        setColor(btnIngredientes);
+    private void btnVerRecetasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerRecetasMousePressed
+        setColor(btnVerRecetas);
         resetColor(btnInicio);
-        resetColor(btnRecetas);
+        resetColor(btnAgregarRecetas);
         
         
         
-    }//GEN-LAST:event_btnIngredientesMousePressed
+    }//GEN-LAST:event_btnVerRecetasMousePressed
 
-    private void btnRecetasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecetasMousePressed
-        setColor(btnRecetas);
+    private void btnAgregarRecetasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarRecetasMousePressed
+        setColor(btnAgregarRecetas);
         resetColor(btnInicio);
-        resetColor(btnIngredientes);
+        resetColor(btnVerRecetas);
         
         
         // Abrir sección
         r = new admin_recetas();
         mostrarPanel(r);
-    }//GEN-LAST:event_btnRecetasMousePressed
+    }//GEN-LAST:event_btnAgregarRecetasMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         bienvenida bi = new bienvenida();
         bi.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       // Abrir sección
-       String codReceta = txtCodReceta.getText();
-        vr = new admin_verUnaReceta(codReceta);
-        mostrarPanel(vr);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -280,23 +236,19 @@ public class admin_sidebar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel btnIngredientes;
+    private javax.swing.JPanel btnAgregarRecetas;
     private javax.swing.JPanel btnInicio;
-    private javax.swing.JPanel btnRecetas;
+    private javax.swing.JPanel btnVerRecetas;
     private javax.swing.JLabel casita;
     private javax.swing.JLabel casita1;
     private javax.swing.JLabel casita2;
     private javax.swing.JPanel content;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel logowiki;
     private javax.swing.JPanel sidebar;
-    private javax.swing.JTextField txtCodReceta;
     // End of variables declaration//GEN-END:variables
 }
