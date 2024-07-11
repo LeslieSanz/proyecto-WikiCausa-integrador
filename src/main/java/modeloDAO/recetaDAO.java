@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.RecetaDTO;
 import misInterfaces.RecetaInterface;
+import modelo.IngredienteDTO;
 
 public class recetaDAO implements RecetaInterface{
     Connection conn;
@@ -97,6 +98,27 @@ public class recetaDAO implements RecetaInterface{
         }
         return r;
     }
+    
+    //Lista recetas por tipo
+//    public ArrayList<IngredienteDTO> listaIngrexTipo(int id){
+//        try{
+//            conn = con.getConexion();
+//            String sql="{call  GetIngredienteMedidaByTipo(?)}";
+//            CallableStatement st=conn.prepareCall(sql);
+//            st.setInt(1, id);
+//            ResultSet rs=st.executeQuery();
+//
+//            while(rs.next()){
+//                i = new IngredienteDTO();
+//                i.setNombre(rs.getString("IngredienteMedida"));
+//                lista.add(i);       
+//            }
+//            conn.close();
+//        }catch(Exception ex){
+//            ex.printStackTrace();
+//        }
+//        return lista;
+//    } 
     
     public String generaCodReceta() {
     String cod="";

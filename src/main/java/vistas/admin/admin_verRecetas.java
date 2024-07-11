@@ -9,8 +9,10 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelo.RecetaDTO;
 import modelo.RecetaIngredientesDTO;
+import modelo.TipoComida;
 import modeloDAO.recetaDAO;
 import modeloDAO.recetaIngredientesDAO;
+import modeloDAO.tipoComidaDAO;
 import static vistas.admin.admin_sidebar.content;
 
 
@@ -23,10 +25,16 @@ public class admin_verRecetas extends javax.swing.JPanel {
     
     String codReceta;
     
+    //ArrayList mostrar los tipos de comida en el cbx
+    TipoComida tc;
+    tipoComidaDAO tcd = new tipoComidaDAO();
+    ArrayList<TipoComida> listaTipos = new ArrayList<>();
+    
     public admin_verRecetas() {
         initComponents();
         establecerColumnas();
         mostrarRecetas();
+        mostrarTipoComida();
         
     }
     
@@ -55,8 +63,18 @@ public class admin_verRecetas extends javax.swing.JPanel {
         modelo.addRow(data);
     }
 }
+    
+    //Metodo que recorre la lista de TipoComida, obtiene su nombre y los agrega uno por uno
+    //al cbTipoComida
+    private void mostrarTipoComida(){
+        listaTipos = tcd.listarTodos();
+        for(int i=0; i<listaTipos.size(); i++){
+            cbxTipoComida.addItem(listaTipos.get(i).getNombre());
+        }
+    }
 
     admin_verUnaReceta v1r;
+    admin_recetas ar;
 
 
     @SuppressWarnings("unchecked")
@@ -68,10 +86,10 @@ public class admin_verRecetas extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRecetas = new javax.swing.JTable();
         btnDetalleReceta = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAgregar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbxTipoComida = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(245, 245, 245));
@@ -108,8 +126,13 @@ public class admin_verRecetas extends javax.swing.JPanel {
         });
         jPanel1.add(btnDetalleReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, 120, -1));
 
-        jButton2.setText("Agregar");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, 120, -1));
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 340, 120, -1));
 
         jButton3.setText("Eliminar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +145,7 @@ public class admin_verRecetas extends javax.swing.JPanel {
         jLabel1.setText("Categoría");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 150, -1, -1));
 
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, 100, -1));
+        jPanel1.add(cbxTipoComida, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 180, 180, -1));
 
         jButton4.setText("Filtrar");
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 210, -1, -1));
@@ -157,6 +180,12 @@ public class admin_verRecetas extends javax.swing.JPanel {
 
        }
     }//GEN-LAST:event_btnDetalleRecetaActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        // Abrir sección
+        ar = new admin_recetas();
+        mostrarPanel(ar);
+    }//GEN-LAST:event_btnAgregarActionPerformed
     
  
    private void mostrarPanel(JPanel p) {
@@ -170,11 +199,11 @@ public class admin_verRecetas extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnDetalleReceta;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> cbxTipoComida;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
