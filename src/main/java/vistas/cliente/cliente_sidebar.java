@@ -22,7 +22,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
 
     cliente_inicio i;
     cliente_despensa d;
-    cliente_menu m;
+    cliente_verHistorialMenu m;
     cliente_perfil p;
 
     @SuppressWarnings("unchecked")
@@ -221,7 +221,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         resetColor(btnMiPerfil);
 
         // Abrir sección
-        m = new cliente_menu(dni);
+        m = new cliente_verHistorialMenu(dni);
         mostrarPanel(m);
     }//GEN-LAST:event_btnMiMenuMousePressed
 
