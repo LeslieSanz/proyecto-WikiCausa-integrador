@@ -1,12 +1,14 @@
 package vistas.admin;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import modelo.RecetaDTO;
 import modelo.RecetaIngredientesDTO;
 import modelo.TipoComida;
@@ -36,13 +38,17 @@ public class admin_verRecetas extends javax.swing.JPanel {
         mostrarRecetas();
         mostrarTipoComida();
         
+        // Cambiar la fuente del encabezado de la tabla
+        JTableHeader header = tblRecetas.getTableHeader();
+        header.setFont(new Font("Poppins", Font.BOLD, 14)); // Cambia a la fuente deseada
+        
     }
     
     private void establecerColumnas() {
         modelo.addColumn("Código");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Porcion");
-        modelo.addColumn("Tiempo de preparación (min)");
+        modelo.addColumn("Porción");
+        modelo.addColumn("Tiempo");
         modelo.addColumn("Calorías");
         tblRecetas.setModel(modelo);
     }
