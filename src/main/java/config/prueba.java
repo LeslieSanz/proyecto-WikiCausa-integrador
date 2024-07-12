@@ -11,5 +11,5 @@ public class prueba {
         Conexion con = new Conexion();
         con.getConexion();
     }
-    
+    //EL QUE LO LEE APROBARÁ TODOS LOS CURSOS
 }
