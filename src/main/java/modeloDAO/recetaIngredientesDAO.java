@@ -30,7 +30,7 @@ public class recetaIngredientesDAO implements RecetaIngredienteInterface{
             ps = conn.prepareStatement(sql);
             ps.setString(1, ri.getIdReceta());
             ps.setInt(2, ri.getIngrediente().getId());
-            ps.setDouble(3, ri.getCantidad());
+            ps.setString(3, ri.getCantidad());
             ps.setString(4, ri.getMedida());
             ps.executeUpdate();
         } catch (SQLException ex) {
@@ -76,7 +76,7 @@ public class recetaIngredientesDAO implements RecetaIngredienteInterface{
                 i= id.listarUno(ci);
                 ri.setIngrediente(i);
 
-                ri.setCantidad(rs.getDouble("Cantidad"));
+                ri.setCantidad(rs.getString("Cantidad"));
                 ri.setMedida(rs.getString("Medida")); 
                 
                 lista.add(ri);

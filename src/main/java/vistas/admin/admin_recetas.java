@@ -672,7 +672,7 @@ public class admin_recetas extends javax.swing.JPanel {
 
     private void btnAgregarIngreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarIngreActionPerformed
         //Obteniendo los datos de los campos
-        double cant = Double.parseDouble(txtCant.getText());
+        String cant = txtCant.getText();
         String medida = cbxUnidadMedida.getSelectedItem().toString();
         
         //Buscando ingrediente

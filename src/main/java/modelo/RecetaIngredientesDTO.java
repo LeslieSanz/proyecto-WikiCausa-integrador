@@ -3,7 +3,7 @@ package modelo;
 public class RecetaIngredientesDTO {
     private String idReceta;
     private IngredienteDTO ingrediente;
-    private double cantidad;
+    private String cantidad;
     private String medida;
 
     public String getIdReceta() {
@@ -22,13 +22,7 @@ public class RecetaIngredientesDTO {
         this.ingrediente = ingrediente;
     }
 
-    public double getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(double cantidad) {
-        this.cantidad = cantidad;
-    }
+    
 
     public String getMedida() {
         return medida;
@@ -36,5 +30,13 @@ public class RecetaIngredientesDTO {
 
     public void setMedida(String medida) {
         this.medida = medida;
+    }
+
+    public String getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(String cantidad) {
+        this.cantidad = cantidad;
     }
 }
