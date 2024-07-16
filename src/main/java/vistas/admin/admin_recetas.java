@@ -21,8 +21,8 @@ import modeloDAO.recetaDAO;
 import modeloDAO.recetaIngredientesDAO;
 import modeloDAO.tipoComidaDAO;
 
-
 public class admin_recetas extends javax.swing.JPanel {
+
     //Declarar un objeto de la clase ingredientes
     IngredienteDTO i;
     //Declarar un objeto de la clase ingredineteDAO
@@ -30,48 +30,47 @@ public class admin_recetas extends javax.swing.JPanel {
     //Declarar un objeto de la clase receta
     RecetaDTO r;
     recetaDAO rd;
-    
+
     //Para almacenar el detalle de cada ingrediente en la receta: RecetaIngredientes
     RecetaIngredientesDTO dd;
     ArrayList<RecetaIngredientesDTO> listaDetalle = new ArrayList<>();
-    
+
     //Modelo de la tabla donde se agregan los ingredientes de la receta
     DefaultTableModel modelo2 = new DefaultTableModel();
-    
+
     //ArrayList mostrar los tipos de comida en el cbx
     TipoComida tc;
     tipoComidaDAO tcd = new tipoComidaDAO();
     ArrayList<TipoComida> listaTipos = new ArrayList<>();
-    
-     File file;
+
+    File file;
     ImageIcon icono;
     ImageIcon iconoDefault = new ImageIcon("/img/cuenta/Profe.png");
 
-    
     public admin_recetas() {
         initComponents();
         mostrarTipoComida();
         generaCodigoAutomatico();
         establecerColumnas2();
-        
+
         //Ocultar paneles
         pnlIngredientes.setVisible(false);
         pnlPreparacion.setVisible(false);
         pnlFoto.setVisible(false);
     }
 
-    private void establecerColumnas2(){
+    private void establecerColumnas2() {
         modelo2.addColumn("Ingrediente");
         modelo2.addColumn("Cantidad");
         modelo2.addColumn("Medida");
         tblDetalle.setModel(modelo2);
     }
-    
+
     //Metodo que recorre la lista de TipoComida, obtiene su nombre y los agrega uno por uno
     //al cbTipoComida
-    private void mostrarTipoComida(){
+    private void mostrarTipoComida() {
         listaTipos = tcd.listarTodos();
-        for(int i=0; i<listaTipos.size(); i++){
+        for (int i = 0; i < listaTipos.size(); i++) {
             cbxTipoComida.addItem(listaTipos.get(i).getNombre());
         }
     }
@@ -105,7 +104,6 @@ public class admin_recetas extends javax.swing.JPanel {
         btnBuscarIngredientes = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        txtNomIngrediente = new javax.swing.JTextField();
         txtCant = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnAgregarIngre = new javax.swing.JButton();
@@ -115,6 +113,7 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         cbxUnidadMedida = new javax.swing.JComboBox<>();
         btnSig2 = new javax.swing.JButton();
+        txtNomIngrediente = new javax.swing.JTextField();
         pnlPreparacion = new javax.swing.JPanel();
         btnValidar = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
@@ -160,10 +159,20 @@ public class admin_recetas extends javax.swing.JPanel {
         cbxTipoComida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
 
         txtPorcion.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtPorcion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPorcionKeyTyped(evt);
+            }
+        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/people.png"))); // NOI18N
 
         txtTiempo.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtTiempo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTiempoKeyTyped(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel11.setText("Tiempo de preparación :");
@@ -176,6 +185,11 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel10.setText("Calorías :");
 
         txtCalorias.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtCalorias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCaloriasKeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 102, 102));
@@ -273,8 +287,16 @@ public class admin_recetas extends javax.swing.JPanel {
 
         jPanel1.add(pnlDatosBasicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 520, 180));
 
+        pnlIngredientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         txtCodIngre.setEditable(false);
         txtCodIngre.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtCodIngre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodIngreActionPerformed(evt);
+            }
+        });
+        pnlIngredientes.add(txtCodIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(453, 15, 40, -1));
 
         btnBuscarIngredientes.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         btnBuscarIngredientes.setForeground(new java.awt.Color(102, 102, 102));
@@ -284,22 +306,29 @@ public class admin_recetas extends javax.swing.JPanel {
                 btnBuscarIngredientesActionPerformed(evt);
             }
         });
+        pnlIngredientes.add(btnBuscarIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 15, -1, -1));
 
         jLabel17.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel17.setText("Ingredientes");
+        pnlIngredientes.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(76, 29, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(102, 102, 102));
         jLabel13.setText("Ingrediente :");
-
-        txtNomIngrediente.setEditable(false);
-        txtNomIngrediente.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        pnlIngredientes.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 84, -1, 30));
 
         txtCant.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtCant.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantKeyTyped(evt);
+            }
+        });
+        pnlIngredientes.add(txtCant, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 87, 100, -1));
 
         jLabel8.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(102, 102, 102));
         jLabel8.setText("Cant: ");
+        pnlIngredientes.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(278, 89, -1, 20));
 
         btnAgregarIngre.setBackground(new java.awt.Color(18, 91, 0));
         btnAgregarIngre.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -310,6 +339,7 @@ public class admin_recetas extends javax.swing.JPanel {
                 btnAgregarIngreActionPerformed(evt);
             }
         });
+        pnlIngredientes.add(btnAgregarIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 178, 90, 30));
 
         btnEliminarIngre.setBackground(new java.awt.Color(210, 76, 0));
         btnEliminarIngre.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -320,6 +350,7 @@ public class admin_recetas extends javax.swing.JPanel {
                 btnEliminarIngreActionPerformed(evt);
             }
         });
+        pnlIngredientes.add(btnEliminarIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 90, 30));
 
         tblDetalle.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         tblDetalle.setForeground(new java.awt.Color(102, 102, 102));
@@ -336,9 +367,12 @@ public class admin_recetas extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblDetalle);
 
+        pnlIngredientes.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 178, 320, 140));
+
         jLabel9.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(102, 102, 102));
         jLabel9.setText("Unidad de medida :");
+        pnlIngredientes.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 130, -1, 30));
 
         cbxUnidadMedida.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         cbxUnidadMedida.setForeground(new java.awt.Color(102, 102, 102));
@@ -348,6 +382,7 @@ public class admin_recetas extends javax.swing.JPanel {
                 cbxUnidadMedidaActionPerformed(evt);
             }
         });
+        pnlIngredientes.add(cbxUnidadMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 130, -1));
 
         btnSig2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/sig.png"))); // NOI18N
         btnSig2.addActionListener(new java.awt.event.ActionListener() {
@@ -355,81 +390,16 @@ public class admin_recetas extends javax.swing.JPanel {
                 btnSig2ActionPerformed(evt);
             }
         });
+        pnlIngredientes.add(btnSig2, new org.netbeans.lib.awtextra.AbsoluteConstraints(447, 268, -1, -1));
 
-        javax.swing.GroupLayout pnlIngredientesLayout = new javax.swing.GroupLayout(pnlIngredientes);
-        pnlIngredientes.setLayout(pnlIngredientesLayout);
-        pnlIngredientesLayout.setHorizontalGroup(
-            pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlIngredientesLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cbxUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNomIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIngredientesLayout.createSequentialGroup()
-                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIngredientesLayout.createSequentialGroup()
-                        .addContainerGap(39, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlIngredientesLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnEliminarIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAgregarIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(pnlIngredientesLayout.createSequentialGroup()
-                                .addGap(88, 88, 88)
-                                .addComponent(btnSig2))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlIngredientesLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(btnBuscarIngredientes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtCodIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27))
-        );
-        pnlIngredientesLayout.setVerticalGroup(
-            pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlIngredientesLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBuscarIngredientes)
-                    .addComponent(txtCodIngre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel17)))
-                .addGap(18, 18, 18)
-                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNomIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxUnidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(pnlIngredientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlIngredientesLayout.createSequentialGroup()
-                        .addComponent(btnAgregarIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnEliminarIngre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnSig2))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
-        );
+        txtNomIngrediente.setEditable(false);
+        txtNomIngrediente.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtNomIngrediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomIngredienteActionPerformed(evt);
+            }
+        });
+        pnlIngredientes.add(txtNomIngrediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 87, 140, -1));
 
         jPanel1.add(pnlIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 520, 330));
 
@@ -445,7 +415,7 @@ public class admin_recetas extends javax.swing.JPanel {
 
         jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/preparacion.png"))); // NOI18N
 
-        taPreparacion.setColumns(20);
+        taPreparacion.setColumns(10);
         taPreparacion.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         taPreparacion.setRows(5);
         jScrollPane1.setViewportView(taPreparacion);
@@ -585,7 +555,15 @@ public class admin_recetas extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarIngreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarIngreActionPerformed
-        
+        int selectedRow = tblDetalle.getSelectedRow();
+        if (selectedRow != -1) {
+            // Remover el elemento de la lista `listaDetalle`
+            listaDetalle.remove(selectedRow);
+            // Actualizar la tabla
+            mostrarTablaDetalle();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila para eliminar.");
+        }
     }//GEN-LAST:event_btnEliminarIngreActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
@@ -594,25 +572,25 @@ public class admin_recetas extends javax.swing.JPanel {
         rd = new recetaDAO();
         r.setId(txtIdReceta.getText());
         r.setNombre(txtNombreReceta.getText());
-        
+
         int indice_tipo = cbxTipoComida.getSelectedIndex();
-        r.setTipo(listaTipos.get(indice_tipo-1));
+        r.setTipo(listaTipos.get(indice_tipo - 1));
 
         r.setPorcion(Integer.parseInt(txtPorcion.getText()));
         r.setTiempo(Integer.parseInt(txtTiempo.getText()));
         r.setCalorias(Double.parseDouble(txtCalorias.getText()));
         r.setPreparacion(taPreparacion.getText());
-        
+
         //Para agregar la foto
-        if(file!=null){
+        if (file != null) {
             // Obtener solo el nombre del archivo sin la ruta
             String nombreArchivo = file.getName();
-            System.out.println("El nombre del archivo es"+nombreArchivo);
+            System.out.println("El nombre del archivo es" + nombreArchivo);
             r.setImagen(nombreArchivo);
-            
+
         }
-        
-         // Llamar al método agregar del DAO
+
+        // Llamar al método agregar del DAO
         boolean resultado = rd.agregar(r);
 
         // Verificar si la receta se agregó correctamente
@@ -632,14 +610,14 @@ public class admin_recetas extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Receta agregada exitosamente");
             }
         }
-        
+
         //Luego, sus detalles
         //Agregando detalles de cada ingrediente a la receta
         for (int i = 0; i < listaDetalle.size(); i++) {
             recetaIngredientesDAO rid = new recetaIngredientesDAO();
             rid.agregar(listaDetalle.get(i));
         }
-        
+
         //Limpiar los txt la próxima receta
         limpiarCampos();
     }//GEN-LAST:event_btnRegistrarActionPerformed
@@ -671,136 +649,189 @@ public class admin_recetas extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
     private void btnAgregarIngreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarIngreActionPerformed
-        //Obteniendo los datos de los campos
-        String cant = txtCant.getText();
-        String medida = cbxUnidadMedida.getSelectedItem().toString();
-        
-        //Buscando ingrediente
-        String codigo = txtCodIngre.getText();
-        id = new ingredienteDAO();
-        i = id.listarUno(codigo);
-        
-        dd = new RecetaIngredientesDTO();
-        dd.setIngrediente(i);
-        dd.setCantidad(cant);
-        dd.setMedida(medida);
-        dd.setIdReceta(txtIdReceta.getText());
-        
-        //Agregandolo a la tabla de ingredientes
-        listaDetalle.add(dd);
-        txtCant.setText(null);
-        mostrarTablaDetalle();
+
+        if (txtNomIngrediente.getText().isEmpty() || txtCant.getText().isEmpty() || cbxUnidadMedida.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ingrediente o complete los campos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        } else {
+// Obteniendo los datos de los campos
+            String cant = txtCant.getText();
+            String medida = cbxUnidadMedida.getSelectedItem().toString();
+
+            // Buscando ingrediente
+            String codigo = txtCodIngre.getText();
+            id = new ingredienteDAO();
+            i = id.listarUno(codigo);
+
+            // Creando un nuevo objeto RecetaIngredientesDTO
+            RecetaIngredientesDTO dd = new RecetaIngredientesDTO();
+            dd.setIngrediente(i);
+            dd.setCantidad(cant);
+            dd.setMedida(medida);
+            dd.setIdReceta(txtIdReceta.getText());
+
+            // Agregando a la lista
+            listaDetalle.add(dd);
+
+            // Actualizar la tabla
+            mostrarTablaDetalle();
+
+            // Limpiar los campos de entrada
+            txtNomIngrediente.setText("");
+            txtCant.setText("");
+            cbxUnidadMedida.setSelectedIndex(0);
+        }
     }//GEN-LAST:event_btnAgregarIngreActionPerformed
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
-    // Obtener el texto ingresado en el textarea
-    String textoPreparacion = taPreparacion.getText().toLowerCase();
-    
-    System.out.println(textoPreparacion);
+        // Obtener el texto ingresado en el textarea
+        String textoPreparacion = taPreparacion.getText().toLowerCase();
 
-    // StringBuilder para ingredientes faltantes
-    StringBuilder ingredientesFaltantes = new StringBuilder();
+        System.out.println(textoPreparacion);
 
-    // Verificar si todos los ingredientes están presentes
-    for (int i = 0; i < listaDetalle.size(); i++) {
-        if (!textoPreparacion.contains(listaDetalle.get(i).getIngrediente().getNombre().toLowerCase())) {
-            if (ingredientesFaltantes.length() > 0) {
-                ingredientesFaltantes.append(", ");
+        // StringBuilder para ingredientes faltantes
+        StringBuilder ingredientesFaltantes = new StringBuilder();
+
+        // Verificar si todos los ingredientes están presentes
+        for (int i = 0; i < listaDetalle.size(); i++) {
+            if (!textoPreparacion.contains(listaDetalle.get(i).getIngrediente().getNombre().toLowerCase())) {
+                if (ingredientesFaltantes.length() > 0) {
+                    ingredientesFaltantes.append(", ");
+                }
+                ingredientesFaltantes.append(listaDetalle.get(i).getIngrediente().getNombre().toLowerCase());
             }
-            ingredientesFaltantes.append(listaDetalle.get(i).getIngrediente().getNombre().toLowerCase());
         }
-    }
 
-    // Mostrar el resultado el un panel
-    if (ingredientesFaltantes.length() == 0) {
-        //JOptionPane.showMessageDialog(this, "Todos los ingredientes están incluidos.", "Resultado", JOptionPane.INFORMATION_MESSAGE);
-        lblFalta.setText("Todos los ingredientes están incluidos c: ");
-        pnlFoto.setVisible(true);
-    } else {
-        lblFalta.setText("Faltan ingredientes: "+ingredientesFaltantes.toString());
-        //JOptionPane.showMessageDialog(this, "Faltan ingredientes: " + ingredientesFaltantes.toString(), "Resultado", JOptionPane.WARNING_MESSAGE);
-    }
+        // Mostrar el resultado el un panel
+        if (ingredientesFaltantes.length() == 0) {
+            //JOptionPane.showMessageDialog(this, "Todos los ingredientes están incluidos.", "Resultado", JOptionPane.INFORMATION_MESSAGE);
+            lblFalta.setText("Todos los ingredientes están incluidos c: ");
+            pnlFoto.setVisible(true);
+        } else {
+            lblFalta.setText("Faltan ingredientes: " + ingredientesFaltantes.toString());
+            //JOptionPane.showMessageDialog(this, "Faltan ingredientes: " + ingredientesFaltantes.toString(), "Resultado", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnValidarActionPerformed
 
     private void btnBuscarIngredientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarIngredientesActionPerformed
-        buscarIngredientes busIng =new buscarIngredientes();
+        buscarIngredientes busIng = new buscarIngredientes();
         busIng.setVisible(true);
     }//GEN-LAST:event_btnBuscarIngredientesActionPerformed
 
     private void btnSig1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSig1ActionPerformed
-    // Verificar que todos los campos estén llenos
-    if (txtNombreReceta.getText().isEmpty() ||
-        cbxTipoComida.getSelectedItem().equals("Seleccionar") ||
-        txtPorcion.getText().isEmpty() ||
-        txtTiempo.getText().isEmpty() ||
-        txtCalorias.getText().isEmpty()) {
+        // Verificar que todos los campos estén llenos
+        if (txtNombreReceta.getText().isEmpty()
+                || cbxTipoComida.getSelectedItem().equals("Seleccionar")
+                || txtPorcion.getText().isEmpty()
+                || txtTiempo.getText().isEmpty()
+                || txtCalorias.getText().isEmpty()) {
 
-        JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos.");
-        return; 
-    }
+            JOptionPane.showMessageDialog(null, "Todos los campos deben estar llenos.");
+            return;
+        }
 
-    // Validar que txtNombreReceta solo tenga letras
-    String nombreReceta = txtNombreReceta.getText();
-    if (!nombreReceta.matches("[a-zA-Z\\s]+")) {
-        JOptionPane.showMessageDialog(null, "Solo se aceptan letras en el nombre de la receta.");
-        txtNombreReceta.requestFocus();
-        return; 
-    }
+        // Validar que txtNombreReceta solo tenga letras
+        String nombreReceta = txtNombreReceta.getText();
+        if (!nombreReceta.matches("[a-zA-Z\\s]+")) {
+            JOptionPane.showMessageDialog(null, "Solo se aceptan letras en el nombre de la receta.");
+            txtNombreReceta.requestFocus();
+            return;
+        }
 
-    // Validar que cbxTipoComida tenga una opción seleccionada distinta de "Seleccionar"
-    if (cbxTipoComida.getSelectedItem().equals("Seleccionar")) {
-        JOptionPane.showMessageDialog(null, "Debe seleccionar una opción válida para el tipo de comida.");
-        cbxTipoComida.requestFocus();
-        return; 
-    }
+        // Validar que cbxTipoComida tenga una opción seleccionada distinta de "Seleccionar"
+        if (cbxTipoComida.getSelectedItem().equals("Seleccionar")) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una opción válida para el tipo de comida.");
+            cbxTipoComida.requestFocus();
+            return;
+        }
 
-    // Validar que txtPorcion solo tenga números enteros
-    try {
-        Integer.parseInt(txtPorcion.getText());
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Solo se aceptan números enteros en la porción.");
-        txtPorcion.requestFocus();
-        return; 
-    }
+        // Validar que txtPorcion solo tenga números enteros
+        try {
+            Integer.parseInt(txtPorcion.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Solo se aceptan números enteros en la porción.");
+            txtPorcion.requestFocus();
+            return;
+        }
 
-    // Validar que txtTiempo solo tenga números enteros
-    try {
-        Integer.parseInt(txtTiempo.getText());
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Solo se aceptan números enteros en el tiempo.");
-        txtTiempo.requestFocus();
-        return; 
-    }
+        // Validar que txtTiempo solo tenga números enteros
+        try {
+            Integer.parseInt(txtTiempo.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Solo se aceptan números enteros en el tiempo.");
+            txtTiempo.requestFocus();
+            return;
+        }
 
-    // Validar que txtCalorias solo tenga números con decimales
-    try {
-        Double.parseDouble(txtCalorias.getText());
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Solo se aceptan números con decimales en las calorías.");
-        txtCalorias.requestFocus();
-        return; 
-    }
+        // Validar que txtCalorias solo tenga números con decimales
+        try {
+            Double.parseDouble(txtCalorias.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Solo se aceptan números con decimales en las calorías.");
+            txtCalorias.requestFocus();
+            return;
+        }
 
-    // Si todas las validaciones pasan, hacer visible pnlIngredientes
-    pnlIngredientes.setVisible(true);
+        // Si todas las validaciones pasan, hacer visible pnlIngredientes
+        pnlIngredientes.setVisible(true);
     }//GEN-LAST:event_btnSig1ActionPerformed
 
     private void btnSig2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSig2ActionPerformed
-    // Validar que haya al menos un ingrediente agregado
-    if (listaDetalle.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "No se ha seleccionado ingredientes");
-        btnBuscarIngredientes.requestFocus();
-    }else{
-        pnlPreparacion.setVisible(true);
-    }
-        
-    
+        // Validar que haya al menos un ingrediente agregado
+        if (listaDetalle.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ingredientes");
+            btnBuscarIngredientes.requestFocus();
+        } else {
+            pnlPreparacion.setVisible(true);
+        }
+
+
     }//GEN-LAST:event_btnSig2ActionPerformed
 
     private void cbxUnidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxUnidadMedidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxUnidadMedidaActionPerformed
-    
+
+    private void txtNomIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomIngredienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomIngredienteActionPerformed
+
+    private void txtCodIngreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodIngreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodIngreActionPerformed
+
+    private void txtCantKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantKeyTyped
+        if (txtCant.getText().length() >= 5) {
+            evt.consume();
+        }
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_txtCantKeyTyped
+
+    private void txtPorcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPorcionKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPorcionKeyTyped
+
+    private void txtTiempoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTiempoKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTiempoKeyTyped
+
+    private void txtCaloriasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCaloriasKeyTyped
+        char c = evt.getKeyChar();
+        if (!((c >= '0' && c <= '9') || c == '.')) {
+            evt.consume(); // Consume el evento para evitar que se escriba el carácter
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCaloriasKeyTyped
+
     public void limpiarCampos() {
         txtIdReceta.setText(null);
         txtNombreReceta.setText(null);
@@ -815,15 +846,14 @@ public class admin_recetas extends javax.swing.JPanel {
         eliminarElementosTabla();
         generaCodigoAutomatico();
     }
-   
-    
+
     public void eliminarElementosTabla() {
         for (int i = tblDetalle.getRowCount() - 1; i >= 0; i--) {
             modelo2.removeRow(i);
         }
     }
-    
-    private void generaCodigoAutomatico(){
+
+    private void generaCodigoAutomatico() {
         //Generar el codigo del producto a partir del ultimo en la base de datos
         rd = new recetaDAO();
         String codReceta = rd.generaCodReceta();
@@ -832,13 +862,15 @@ public class admin_recetas extends javax.swing.JPanel {
     }
 
     public void mostrarTablaDetalle() {
-        eliminarElementosTabla();
-        for (int i = 0; i < listaDetalle.size(); i++) {
+        modelo2.setRowCount(0); // Esto eliminará todas las filas de la tabla
+
+        // Agrega los elementos de la lista `listaDetalle` al modelo de la tabla
+        for (RecetaIngredientesDTO item : listaDetalle) {
             Object[] data = {
-                listaDetalle.get(i).getIngrediente().getNombre(),
-                listaDetalle.get(i).getCantidad(),
-                listaDetalle.get(i).getMedida(),
-                };
+                item.getIngrediente().getNombre(),
+                item.getCantidad(),
+                item.getMedida()
+            };
             modelo2.addRow(data);
         }
     }
@@ -853,7 +885,7 @@ public class admin_recetas extends javax.swing.JPanel {
     private javax.swing.JButton btnSig2;
     private javax.swing.JButton btnValidar;
     private javax.swing.JComboBox<String> cbxTipoComida;
-    private javax.swing.JComboBox<String> cbxUnidadMedida;
+    public static javax.swing.JComboBox<String> cbxUnidadMedida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

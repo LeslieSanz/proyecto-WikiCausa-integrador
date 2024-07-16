@@ -31,13 +31,12 @@ public class ingredienteDAO implements IngredienteInterface{
     @Override
     public boolean agregar(IngredienteDTO i) {
         try {
-            String sql = "insert into ingredientes(Nombre,Tipo_Ingrediente_idTipo,idMedida)"
-                    + " values (?, ?,?)";
+            String sql = "insert into ingredientes(Nombre,Tipo_Ingrediente_idTipo)"
+                    + " values (?, ?)";
             conn = con.getConexion();
             ps = conn.prepareStatement(sql);
             ps.setString(1, i.getNombre());
             ps.setInt(2, i.getTipo().getId());
-            ps.setInt(3, i.getMedida().getIdMedida());
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,9 +60,7 @@ public class ingredienteDAO implements IngredienteInterface{
             Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return i;
-            
-            
-            
+                 
     }
 
     
@@ -99,11 +96,8 @@ public class ingredienteDAO implements IngredienteInterface{
                 i.setNombre(rs.getString("Nombre"));
                //Para el tipo de ingrediente
                 String cti = rs.getString("Tipo_Ingrediente_idTipo");
-                String cm = rs.getString("idMedida");
                 ti= tid.listarUno(cti);
-                mD= mDao.listarUnom(cm);
                 i.setTipo(ti);
-                i.setMedida(mD);
                 lista.add(i);
             }
             conn.close();
