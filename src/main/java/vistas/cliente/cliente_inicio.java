@@ -95,8 +95,7 @@ public class cliente_inicio extends javax.swing.JPanel {
         panelAmarillo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/panelAmarillo.png"))); // NOI18N
         jPanel1.add(panelAmarillo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
-        btnBebidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/Bebidas.png"))); // NOI18N
-        btnBebidas.setContentAreaFilled(false);
+        btnBebidas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/pescades.png"))); // NOI18N
         btnBebidas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBebidasActionPerformed(evt);
@@ -104,16 +103,13 @@ public class cliente_inicio extends javax.swing.JPanel {
         });
         jPanel1.add(btnBebidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, -1, -1));
 
-        btnHamburguesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/Hamburguesas.png"))); // NOI18N
-        btnHamburguesas.setContentAreaFilled(false);
+        btnHamburguesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/carnes.png"))); // NOI18N
         jPanel1.add(btnHamburguesas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 480, -1, -1));
 
-        btnPollito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/Pollito.png"))); // NOI18N
-        btnPollito.setContentAreaFilled(false);
+        btnPollito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/otros.png"))); // NOI18N
         jPanel1.add(btnPollito, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 480, -1, -1));
 
-        btnPostrecitos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/Postrecitos.png"))); // NOI18N
-        btnPostrecitos.setContentAreaFilled(false);
+        btnPostrecitos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Categorias/pollo.png"))); // NOI18N
         jPanel1.add(btnPostrecitos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
 
         panelDerechoTuDespensa.setBackground(new java.awt.Color(255, 255, 255));
