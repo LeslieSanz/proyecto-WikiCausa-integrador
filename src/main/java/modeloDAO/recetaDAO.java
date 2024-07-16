@@ -142,4 +142,27 @@ public class recetaDAO implements RecetaInterface{
         }
         return cod;
     }
+    
+    //Filtrar las categorias por tipo
+    public ArrayList<RecetaDTO> listarRecetasPorCat(int codtip) {
+        try {
+            String sql = "select idReceta, Nombre, Porcion, TiempoPreparacion, Calorias from receta where TipoComida_idTipo = " + codtip;
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                r = new RecetaDTO();
+                r .setId(rs.getString("idReceta"));
+                r .setNombre(rs.getString("Nombre"));
+                r .setPorcion(rs.getInt("Porcion"));
+                r .setTiempo(rs.getInt("TiempoPreparacion"));
+                r .setCalorias(rs.getDouble("Calorias"));
+                lista.add(r);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
 }
