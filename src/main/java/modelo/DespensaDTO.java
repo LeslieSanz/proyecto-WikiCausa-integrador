@@ -10,7 +10,7 @@ package modelo;
  */
 public class DespensaDTO {
 
-    private String idDespensa;
+    private int idDespensa;
     private String nombre;
     private String fecha;
     private int cantidad;
@@ -24,16 +24,18 @@ public class DespensaDTO {
 
     public DespensaDTO() {
     }
-    
-    
 
-    public String getIdDespensa() {
+    public int getIdDespensa() {
         return idDespensa;
     }
 
-    public void setIdDespensa(String idDespensa) {
+    public void setIdDespensa(int idDespensa) {
         this.idDespensa = idDespensa;
     }
+    
+    
+
+    
 
     public String getFecha() {
         return fecha;

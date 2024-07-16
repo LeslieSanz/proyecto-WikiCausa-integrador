@@ -36,85 +36,31 @@ public class DespensaDAO {
     ArrayList<DespensaDTO> lista = new ArrayList<>();
     DespensaDTO i;
 
-     public boolean agregar(String dniUsuario, String ingredienteMedida, int cant, String nomMedida) {
-    int idDespensa = -1;
-    int idIngrediente = -1;
-    int idMedida = -1;
-
+   public void agregar(String dni, int idIngrediente) {
     try {
+        String obtenerIdDespensaQuery = "SELECT idDespensa FROM despensa WHERE Usuario_DNI = ?";
         conn = con.getConexion();
-        
-        // Obtener el idDespensa basado en el dniUsuario
-        String sqlDespensa = "SELECT idDespensa FROM despensa WHERE Usuario_DNI = ?";
-        ps = conn.prepareStatement(sqlDespensa);
-        ps.setString(1, dniUsuario);
+        ps = conn.prepareStatement(obtenerIdDespensaQuery);
+        ps.setString(1, dni);
         rs = ps.executeQuery();
+        int idDespensa = -1;
         if (rs.next()) {
             idDespensa = rs.getInt("idDespensa");
-        } else {
-            System.out.println("Despensa no encontrado.");
-            return false;
         }
-        rs.close();
-        ps.close();
-        
-        // Dividir la cadena ingredienteMedida en partes
-        String[] partes = ingredienteMedida.split("-");
-        String nomIngre = partes[0]; // Extraer el nombre del ingrediente
-        
-        // Obtener idIngrediente basado en el nombre del ingrediente
-        String sqlIngrediente = "SELECT idIngrediente FROM ingredientes WHERE Nombre = ?";
-        ps = conn.prepareStatement(sqlIngrediente);
-        ps.setString(1, nomIngre);
-        rs = ps.executeQuery();
-        if (rs.next()) {
-            idIngrediente = rs.getInt("idIngrediente");
-        } else {
-            System.out.println("Ingrediente no encontrado.");
-            return false;
+
+        if (idDespensa != -1) {
+            String insertQuery = "INSERT INTO despensa_ingrediente (Despensa_idDespensa, Ingredientes_idIngrediente) VALUES (?, ?)";
+            ps = conn.prepareStatement(insertQuery);
+            ps.setInt(1, idDespensa);
+            ps.setInt(2, idIngrediente);
+            ps.executeUpdate();
         }
-        rs.close();
-        ps.close();
-
-        // Obtener idMedida basado en el nombre de la medida
-        String sqlMedida = "SELECT idMedida FROM medida WHERE Nombre = ?";
-        ps = conn.prepareStatement(sqlMedida);
-        ps.setString(1, nomMedida);
-        rs = ps.executeQuery();
-        if (rs.next()) {
-            idMedida = rs.getInt("idMedida");
-        } else {
-            System.out.println("Medida no encontrada.");
-            return false;
-        }
-        rs.close();
-        ps.close();
-
-        // Llamar al procedimiento almacenado
-        String sqlProcedure = "{call agregarIngrediente(?,?,?,?)}";
-        CallableStatement cs = conn.prepareCall(sqlProcedure);
-        cs.setInt(1, idDespensa);
-        cs.setInt(2, idIngrediente);
-        cs.setInt(3, cant);
-        cs.setInt(4, idMedida);
-        
-        int rowsAffected = cs.executeUpdate();
-        return rowsAffected > 0;
-
+        conn.close();
     } catch (SQLException ex) {
-        Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-    } finally {
-        // Cerrar recursos en el bloque finally para asegurar su liberación
-        try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (conn != null) conn.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(ingredienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Logger.getLogger(DespensaDAO.class.getName()).log(Level.SEVERE, null, ex);
     }
-    return false;
 }
+
 
     
 
@@ -125,17 +71,14 @@ public class DespensaDAO {
     public boolean modificar(RecetaIngredientesDTO c) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+public ArrayList<DespensaDTO> listarTodos(String dniUsuario) {
+    ArrayList<DespensaDTO> lista = new ArrayList<>(); // Inicializar la lista
 
-  
-   public ArrayList<DespensaDTO> listarTodos(String dniUsuario) {
-    lista.clear();
-
-    String query = "SELECT i.Nombre AS NombreIngrediente, di.cantidad, m.Nombre AS NombreMedida "
+    String query = "SELECT i.idIngrediente, i.Nombre AS NombreIngrediente "
                  + "FROM despensa_ingrediente di "
                  + "JOIN ingredientes i ON di.Ingredientes_idIngrediente = i.idIngrediente "
                  + "JOIN despensa d ON di.Despensa_idDespensa = d.idDespensa "
                  + "JOIN usuario u ON d.Usuario_DNI = u.DNI "
-                 + "JOIN medida m ON di.idMedida = m.idMedida "
                  + "WHERE u.DNI = ?";
 
     try {
@@ -144,14 +87,19 @@ public class DespensaDAO {
         ps.setString(1, dniUsuario); // Establecer el parámetro del DNI del usuario
         rs = ps.executeQuery(); // Ejecutar la consulta
 
+        int fila = 1; // Inicializar la variable para el número de fila
+
         while (rs.next()) {
+            int idIngrediente = rs.getInt("idIngrediente");
             String nombreIngrediente = rs.getString("NombreIngrediente");
-            int cantidad = rs.getInt("cantidad");
-            String nombreMedida = rs.getString("NombreMedida");
 
             // Crear objeto DespensaDTO con los datos obtenidos
-            DespensaDTO dp = new DespensaDTO(nombreIngrediente, cantidad, nombreMedida);
+            DespensaDTO dp = new DespensaDTO();
+            dp.setIdDespensa(fila); // Asignar el número de fila
+            dp.setNombre(nombreIngrediente);
+
             lista.add(dp);
+            fila++; // Incrementar el número de fila para el próximo objeto
         }
     } catch (SQLException e) {
         e.printStackTrace();
@@ -168,6 +116,7 @@ public class DespensaDAO {
 
     return lista;
 }
+
 
     public RecetaIngredientesDTO listarUno(String codigo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
