@@ -25,7 +25,7 @@ public class cliente_despensa extends javax.swing.JPanel {
     ingredienteDAO ingDAO;
     TipoIngrediente tP = new TipoIngrediente();
     IngredienteDTO ingD = new IngredienteDTO();
-
+    int cod;
     ArrayList<DespensaDTO> listaDetalle = new ArrayList<>();
 
     public cliente_despensa() {
@@ -344,7 +344,14 @@ public class cliente_despensa extends javax.swing.JPanel {
 //    } else {
 //        JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila para eliminar.");
 //    }
-      
+
+        int fila = tblDespensa.getSelectedRow();
+        despDao = new DespensaDAO();
+
+        cod = Integer.parseInt(tblDespensa.getValueAt(fila, 0).toString());
+        despDao.eliminar(cod, dni);
+        mostrarTabla();
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void cargarComboBox(JComboBox c, int tipoIngredienteId) {
