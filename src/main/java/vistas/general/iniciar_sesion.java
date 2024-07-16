@@ -103,6 +103,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
         });
         background.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, -1, 60));
 
+        txtDNI.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         txtDNI.setForeground(new java.awt.Color(204, 204, 204));
         txtDNI.setText("Ingrese su DNI");
         txtDNI.setToolTipText(" ");
@@ -113,6 +114,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
         });
         background.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, 310, 30));
 
+        txtcontrasena.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         txtcontrasena.setForeground(new java.awt.Color(204, 204, 204));
         txtcontrasena.setText("**********");
         txtcontrasena.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -61,10 +61,6 @@ public class cliente_inicio extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         btnVerTodas2 = new javax.swing.JToggleButton();
         jLabel10 = new javax.swing.JLabel();
-        sopa = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        btnVerTodas = new javax.swing.JToggleButton();
         btnVerTodas1 = new javax.swing.JToggleButton();
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
@@ -165,31 +161,6 @@ public class cliente_inicio extends javax.swing.JPanel {
 
         jPanel1.add(estofado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 340, 160));
 
-        sopa.setBackground(new java.awt.Color(245, 245, 245));
-        sopa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Comidas/sopaDeFideos.png"))); // NOI18N
-        sopa.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 180, -1));
-
-        jLabel6.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(46, 46, 46));
-        jLabel6.setText("Sopa de fideos");
-        sopa.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
-
-        btnVerTodas.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        btnVerTodas.setForeground(new java.awt.Color(248, 182, 2));
-        btnVerTodas.setText("Más detalles");
-        btnVerTodas.setBorder(null);
-        btnVerTodas.setContentAreaFilled(false);
-        btnVerTodas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVerTodasActionPerformed(evt);
-            }
-        });
-        sopa.add(btnVerTodas, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
-
-        jPanel1.add(sopa, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 270, 330, 160));
-
         btnVerTodas1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         btnVerTodas1.setForeground(new java.awt.Color(248, 182, 2));
         btnVerTodas1.setText("Ver Todas    >");
@@ -213,10 +184,6 @@ public class cliente_inicio extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBebidasActionPerformed
 
-    private void btnVerTodasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerTodasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnVerTodasActionPerformed
-
     private void btnVerTodas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerTodas2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnVerTodas2ActionPerformed
@@ -231,7 +198,6 @@ public class cliente_inicio extends javax.swing.JPanel {
     private javax.swing.JButton btnHamburguesas;
     private javax.swing.JButton btnPollito;
     private javax.swing.JButton btnPostrecitos;
-    private javax.swing.JToggleButton btnVerTodas;
     private javax.swing.JToggleButton btnVerTodas1;
     private javax.swing.JToggleButton btnVerTodas2;
     private javax.swing.JPanel estofado;
@@ -239,15 +205,12 @@ public class cliente_inicio extends javax.swing.JPanel {
     private javax.swing.JLabel imagenAmigos;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel panelAmarillo;
     private javax.swing.JPanel panelDerechoTuDespensa;
-    private javax.swing.JPanel sopa;
     // End of variables declaration//GEN-END:variables
 }

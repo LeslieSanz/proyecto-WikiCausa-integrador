@@ -566,7 +566,7 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Recalcular"/>
+                <Property name="text" type="java.lang.String" value="Recalcular calor&#xed;as"/>
               </Properties>
             </Component>
           </SubComponents>
