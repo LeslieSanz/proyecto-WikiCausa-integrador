@@ -88,50 +88,38 @@ public class DespensaDAO {
         }
     }
 
-    public boolean eliminar(int num, String dni) {
-
+    public void eliminar(int numIngrediente, String dni) {
         try {
+            // Obtener el idDespensa basado en el DNI del usuario
             String obtenerIdDespensaQuery = "SELECT idDespensa FROM despensa WHERE Usuario_DNI = ?";
             conn = con.getConexion();
             ps = conn.prepareStatement(obtenerIdDespensaQuery);
             ps.setString(1, dni);
             rs = ps.executeQuery();
-
             int idDespensa = -1;
             if (rs.next()) {
                 idDespensa = rs.getInt("idDespensa");
             }
 
-            // Check if idDespensa was found
-            if (idDespensa != -1) {
-                String sql = "DELETE FROM despensa_ingrediente WHERE numIngrediente = ? AND despensa_idDespensa = ?";
-                ps = conn.prepareStatement(sql);
-                ps.setInt(1, num);
-                ps.setInt(2, idDespensa);
-                int rowsAffected = ps.executeUpdate();
+            // Eliminar el registro específico
+            String eliminarQuery = "DELETE FROM despensa_ingrediente WHERE Despensa_idDespensa = ? AND numIngrediente = ?";
+            ps = conn.prepareStatement(eliminarQuery);
+            ps.setInt(1, idDespensa);
+            ps.setInt(2, numIngrediente);
+            ps.executeUpdate();
 
-                return rowsAffected > 0;
-            }
+            // Actualizar los valores de numIngrediente para los registros restantes
+            String actualizarQuery = "UPDATE despensa_ingrediente SET numIngrediente = numIngrediente - 1 "
+                    + "WHERE Despensa_idDespensa = ? AND numIngrediente > ?";
+            ps = conn.prepareStatement(actualizarQuery);
+            ps.setInt(1, idDespensa);
+            ps.setInt(2, numIngrediente);
+            ps.executeUpdate();
 
+            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(DespensaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            // Close the resources properly
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
-        return false;
     }
 
     public boolean modificar(RecetaIngredientesDTO c) {

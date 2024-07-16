@@ -58,7 +58,6 @@ public class cliente_despensa extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         cbxAlimentos = new javax.swing.JComboBox<>();
@@ -150,12 +149,6 @@ public class cliente_despensa extends javax.swing.JPanel {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_general/Line 135.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, 20, -1));
-
-        jButton4.setBackground(new java.awt.Color(0, 124, 238));
-        jButton4.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Modificar");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 590, -1, 30));
 
         jButton5.setBackground(new java.awt.Color(18, 91, 0));
         jButton5.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
@@ -329,21 +322,7 @@ public class cliente_despensa extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxAlimentosItemStateChanged
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-//          int selectedRow = tblDespensa.getSelectedRow();
-//    if (selectedRow != -1) {
-//        // Obtener el idDespensa seleccionado
-//        int idDespensa = (int) tblDespensa.getValueAt(selectedRow, 0); // Asumiendo que el ID está en la primera columna
-//        
-//        // Eliminar las referencias en despensa_ingrediente
-//        despDao = new DespensaDAO();
-//        despDao.eliminarDespensaIngrediente(idDespensa);
-//        
-//        // Actualizar la tabla y listaDetalle (si es necesario)
-//        listaDetalle.remove(selectedRow); // Remover de la lista en memoria
-//        mostrarTabla(); // Mostrar la tabla actualizada en la interfaz
-//    } else {
-//        JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila para eliminar.");
-//    }
+
 
         int fila = tblDespensa.getSelectedRow();
         despDao = new DespensaDAO();
@@ -380,7 +359,6 @@ public class cliente_despensa extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbxAlimentos;
     private javax.swing.JButton congelados;
     private javax.swing.JButton frutasVerduras;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLNombre;
