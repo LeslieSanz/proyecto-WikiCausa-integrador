@@ -72,17 +72,17 @@ public class cliente_despensa extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 89, 19));
         jLabel1.setText("Mi despensa");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 300, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 330, -1));
 
         jLabel2.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(170, 89, 19));
         jLabel2.setText("de");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, 60, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 90, -1));
 
         jLNombre.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
         jLNombre.setForeground(new java.awt.Color(170, 89, 19));
         jLNombre.setText("nombre");
-        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 180, -1));
+        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 50, 330, -1));
 
         frutasVerduras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/frutasVerduras.png"))); // NOI18N
         frutasVerduras.addActionListener(new java.awt.event.ActionListener() {
@@ -191,6 +191,7 @@ public class cliente_despensa extends javax.swing.JPanel {
         });
         jPanel1.add(cbxAlimentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 240, 30));
 
+        tblDespensa.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         tblDespensa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
