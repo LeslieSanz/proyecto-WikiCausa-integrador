@@ -117,7 +117,7 @@ public class cliente_despensa extends javax.swing.JPanel {
         });
         jPanel1.add(carnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
 
-        pastas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/pastas.png"))); // NOI18N
+        pastas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/especias.png"))); // NOI18N
         pastas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pastasActionPerformed(evt);

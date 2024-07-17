@@ -152,7 +152,7 @@
         <Component class="javax.swing.JButton" name="pastas">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/img/Despensa/pastas.png"/>
+              <Image iconType="3" name="/img/Despensa/especias.png"/>
             </Property>
           </Properties>
           <Events>
