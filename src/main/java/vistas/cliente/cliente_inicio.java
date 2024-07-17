@@ -1,9 +1,15 @@
 package vistas.cliente;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import modelo.DespensaDTO;
 import modelo.Usuario;
+import modeloDAO.DespensaDAO;
 import modeloDAO.UsurarioDAO;
 import static vistas.cliente.cliente_sidebar.content;
 
@@ -11,8 +17,10 @@ public class cliente_inicio extends javax.swing.JPanel {
 
     String dni;
     UsurarioDAO usDao= new UsurarioDAO();
-    
+    DespensaDAO despDao;
+    ArrayList<DespensaDTO> listaDetalle = new ArrayList<>();
     int codTipo;
+    DefaultTableModel modelo = new DefaultTableModel();
     
     public cliente_inicio() {
         
@@ -31,6 +39,13 @@ public class cliente_inicio extends javax.swing.JPanel {
         String[] meses = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", " ;septiembre",
              "octubre", "noviembre", "diciembre"};
         lblFecha.setText("Hoy es " + dia + " de " + meses[month - 1]);
+        
+        establecerColumnas();
+        mostrarTabla();
+        
+        // Cambiar la fuente del encabezado de la tabla
+        JTableHeader header = tblDespensa.getTableHeader();
+        header.setFont(new Font("Poppins", Font.ROMAN_BASELINE, 14));
     }
 
     public void prueba(){
@@ -39,6 +54,24 @@ public class cliente_inicio extends javax.swing.JPanel {
         System.out.println(us.getNombre()+" Cli_inicio");
         jLNombre.setText(us.getNombre() +" " + us.getApellidos());
         
+    }
+    
+    private void establecerColumnas() {
+        modelo.addColumn("Mi despensa");
+        tblDespensa.setModel(modelo);
+    }
+
+    private void mostrarTabla() {
+        modelo.setRowCount(0);
+        despDao = new DespensaDAO();
+        ArrayList<DespensaDTO> lista = new ArrayList<>();
+        lista = despDao.listarTodos(dni);
+        for (int i = 0; i < lista.size(); i++) {
+            Object[] data = {
+                lista.get(i).getNombre(),};
+            modelo.addRow(data);
+        }
+
     }
     
     cliente_verRecetas cvr;
@@ -59,16 +92,15 @@ public class cliente_inicio extends javax.swing.JPanel {
         btnCarnes = new javax.swing.JButton();
         btnOtros = new javax.swing.JButton();
         btnPollo = new javax.swing.JButton();
-        panelDerechoTuDespensa = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         Categorias = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDespensa = new javax.swing.JTable();
         bannerBlancoDerecha = new javax.swing.JLabel();
         estofado = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         btnVerTodas1 = new javax.swing.JToggleButton();
         btnVerTodas2 = new javax.swing.JToggleButton();
+        lblNombre = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
         jPanel1.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -134,22 +166,25 @@ public class cliente_inicio extends javax.swing.JPanel {
         });
         jPanel1.add(btnPollo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
 
-        panelDerechoTuDespensa.setBackground(new java.awt.Color(255, 255, 255));
-        panelDerechoTuDespensa.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel8.setFont(new java.awt.Font("Poppins", 0, 24)); // NOI18N
-        jLabel8.setText("¡TU DESPENSA");
-        panelDerechoTuDespensa.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 170, -1));
-
-        jLabel9.setFont(new java.awt.Font("Poppins", 0, 24)); // NOI18N
-        jLabel9.setText("ESTÁ VACÍA!");
-        panelDerechoTuDespensa.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 170, -1));
-
-        jPanel1.add(panelDerechoTuDespensa, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 260, 180, 140));
-
         Categorias.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
         Categorias.setText("Categorías");
         jPanel1.add(Categorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
+
+        tblDespensa.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        tblDespensa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblDespensa);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 130, 180, 350));
 
         bannerBlancoDerecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/background_lateral.png"))); // NOI18N
         jPanel1.add(bannerBlancoDerecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 30, -1, -1));
@@ -158,14 +193,9 @@ public class cliente_inicio extends javax.swing.JPanel {
         estofado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Comidas/estofadoDePollo.png"))); // NOI18N
-        estofado.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+        estofado.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 180, -1));
 
-        jLabel10.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(46, 46, 46));
-        jLabel10.setText("Estofado de pollo");
-        estofado.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, -1, -1));
-
-        jPanel1.add(estofado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 340, 160));
+        jPanel1.add(estofado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 160));
 
         btnVerTodas1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         btnVerTodas1.setForeground(new java.awt.Color(248, 182, 2));
@@ -185,6 +215,10 @@ public class cliente_inicio extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnVerTodas2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 290, -1, -1));
+
+        lblNombre.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        lblNombre.setText("Estofado de pollo");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 170, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -250,13 +284,12 @@ public class cliente_inicio extends javax.swing.JPanel {
     private javax.swing.JLabel fraseMotivadora;
     private javax.swing.JLabel imagenAmigos;
     private javax.swing.JLabel jLNombre;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFecha;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel panelAmarillo;
-    private javax.swing.JPanel panelDerechoTuDespensa;
+    private javax.swing.JTable tblDespensa;
     // End of variables declaration//GEN-END:variables
 }

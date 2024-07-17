@@ -1,12 +1,14 @@
 package vistas.cliente;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import modelo.DespensaDTO;
 import modelo.IngredienteDTO;
 import modelo.MedidaDTO;
@@ -38,6 +40,10 @@ public class cliente_despensa extends javax.swing.JPanel {
         prueba();
         establecerColumnas();
         mostrarTabla();
+        
+        // Cambiar la fuente del encabezado de la tabla
+        JTableHeader header = tblDespensa.getTableHeader();
+        header.setFont(new Font("Poppins", Font.BOLD, 14));
     }
 
     @SuppressWarnings("unchecked")
