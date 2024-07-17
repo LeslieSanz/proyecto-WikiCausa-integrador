@@ -232,7 +232,7 @@ public class cliente_verRecetas extends javax.swing.JPanel {
         lblNombre.setText(r.getNombre());
         lblTiempo1.setText(r.getTiempo() + " minutos ");
         lblPorcion1.setText(r.getPorcion() + " personas ");
-        lblCalorías.setText(r.getCalorias() + " cal/porción");
+        lblCalorías.setText(r.getCalorias() + " kcal/porción");
         
         try {
         String nomImagen = r.getImagen();
