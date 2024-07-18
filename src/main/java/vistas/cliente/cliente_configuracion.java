@@ -471,11 +471,11 @@ public class cliente_configuracion extends javax.swing.JFrame {
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
 
         u = ud.ObtenerUsuario(dni);
-        char sexo;
+        String sexo;
         if (rbtnM.isSelected()) {
-            sexo = 'M';
+            sexo = "M";
         } else {
-            sexo = 'F';
+            sexo = "F";
         }
 
         System.out.println("Sexo seleccionado: " + sexo);
@@ -515,6 +515,14 @@ public class cliente_configuracion extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
 
+        String sex = null;
+        if (rbtnM.isSelected()) {
+            sex = "M";
+        }
+        if (rbtnF.isSelected()) {
+            sex = "F";
+        }
+
         String nivel = null;
         if (rbtnPrin.isSelected()) {
             nivel = "P";
@@ -538,9 +546,19 @@ public class cliente_configuracion extends javax.swing.JFrame {
                 frec = 21;
                 break;
         }
-
+        
+        int edad = Integer.parseInt(txtEdad.getText());
+        double altura = Double.parseDouble(txtAltura.getText());
+        double peso = Double.parseDouble(txtPeso.getText());
+        
+        
+        u.setSexo(sex);
         u.setFrecuencia(frec);
         u.setNivel(nivel);
+        u.setEdad(edad);
+        u.setAltura(altura);
+        u.setPeso(peso);
+
         ud.agregarPreferencias(u);
 
         cliente_sidebar cliSi = new cliente_sidebar(dni);
@@ -584,11 +602,12 @@ public class cliente_configuracion extends javax.swing.JFrame {
 
     private void txtPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoKeyTyped
         char c = evt.getKeyChar();
-        if (c < '0' || c > '9' ) {
+        if (c < '0' || c > '9') {
             evt.consume();
         }
         if (txtPeso.getText().length() >= 3) {
-            evt.consume();}// TODO add your handling code here:
+            evt.consume();
+        }// TODO add your handling code here:
     }//GEN-LAST:event_txtPesoKeyTyped
 
     private void txtAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlturaActionPerformed
@@ -596,8 +615,8 @@ public class cliente_configuracion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAlturaActionPerformed
 
     /**
-         * @param args the command line arguments
-         */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -1,5 +1,6 @@
 package vistas.cliente;
 
+import java.text.DecimalFormat;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -37,7 +38,16 @@ public class cliente_perfil extends javax.swing.JPanel {
         txtApe.setText(us.getApellidos());
         txtCorreo.setText(us.getCorreo());
         jLNombre.setText(us.getNombre());
+        txtNivel.setText(us.getNivel());
+        txtEdad.setText(Integer.toString(us.getEdad()));
+        txtAltura.setText(Double.toString(us.getAltura()));
+        txtPeso.setText(Double.toString(us.getPeso()));
+        gen.setText(us.getSexo());
+        txtMin.setText(Double.toString(us.getCalmin()));
+        txtMax.setText(Double.toString(us.getCalmax()));
+        txtFrecuencia.setText(Integer.toString(us.getFrecuencia()));
         btnModificar.setEnabled(false);
+
         System.out.println(us.getCorreo());
     }
 
@@ -140,15 +150,32 @@ public class cliente_perfil extends javax.swing.JPanel {
         rbtnAvanza = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         cbxFrec = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
-        btnModPred = new javax.swing.JButton();
+        txtNivel = new javax.swing.JTextField();
+        txtFrecuencia = new javax.swing.JTextField();
+        btnModPred2 = new javax.swing.JButton();
         jLNombre = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        Recalcular = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtEdad = new javax.swing.JTextField();
+        txtPeso = new javax.swing.JTextField();
+        txtAltura = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        txtMin = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        txtMax = new javax.swing.JTextField();
+        Calcular = new javax.swing.JButton();
+        gen = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(170, 89, 19));
         jLabel1.setText("Perfil de usuario de");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos personales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Poppins Medium", 0, 18), new java.awt.Color(102, 102, 102))); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -170,6 +197,11 @@ public class cliente_perfil extends javax.swing.JPanel {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
 
         txtApe.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txtApe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApeActionPerformed(evt);
+            }
+        });
         txtApe.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtApeKeyTyped(evt);
@@ -205,6 +237,8 @@ public class cliente_perfil extends javax.swing.JPanel {
             }
         });
         jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, -1));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 130, 607, 195));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar contraseña", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Poppins Medium", 0, 18), new java.awt.Color(102, 102, 102))); // NOI18N
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -282,6 +316,8 @@ public class cliente_perfil extends javax.swing.JPanel {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 550, -1));
 
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 420, 607, 260));
+
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Preferencias", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Poppins Medium", 0, 18), new java.awt.Color(102, 102, 102))); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
@@ -320,18 +356,26 @@ public class cliente_perfil extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Recalcular calorías");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        txtNivel.setEditable(false);
+        txtNivel.setForeground(new java.awt.Color(102, 102, 102));
+        txtNivel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNivel.setText("--Nivel--");
+        txtNivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                txtNivelActionPerformed(evt);
             }
         });
 
-        btnModPred.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        btnModPred.setText("Modificar");
-        btnModPred.addActionListener(new java.awt.event.ActionListener() {
+        txtFrecuencia.setEditable(false);
+        txtFrecuencia.setForeground(new java.awt.Color(102, 102, 102));
+        txtFrecuencia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtFrecuencia.setText("--Frecuencia--");
+
+        btnModPred2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        btnModPred2.setText("Modificar");
+        btnModPred2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModPredActionPerformed(evt);
+                btnModPred2ActionPerformed(evt);
             }
         });
 
@@ -346,30 +390,29 @@ public class cliente_perfil extends javax.swing.JPanel {
                         .addComponent(jLabel10)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbxFrec, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(rbtnPrin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbtnInter)))
+                                .addComponent(rbtnInter))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxFrec, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(14, 14, 14))))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(rbtnAvanza))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(btnModPred)
+                .addGap(71, 71, 71)
+                .addComponent(rbtnAvanza)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addComponent(btnModPred2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtFrecuencia)
+                    .addComponent(txtNivel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,56 +425,174 @@ public class cliente_perfil extends javax.swing.JPanel {
                     .addComponent(rbtnInter))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbtnAvanza)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(cbxFrec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
                 .addGap(18, 18, 18)
-                .addComponent(btnModPred)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxFrec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(txtNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtFrecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(btnModPred2)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         jLNombre.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
         jLNombre.setForeground(new java.awt.Color(170, 89, 19));
         jLNombre.setText("nombre");
+        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLNombre))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(100, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLNombre))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Recalcular calorías", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Poppins Medium", 0, 18), new java.awt.Color(102, 102, 102))); // NOI18N
+
+        Recalcular.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        Recalcular.setText("Modificar");
+        Recalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RecalcularActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel12.setText("Edad:");
+
+        jLabel13.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel13.setText("Peso:");
+
+        jLabel14.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel14.setText("Altura:");
+
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadKeyTyped(evt);
+            }
+        });
+
+        txtPeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesoKeyTyped(evt);
+            }
+        });
+
+        txtAltura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAlturaKeyTyped(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(153, 51, 0));
+        jLabel21.setText("Mínimo:");
+
+        txtMin.setEditable(false);
+        txtMin.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+
+        jLabel22.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(153, 51, 0));
+        jLabel22.setText("Máximo:");
+
+        txtMax.setEditable(false);
+        txtMax.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txtMax.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaxActionPerformed(evt);
+            }
+        });
+
+        Calcular.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        Calcular.setText("Calcular");
+        Calcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CalcularActionPerformed(evt);
+            }
+        });
+
+        gen.setEditable(false);
+        gen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                genActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155))
+                .addComponent(jLabel22)
+                .addGap(57, 57, 57))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel12))
+                        .addGap(34, 34, 34)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAltura, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(gen, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel6Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(Calcular))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(92, 92, 92)
+                        .addComponent(Recalcular)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(txtAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Calcular, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Recalcular)
+                .addContainerGap(7, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 298, 270));
+        jPanel6.getAccessibleContext().setAccessibleName("Calcular calorías");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -441,7 +602,7 @@ public class cliente_perfil extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -488,71 +649,182 @@ public class cliente_perfil extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
-    private void btnModPredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPredActionPerformed
+    private void RecalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RecalcularActionPerformed
+        // Obtener datos de los campos de texto
+        int edad = Integer.parseInt(txtEdad.getText());
+        double peso2 = Double.parseDouble(txtPeso.getText());
+        double altura2 = Double.parseDouble(txtAltura.getText()); // Asegúrate de usar el campo de altura correcto
+        double minimo = Double.parseDouble(txtMin.getText());
+        double maximo = Double.parseDouble(txtMax.getText());
 
-        Usuario us = usDao.ObtenerUsuario(dni);
+// Mostrar cuadro de diálogo de confirmación
+        int response = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea modificar los datos?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
-        boolean nivelActualizado = false;
-        boolean frecuenciaActualizada = false;
+// Si el usuario confirma, realiza la actualización
+        if (response == JOptionPane.YES_OPTION) {
+            // Establecer los valores en el objeto usuario
+            u.setEdad(edad);
+            u.setPeso(peso2);
+            u.setAltura(altura2);
+            u.setCalmin(minimo);
+            u.setCalmax(maximo);
 
-        if (rbtnPrin.isSelected() || rbtnInter.isSelected() || rbtnAvanza.isSelected()) {
-            String nivel = null;
-            if (rbtnPrin.isSelected()) {
-                nivel = "P";
-            } else if (rbtnInter.isSelected()) {
-                nivel = "I";
-            } else if (rbtnAvanza.isSelected()) {
-                nivel = "A";
-            }
+            // Llamar al método para editar los datos del usuario
+            usDao.editarDatosUsu3(dni, u);
 
-            us.setNivel(nivel);
-            nivelActualizado = true;
-            
-        } 
-        
-        if (cbxFrec.getSelectedIndex() != -1) {
-            int frec = 0;
-            switch (cbxFrec.getSelectedIndex()) {
-                case 1:
-                    frec = 7;
-                    break;
-                case 2:
-                    frec = 14;
-                    break;
-                case 3:
-                    frec = 21;
-                    break;
-            }
+            // Opcional: Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(null, "Datos modificados exitosamente.");
+        } else {
+            // Opcional: Mostrar mensaje de cancelación
+            JOptionPane.showMessageDialog(null, "Modificación cancelada.");
+        }
 
-            us.setFrecuencia(frec);
-            frecuenciaActualizada = true;
-        } 
-
-        btnGroupNivel.clearSelection();
-        cbxFrec.setSelectedIndex(0);
-    }//GEN-LAST:event_btnModPredActionPerformed
+    }//GEN-LAST:event_RecalcularActionPerformed
 
     private void cbxFrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFrecActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxFrecActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void txtNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNivelActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_txtNivelActionPerformed
+
+    private void btnModPred2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPred2ActionPerformed
+        // Obtener usuario por DNI
+        Usuario us = usDao.ObtenerUsuario(dni);
+
+// Determinar el nivel
+        String nivel = null;
+        if (rbtnPrin.isSelected()) {
+            nivel = "P";
+        }
+        if (rbtnInter.isSelected()) {
+            nivel = "I";
+        }
+        if (rbtnAvanza.isSelected()) {
+            nivel = "A";
+        }
+
+// Determinar la frecuencia
+        int frec = 0;
+        switch (cbxFrec.getSelectedIndex()) {
+            case 1:
+                frec = 7;
+                break;
+            case 2:
+                frec = 14;
+                break;
+            case 3:
+                frec = 21;
+                break;
+        }
+
+// Mostrar cuadro de diálogo de confirmación
+        int response = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea modificar los datos?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+// Si el usuario confirma, realiza la actualización
+        if (response == JOptionPane.YES_OPTION) {
+            // Actualizar los campos de texto
+            txtNivel.setText(nivel);
+            txtFrecuencia.setText(Integer.toString(frec));
+
+            // Establecer los valores en el objeto usuario
+            us.setNivel(txtNivel.getText());
+            us.setFrecuencia(Integer.parseInt(txtFrecuencia.getText()));
+
+            // Llamar al método para editar los datos del usuario
+            usDao.editarDatosUsu2(dni, us);
+
+            // Actualizar la etiqueta con el nombre del usuario
+            jLNombre.setText(us.getNombre());
+
+            // Opcional: Mostrar mensaje de éxito
+            JOptionPane.showMessageDialog(null, "Datos modificados exitosamente.");
+        } else {
+            // Opcional: Mostrar mensaje de cancelación
+            JOptionPane.showMessageDialog(null, "Modificación cancelada.");
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnModPred2ActionPerformed
+
+    private void txtApeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApeActionPerformed
+
+    private void txtMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaxActionPerformed
+
+    private void CalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CalcularActionPerformed
+        // Obtener usuario por DNI
+        u = usDao.ObtenerUsuario(dni);
+
+// Obtener y convertir datos de los campos de texto
+        String genero = gen.getText();
+        int edad = Integer.parseInt(txtEdad.getText());
+        double peso2 = Double.parseDouble(txtPeso.getText());
+        double altura2 = Double.parseDouble(txtAltura.getText()); // Asegúrate de obtener la altura
+
+// Calcular calorías por día y por semana
+        double calxdia = u.calculaCaloriasPorDia2(genero, edad, peso2, altura2);
+        u.calcularCaloriasPorSemana(calxdia);
+
+// Redondear y actualizar los campos de texto
+        double ValorRedMin = Math.round(u.getCalmin() * 100) / 100.0;
+        double ValorRedMax = Math.round(u.getCalmax() * 100) / 100.0;
+        txtMin.setText(Double.toString(ValorRedMin));
+        txtMax.setText(Double.toString(ValorRedMax));
+
+    }//GEN-LAST:event_CalcularActionPerformed
+
+    private void genActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_genActionPerformed
+
+    private void txtEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEdadKeyTyped
+
+    private void txtAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlturaKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlturaKeyTyped
+
+    private void txtPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoKeyTyped
+        char c = evt.getKeyChar();
+// Permitir solo números y el punto decimal
+        if ((c < '0' || c > '9') && c != '.') {
+            evt.consume();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesoKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Calcular;
+    private javax.swing.JButton Recalcular;
     private javax.swing.JButton btnActPassword;
     private javax.swing.ButtonGroup btnGroupNivel;
-    private javax.swing.JButton btnModPred;
+    private javax.swing.JButton btnModPred2;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnValidarPassword;
     private javax.swing.JComboBox<String> cbxFrec;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTextField gen;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -565,15 +837,23 @@ public class cliente_perfil extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JRadioButton rbtnAvanza;
     private javax.swing.JRadioButton rbtnInter;
     private javax.swing.JRadioButton rbtnPrin;
+    private javax.swing.JTextField txtAltura;
     private javax.swing.JTextField txtApe;
     private javax.swing.JPasswordField txtContraNue1;
     private javax.swing.JPasswordField txtContraNue2;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDni;
+    private javax.swing.JTextField txtEdad;
+    private javax.swing.JTextField txtFrecuencia;
+    private javax.swing.JTextField txtMax;
+    private javax.swing.JTextField txtMin;
+    private javax.swing.JTextField txtNivel;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtPeso;
     private javax.swing.JTextField txtpassAct;
     // End of variables declaration//GEN-END:variables
 }

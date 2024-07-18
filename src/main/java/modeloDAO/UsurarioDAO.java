@@ -87,7 +87,16 @@ public class UsurarioDAO {
                     user.setPassword(rs.getString("Password"));
                     user.setNombre(rs.getString("Nombres"));
                     user.setApellidos(rs.getString("Apellidos"));
+                    user.setNivel(rs.getString("Nivel"));
+                    user.setFrecuencia(rs.getInt("Frecuencia"));
                     user.setRol(rs.getString("Rol"));
+                    user.setSexo(rs.getString("genero"));
+                    user.setEdad(rs.getInt("Edad"));
+                    user.setPeso(rs.getDouble("Peso"));
+                    user.setAltura(rs.getDouble("Altura"));
+                    
+                    user.setCalmin(rs.getDouble("CalMin"));
+                    user.setCalmax(rs.getDouble("CalMax"));
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuario no encontrado");
                 }
@@ -112,26 +121,9 @@ public class UsurarioDAO {
         return user;
     }
 
-    public Usuario editarDatosUsu2(String dni, Usuario user) {
-        String sql = "UPDATE usuario SET Nombres=?, Apellidos=?, Correo=?, Nivel=?, Frecuencia=?, CalMin=?, CalMax=? WHERE DNI=?";
-        try (Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)) {
-            st.setString(1, user.getNombre());
-            st.setString(2, user.getApellidos());
-            st.setString(3, user.getCorreo());
-            st.setString(4, user.getNivel());
-            st.setInt(5, user.getFrecuencia());
-            st.setDouble(6, user.getCalmin());
-            st.setDouble(7, user.getCalmax());
-            st.setString(8, dni);
-            st.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
-        } catch (SQLException ex) {
-            System.out.println("Error al modificar Usuario: " + ex.getMessage());
-        }
-        return user;
-    }
+  
 
-   public Usuario editarDatosUsu3(String dni, Usuario user) {
+   public Usuario editarDatosUsu2(String dni, Usuario user) {
         String sql = "UPDATE usuario SET Nivel=?, Frecuencia=? WHERE DNI=?";
         try (Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)) {
             st.setString(1, user.getNivel());
@@ -145,37 +137,23 @@ public class UsurarioDAO {
         return user;
     }
 
-    public int obtenerFrecuencia(String dni) {
-        String sql = "SELECT Frecuencia FROM usuario WHERE DNI = ?";
-        int frecuencia = -1;
+   public Usuario editarDatosUsu3(String dni, Usuario user) {
+        String sql = "UPDATE usuario SET Edad=?, Peso=?, Altura=?, CalMin=?, CalMax=? WHERE DNI=?";
         try (Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)) {
-            st.setString(1, dni);
-            try (ResultSet rs = st.executeQuery()) {
-                if (rs.next()) {
-                    frecuencia = rs.getInt("Frecuencia");
-                }
-            }
+            st.setInt(1, user.getEdad());
+            st.setDouble(2, user.getPeso());
+            st.setDouble(3, user.getAltura());
+            st.setDouble(4, user.getCalmin());
+            st.setDouble(5, user.getCalmax());
+            st.setString(6, dni);
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Datos actualizados correctamente");
         } catch (SQLException ex) {
-            System.out.println("Error al obtener la frecuencia del usuario: " + ex.getMessage());
+            System.out.println("Error al modificar Usuario: " + ex.getMessage());
         }
-        return frecuencia;
+        return user;
     }
-
-    public String obtenerNivel(String dni) {
-        String sql = "SELECT Nivel FROM usuario WHERE DNI = ?";
-        String nivel = null;
-        try (Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)) {
-            st.setString(1, dni);
-            try (ResultSet rs = st.executeQuery()) {
-                if (rs.next()) {
-                    nivel = rs.getString("Nivel");
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println("Error al obtener el nivel del usuario: " + ex.getMessage());
-        }
-        return nivel;
-    }
+ 
 
     public Usuario obtenerPassword(String dni) {
 
@@ -214,7 +192,7 @@ public class UsurarioDAO {
     //Para agregar las preferencias
     public boolean agregarPreferencias(Usuario user) {
 
-        String sql = "update usuario set Nivel=?, Frecuencia=?, CalMin=?, CalMax=?"
+        String sql = "update usuario set Nivel=?, Frecuencia=?, CalMin=?, CalMax=?, genero =?, Edad =?, Peso =?, Altura =?"
                 + " where dni = '" + user.getDni() + "'";
 
         try (Connection cn = Conexion.getConexion(); PreparedStatement st = cn.prepareStatement(sql)) {
@@ -223,6 +201,10 @@ public class UsurarioDAO {
             st.setInt(2, user.getFrecuencia());
             st.setDouble(3, user.getCalmin());
             st.setDouble(4, user.getCalmax());
+            st.setString(5, user.getSexo());
+            st.setInt(6, user.getEdad());
+            st.setDouble(7, user.getPeso());
+            st.setDouble(8, user.getAltura());
             st.executeUpdate();
 
         } catch (SQLException ex) {

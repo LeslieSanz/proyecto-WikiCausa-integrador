@@ -13,20 +13,20 @@ public class Usuario {
     private double peso;
     private double altura;
     private int edad;
-    
+    private String sexo;
     private String nivel;
     private int frecuencia;
     private double calmin;
     private double calmax;
     
     //Segun la formula de Mifflin-St Jeor   
-    public double calculaCaloriasPorDia(char sexo) {
+    public double calculaCaloriasPorDia(String gen) {
         double calxdia=0;
-        switch(sexo) {
-            case 'M':
+        switch(gen) {
+            case "M":
                 calxdia = 10 * peso + 6.25 * altura - 5 * edad + 5;
                 break;
-            case 'F':
+            case "F":
                 calxdia = 10 * peso + 6.25 * altura - 5 * edad - 161;
                 break;
         }
@@ -40,6 +40,21 @@ public class Usuario {
         //Calculando un margen del -+10% para el minimo y maximo
         calmin = 0.90 * caltotal;
         calmax = 1.10 * caltotal;
+    }
+    
+    
+    public double calculaCaloriasPorDia2(String gen, int edad2 , double peso2, double altura2) {
+        double calxdia=0;
+        switch(gen) {
+            case "M":
+                calxdia = 10 * peso2 + 6.25 * altura2 - 5 * edad2 + 5;
+                break;
+            case "F":
+                calxdia = 10 * peso2 + 6.25 * altura2 - 5 * edad2 - 161;
+                break;
+        }
+
+        return calxdia;
     }
             
     public Usuario() {
@@ -148,5 +163,15 @@ public class Usuario {
     public void setCalmax(double calmax) {
         this.calmax = calmax;
     }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+    
+    
     
 }
