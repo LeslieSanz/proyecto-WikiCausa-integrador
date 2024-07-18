@@ -81,11 +81,9 @@ public class menuDetalleDAO implements HistorialInterface{
     }
     
     //Lista las 7 recetas de menu_detalle2
-    public ArrayList<MenuDetalleDTO> listarRecetasPorPreferencias() {
+    public ArrayList<MenuDetalleDTO> listarRecetasPorPreferencias() {   
         try {
-            String sql = "SELECT Receta_idReceta,orden\n" +
-                            "FROM menu_detalle2\n" +
-                            "WHERE orden BETWEEN 1 AND 7";
+            String sql = "SELECT Receta_idReceta,orden FROM menu_detalle2 WHERE orden BETWEEN 1 AND 7;";
             
             conn = con.getConexion();
             ps = conn.prepareStatement(sql);
@@ -108,7 +106,5 @@ public class menuDetalleDAO implements HistorialInterface{
         }
         return lista;
     }
-    
-    
 
 }
