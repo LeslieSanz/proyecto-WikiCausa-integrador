@@ -140,32 +140,25 @@ public class recetaDAO implements RecetaInterface {
 
     @Override
     public RecetaDTO listarUno(String codigo) {
-        String sql = "SELECT idReceta, Nombre, Porcion, TiempoPreparacion, Calorias, Preparacion, Imagen FROM receta WHERE idReceta = ?";
         try {
+            String sql = "select idReceta,Nombre, Porcion, TiempoPreparacion, Calorias, Preparacion, Imagen from receta where idReceta = '"+codigo+"'";
             conn = con.getConexion();
             ps = conn.prepareStatement(sql);
-            ps.setString(1, codigo);
             rs = ps.executeQuery();
-            while (rs.next()) {
+            while(rs.next()){
                 r = new RecetaDTO();
                 r.setId(rs.getString("idReceta"));
                 r.setNombre(rs.getString("Nombre"));
                 r.setPorcion(rs.getInt("Porcion"));
                 r.setTiempo(rs.getInt("TiempoPreparacion"));
-                r.setCalorias(rs.getDouble("Calorias"));
+                r.setCalorias(rs.getInt("Calorias"));
                 r.setPreparacion(rs.getString("Preparacion"));
                 r.setImagen(rs.getString("Imagen"));
+                
             }
+            conn.close();
         } catch (SQLException ex) {
             Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
         return r;
     }

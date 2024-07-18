@@ -1,6 +1,7 @@
 package vistas.cliente;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
@@ -269,7 +270,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
         /* Create and display the form */
         try {
             //UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatLightLaf.setup();
+            FlatArcOrangeIJTheme.setup();
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
@@ -308,7 +309,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
     private javax.swing.JLabel casita1;
     private javax.swing.JLabel casita2;
     private javax.swing.JLabel casita3;
-    private javax.swing.JPanel content;
+    public static javax.swing.JPanel content;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

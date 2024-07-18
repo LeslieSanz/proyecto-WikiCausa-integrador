@@ -1,15 +1,15 @@
 package vistas.cliente;
 
 import java.awt.Color;
-import java.awt.event.ItemEvent;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import modelo.DespensaDTO;
+import javax.swing.table.TableColumn;
 import modelo.IngredienteDTO;
-import modelo.MedidaDTO;
 import modelo.TipoIngrediente;
 import modelo.Usuario;
 import modeloDAO.DespensaDAO;
@@ -38,6 +38,9 @@ public class cliente_despensa extends javax.swing.JPanel {
         prueba();
         establecerColumnas();
         mostrarTabla();
+        // Cambiar la fuente del encabezado de la tabla
+        JTableHeader header = tblDespensa.getTableHeader();
+        header.setFont(new Font("Poppins", Font.BOLD, 14));
     }
 
     @SuppressWarnings("unchecked")
@@ -84,7 +87,12 @@ public class cliente_despensa extends javax.swing.JPanel {
         jLNombre.setText("nombre");
         jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, 180, -1));
 
-        frutasVerduras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/frutasVerduras.png"))); // NOI18N
+        frutasVerduras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/frutasverduras.png"))); // NOI18N
+        frutasVerduras.setBorder(null);
+        frutasVerduras.setBorderPainted(false);
+        frutasVerduras.setContentAreaFilled(false);
+        frutasVerduras.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/FrutasVerduras2.png"))); // NOI18N
+        frutasVerduras.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/FrutasVerduras2.png"))); // NOI18N
         frutasVerduras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 frutasVerdurasActionPerformed(evt);
@@ -93,6 +101,11 @@ public class cliente_despensa extends javax.swing.JPanel {
         jPanel1.add(frutasVerduras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         lacteos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/lacteos.png"))); // NOI18N
+        lacteos.setBorder(null);
+        lacteos.setBorderPainted(false);
+        lacteos.setContentAreaFilled(false);
+        lacteos.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/Lacteos2.png"))); // NOI18N
+        lacteos.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/Lacteos2.png"))); // NOI18N
         lacteos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lacteosActionPerformed(evt);
@@ -101,15 +114,26 @@ public class cliente_despensa extends javax.swing.JPanel {
         jPanel1.add(lacteos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 130, -1, -1));
 
         abarrotes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/abarrotes.png"))); // NOI18N
+        abarrotes.setBorder(null);
+        abarrotes.setBorderPainted(false);
+        abarrotes.setContentAreaFilled(false);
+        abarrotes.setOpaque(true);
+        abarrotes.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/abarrotes2.png"))); // NOI18N
+        abarrotes.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/abarrotes2.png"))); // NOI18N
         abarrotes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 abarrotesActionPerformed(evt);
             }
         });
-        jPanel1.add(abarrotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, -1, -1));
+        jPanel1.add(abarrotes, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 125, 150, 150));
 
-        carnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/carnes.png"))); // NOI18N
+        carnes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/carnes1.png"))); // NOI18N
         carnes.setToolTipText("");
+        carnes.setBorder(null);
+        carnes.setBorderPainted(false);
+        carnes.setContentAreaFilled(false);
+        carnes.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/carnes2.png"))); // NOI18N
+        carnes.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/carnes2.png"))); // NOI18N
         carnes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 carnesActionPerformed(evt);
@@ -117,7 +141,11 @@ public class cliente_despensa extends javax.swing.JPanel {
         });
         jPanel1.add(carnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 130, -1, -1));
 
-        pastas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/pastas.png"))); // NOI18N
+        pastas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/especias.png"))); // NOI18N
+        pastas.setBorder(null);
+        pastas.setBorderPainted(false);
+        pastas.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/Especias2.png"))); // NOI18N
+        pastas.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/especias2.png"))); // NOI18N
         pastas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pastasActionPerformed(evt);
@@ -126,6 +154,11 @@ public class cliente_despensa extends javax.swing.JPanel {
         jPanel1.add(pastas, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 130, -1, -1));
 
         congelados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/enlatados.png"))); // NOI18N
+        congelados.setBorder(null);
+        congelados.setBorderPainted(false);
+        congelados.setContentAreaFilled(false);
+        congelados.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/enlatados2.png"))); // NOI18N
+        congelados.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Despensa/enlatados2.png"))); // NOI18N
         congelados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 congeladosActionPerformed(evt);
@@ -193,16 +226,19 @@ public class cliente_despensa extends javax.swing.JPanel {
 
         tblDespensa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, "", null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Alimnento", "Cantidad", "Medida", "Fecha de ingreso"
+                "N°", "Ingrediente"
             }
         ));
+        tblDespensa.setToolTipText("");
+        tblDespensa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblDespensa.setDragEnabled(true);
         jScrollPane1.setViewportView(tblDespensa);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 480, 210));
@@ -393,6 +429,11 @@ public class cliente_despensa extends javax.swing.JPanel {
                 lista.get(i).getNombre(),};
             modelo.addRow(data);
         }
-
+        
+    
     }
+
+
+
+
 }
