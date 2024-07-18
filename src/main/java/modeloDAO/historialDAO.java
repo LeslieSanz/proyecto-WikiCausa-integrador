@@ -84,5 +84,29 @@ public class historialDAO implements HistorialInterface{
         return lista;
     }
     
+    //Para obtener la receta del día, específicamente de un usuario
+    public HistorialDTO listarPlatoDelDia(String dni) {
+        try {
+            String sql = "SELECT Receta_idReceta \n" +
+            "FROM historial as h \n" +
+            "JOIN menu as m on h.Menu_IdMenu = m.idMenu\n" +
+            "WHERE fecha = CURDATE() AND Usuario_DNI = '"+dni+"'";
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                h = new HistorialDTO();
+                //Para la receta
+                String cr = rs.getString("Receta_idReceta");
+                r= rd.listarUno(cr);
+                h.setReceta(r); 
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return h;
+    }
+    
 
 }

@@ -309,7 +309,7 @@ public class cliente_sidebar extends javax.swing.JFrame {
     private javax.swing.JLabel casita1;
     private javax.swing.JLabel casita2;
     private javax.swing.JLabel casita3;
-    private javax.swing.JPanel content;
+    public static javax.swing.JPanel content;
     private javax.swing.JLabel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

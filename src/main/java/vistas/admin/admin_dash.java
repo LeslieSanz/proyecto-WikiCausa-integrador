@@ -4,6 +4,8 @@
  */
 package vistas.admin;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author lesly
@@ -15,6 +17,14 @@ public class admin_dash extends javax.swing.JPanel {
      */
     public admin_dash() {
         initComponents();
+        //Para mostrar la fecha actual
+        LocalDate now = LocalDate.now();
+        int year = now.getYear();
+        int dia = now.getDayOfMonth();
+        int month = now.getMonthValue();
+        String[] meses = {"enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", " ;septiembre",
+             "octubre", "noviembre", "diciembre"};
+        lblFecha.setText("Hoy es " + dia + " de " + meses[month - 1]+ " de " + year);
     }
 
     /**
@@ -26,30 +36,19 @@ public class admin_dash extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblFecha = new javax.swing.JLabel();
 
-        jLabel1.setText("Hola admin");
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(471, 471, 471)
-                .addComponent(jLabel1)
-                .addContainerGap(517, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addComponent(jLabel1)
-                .addContainerGap(364, Short.MAX_VALUE))
-        );
+        lblFecha.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
+        lblFecha.setForeground(new java.awt.Color(170, 89, 19));
+        lblFecha.setText("Fecha de hoy");
+        lblFecha.setBorder(new javax.swing.border.MatteBorder(null));
+        add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblFecha;
     // End of variables declaration//GEN-END:variables
 }

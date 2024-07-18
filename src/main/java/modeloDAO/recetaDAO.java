@@ -86,12 +86,13 @@ public class recetaDAO implements RecetaInterface{
     @Override
     public RecetaDTO listarUno(String codigo) {
         try {
-            String sql = "select Nombre, Porcion, TiempoPreparacion, Calorias, Preparacion, Imagen from receta where idReceta = '"+codigo+"'";
+            String sql = "select idReceta,Nombre, Porcion, TiempoPreparacion, Calorias, Preparacion, Imagen from receta where idReceta = '"+codigo+"'";
             conn = con.getConexion();
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
                 r = new RecetaDTO();
+                r.setId(rs.getString("idReceta"));
                 r.setNombre(rs.getString("Nombre"));
                 r.setPorcion(rs.getInt("Porcion"));
                 r.setTiempo(rs.getInt("TiempoPreparacion"));
