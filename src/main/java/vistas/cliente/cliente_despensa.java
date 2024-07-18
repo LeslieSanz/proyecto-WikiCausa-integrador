@@ -5,10 +5,10 @@ import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import modelo.DespensaDTO;
-import javax.swing.table.TableColumn;
 import modelo.IngredienteDTO;
 import modelo.TipoIngrediente;
 import modelo.Usuario;
@@ -335,18 +335,21 @@ public class cliente_despensa extends javax.swing.JPanel {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
         String nombreIngrediente = (String) cbxAlimentos.getSelectedItem();
-//        String medida = unidad.getText();
         despDao = new DespensaDAO();
         ingDAO = new ingredienteDAO();
 
         // Obtener los IDs de la base de datos
         int idIngrediente = ingDAO.obtenerIdIngrediente(nombreIngrediente);
 
-        despDao.agregar(dni, idIngrediente); // Adjust method to accept idIngrediente and cant
-//        unidad.setText("");
+        // Verificar si el ingrediente ya está en la tabla
+        boolean ingredienteExistente = verificarIngredienteExistente(nombreIngrediente);
 
-        mostrarTabla();
-
+        if (ingredienteExistente) {
+            JOptionPane.showMessageDialog(this, "El ingrediente ya está en la tabla.", "Ingrediente Existente", JOptionPane.WARNING_MESSAGE);
+        } else {
+            despDao.agregar(dni, idIngrediente); // Ajusta el método agregar para aceptar dni, idIngrediente y cantidad
+            mostrarTabla();
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void cbxAlimentosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbxAlimentosMouseClicked
@@ -358,7 +361,6 @@ public class cliente_despensa extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxAlimentosItemStateChanged
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
 
         int fila = tblDespensa.getSelectedRow();
         despDao = new DespensaDAO();
@@ -429,11 +431,18 @@ public class cliente_despensa extends javax.swing.JPanel {
                 lista.get(i).getNombre(),};
             modelo.addRow(data);
         }
-        
-    
+
     }
-
-
-
+    
+    private boolean verificarIngredienteExistente(String nombreIngrediente) {
+    DefaultTableModel model = (DefaultTableModel) tblDespensa.getModel();
+    for (int i = 0; i < model.getRowCount(); i++) {
+        String nombreEnTabla = (String) model.getValueAt(i, 1);
+        if (nombreEnTabla.equals(nombreIngrediente)) {
+            return true; // El ingrediente ya está en la tabla
+        }
+    }
+    return false; // El ingrediente no está en la tabla
+}
 
 }
