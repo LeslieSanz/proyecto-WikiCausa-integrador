@@ -4,7 +4,11 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTable;
@@ -12,23 +16,34 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import modelo.DespensaDTO;
 import modelo.HistorialDTO;
+import modelo.IngredienteDTO;
+import modelo.RecetaDTO;
 import modelo.Usuario;
+import modeloDAO.DespensaDAO;
+import modeloDAO.MenuService;
 import modeloDAO.UsurarioDAO;
 import modeloDAO.historialDAO;
+import modeloDAO.recetaDAO;
 
 
 public class cliente_generarMenu extends javax.swing.JPanel {
     
     HistorialDTO h;
     historialDAO hd;
-    String codMenu;
+    //String codMenu;
     String dni;
     UsurarioDAO usDao= new UsurarioDAO();
     DefaultTableModel modelo = new DefaultTableModel();
     DefaultTableModel modelo2 = new DefaultTableModel();
-   
     
+    DespensaDAO despensaDAO;
+     List<DespensaDTO> despensa;
+     recetaDAO recetaDAO;
+     List<RecetaDTO> recetas;
+
+     
     private void establecerColumnas() {
         modelo.addColumn("Lunes");
         modelo.addColumn("Martes");
@@ -67,8 +82,8 @@ public class cliente_generarMenu extends javax.swing.JPanel {
         
     }
     
-
-
+        
+   
     
     
     
@@ -87,10 +102,10 @@ public class cliente_generarMenu extends javax.swing.JPanel {
         tblRecetasNombres = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jdateInicio = new com.toedter.calendar.JDateChooser();
+        btnGenerarmenu = new javax.swing.JButton();
+        fechaInicio = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        jdateInicio1 = new com.toedter.calendar.JDateChooser();
+        fechaFin = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -146,21 +161,26 @@ public class cliente_generarMenu extends javax.swing.JPanel {
         jLabel3.setText("Desde");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 50, -1));
 
-        jButton2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jButton2.setText("Generar menú");
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, -1, -1));
+        btnGenerarmenu.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        btnGenerarmenu.setText("Generar menú");
+        btnGenerarmenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarmenuActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnGenerarmenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, -1, -1));
 
-        jdateInicio.setForeground(new java.awt.Color(153, 153, 153));
-        jdateInicio.setFont(new java.awt.Font("Poppins", 2, 14)); // NOI18N
-        jPanel2.add(jdateInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 112, 30));
+        fechaInicio.setForeground(new java.awt.Color(153, 153, 153));
+        fechaInicio.setFont(new java.awt.Font("Poppins", 2, 14)); // NOI18N
+        jPanel2.add(fechaInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 140, 30));
 
         jLabel4.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         jLabel4.setText("Hasta");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, 50, -1));
 
-        jdateInicio1.setForeground(new java.awt.Color(153, 153, 153));
-        jdateInicio1.setFont(new java.awt.Font("Poppins", 2, 14)); // NOI18N
-        jPanel2.add(jdateInicio1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 112, 30));
+        fechaFin.setForeground(new java.awt.Color(153, 153, 153));
+        fechaFin.setFont(new java.awt.Font("Poppins", 2, 14)); // NOI18N
+        jPanel2.add(fechaFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 140, 30));
 
         jLabel5.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         jLabel5.setText("Según");
@@ -196,6 +216,75 @@ public class cliente_generarMenu extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnGenerarmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarmenuActionPerformed
+    recetaDAO = new recetaDAO();
+    recetas = recetaDAO.obtenerRecetasConIngredientes();
+
+    // Obtener la despensa del usuario (simulado para este ejemplo)
+    despensaDAO = new DespensaDAO();
+    //String dniUsuario = "8888888";  // DNI del usuario
+    despensa = despensaDAO.obtenerIngredientesPorUsuario(dni);
+
+    // Encontrar las coincidencias entre los ingredientes de la despensa y las recetas
+    MenuService menuService = new MenuService();
+    Map<String, Integer> coincidenciasPorReceta = menuService.encontrarCoincidencias(recetas, despensa);
+
+    // Ordenar las recetas según la cantidad de coincidencias
+    List<RecetaDTO> recetasOrdenadas = menuService.ordenarRecetasPorCoincidencias(recetas, coincidenciasPorReceta);
+
+    // Imprimir las recetas ordenadas y los ingredientes coincidentes y faltantes (como en tu ejemplo)
+    System.out.println("Recetas ordenadas por coincidencias:");
+    for (RecetaDTO receta : recetasOrdenadas) {
+        System.out.println("Receta: " + receta.getNombre() + " - Coincidencias: " + coincidenciasPorReceta.getOrDefault(receta.getId(), 0));
+
+        // Obtener todos los ingredientes de la receta
+        List<IngredienteDTO> ingredientesReceta = receta.getIngredientes();
+
+        // Obtener los ingredientes coincidentes y faltantes (como en tu ejemplo)
+        List<IngredienteDTO> ingredientesCoincidentes = new ArrayList<>();
+        List<IngredienteDTO> ingredientesFaltantes = new ArrayList<>();
+
+        boolean encontrado;
+        for (IngredienteDTO ingredienteReceta : ingredientesReceta) {
+            encontrado = false;
+            for (DespensaDTO despensaDTO : despensa) {
+                for (IngredienteDTO ingredienteDespensa : despensaDTO.getIngredientes()) {
+                    if (ingredienteReceta.getId() == ingredienteDespensa.getId()) {
+                        ingredientesCoincidentes.add(ingredienteReceta);
+                        encontrado = true;
+                        break;
+                    }
+                }
+                if (encontrado) break;
+            }
+            if (!encontrado) {
+                ingredientesFaltantes.add(ingredienteReceta);
+            }
+        }
+
+        System.out.println("Ingredientes coincidentes:");
+        for (IngredienteDTO ingrediente : ingredientesCoincidentes) {
+            System.out.println("- " + ingrediente.getNombre());
+        }
+
+        System.out.println("Ingredientes faltantes:");
+        for (IngredienteDTO ingrediente : ingredientesFaltantes) {
+            System.out.println("- " + ingrediente.getNombre());
+        }
+
+        System.out.println();
+    }
+
+    // Ahora creamos el menú con las recetas ordenadas
+    String fechaInicio = obtenerFechaInicio(); // Fecha de inicio del menú
+    String fechaFin =  obtenerFechaFin();    // Fecha de fin del menú
+
+    menuService.crearMenu(recetasOrdenadas, fechaInicio, fechaFin, dni);
+    
+    mostrarMenuSemanal();
+    mostrarNombresRecetas();
+    }//GEN-LAST:event_btnGenerarmenuActionPerformed
+
     public void prueba(){
         System.out.println(dni);
         Usuario us= usDao.ObtenerUsuario(dni);
@@ -203,13 +292,33 @@ public class cliente_generarMenu extends javax.swing.JPanel {
         
         
     }
-
     
-    public void mostrarNombresRecetas(String codMenu) {
+    public String obtenerFechaInicio() {
+        Date date = fechaInicio.getDate();
+        if (date == null) {
+            return null; // o puedes retornar una cadena vacía o un mensaje de error
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(date);
+        return formattedDate;
+    }
+    public String obtenerFechaFin() {
+        Date date = fechaFin.getDate();
+        if (date == null) {
+            return null; // o puedes retornar una cadena vacía o un mensaje de error
+        }
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String formattedDate = dateFormat.format(date);
+        return formattedDate;
+    }
+    
+    public void mostrarNombresRecetas() {
         modelo2.setRowCount(0); 
 
         hd = new historialDAO();
-        ArrayList<HistorialDTO> lista = hd.listarPlatosDeUnMenu(codMenu);
+        ArrayList<HistorialDTO> lista = hd.listarRecetasPorOptimizacion();
 
         // Crear una fila para los nombres de la receta
         Object[] rowData1 = new Object[7]; 
@@ -231,12 +340,12 @@ public class cliente_generarMenu extends javax.swing.JPanel {
             // Obtener la fecha para este historial
             String fecha = historial.getReceta().getNombre(); 
             int tiempo = historial.getReceta().getTiempo();
-            double cal = historial.getReceta().getCalorias();
+            String id = historial.getReceta().getId();
             
             // Agregar la fecha a la fila correspondiente al día de la semana actual
             rowData1[indexDia] = fecha;
             rowData2[indexDia] = tiempo + " min ";
-            rowData3[indexDia] = cal + " kcal ";
+            rowData3[indexDia] = id;
 
             // Pasar al siguiente día de la semana (circular)
             indexDia = (indexDia + 1) % 7; // Esto hace que indexDia vuelva a 0 después de Domingo
@@ -248,12 +357,12 @@ public class cliente_generarMenu extends javax.swing.JPanel {
         modelo2.addRow(rowData3);
     }
 
-public void mostrarMenuSemanal(String codMenu) {
+public void mostrarMenuSemanal() {
     modelo.setRowCount(0); 
 
 
     hd = new historialDAO();
-    ArrayList<HistorialDTO> lista = hd.listarPlatosDeUnMenu(codMenu);
+    ArrayList<HistorialDTO> lista = hd.listarRecetasPorOptimizacion();
 
     // Crear arreglos para almacenar nombres de recetas e imágenes por día de la semana
     Object[] rowDataImagenes = new Object[7]; // Imágenes de recetas
@@ -342,7 +451,9 @@ public void mostrarMenuSemanal(String codMenu) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnGenerarmenu;
+    private com.toedter.calendar.JDateChooser fechaFin;
+    private com.toedter.calendar.JDateChooser fechaInicio;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -355,8 +466,6 @@ public void mostrarMenuSemanal(String codMenu) {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private com.toedter.calendar.JDateChooser jdateInicio;
-    private com.toedter.calendar.JDateChooser jdateInicio1;
     private javax.swing.JTable tblRecetasImagenes;
     private javax.swing.JTable tblRecetasNombres;
     // End of variables declaration//GEN-END:variables
