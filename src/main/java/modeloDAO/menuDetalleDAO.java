@@ -80,6 +80,33 @@ public class menuDetalleDAO implements HistorialInterface{
         return lista;
     }
     
-    
+    //Lista las 7 recetas de menu_detalle2
+    public ArrayList<MenuDetalleDTO> listarRecetasPorPreferencias() {
+        System.err.println("Entrando aqui");
+        try {
+            String sql = "SELECT Receta_idReceta,orden FROM menu_detalle2 WHERE orden BETWEEN 1 AND 7;";
+            
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                mdt = new MenuDetalleDTO();
+                //Para la receta
+                String cr = rs.getString("Receta_idReceta");
+                r= rd.listarUno(cr);
+                mdt.setReceta(r);
+                               
+                //Para capturar el orden
+                mdt.setOrden(rs.getInt("orden"));
+                
+                lista.add(mdt);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaIngredientesDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+
 
 }

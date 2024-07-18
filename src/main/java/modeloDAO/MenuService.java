@@ -281,80 +281,83 @@ public List<IngredienteDTO> listarIngredientesFaltantes(List<RecetaDTO> recetas,
     
     return detallesMenu;
 }
+
     public void cambiarRecetaConFrecuencia(int idMenu, int ordenActual, int frecuencia, boolean aplicarFrecuencia) {
-    Connection conn = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-    Conexion con = new Conexion();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion con = new Conexion();
 
-    try {
-        conn = con.getConexion();
-        conn.setAutoCommit(false);  // Iniciar una transacción
+        try {
+            conn = con.getConexion();
+            conn.setAutoCommit(false);  // Iniciar una transacción
 
-        // 1. Obtener la receta que está en la posición ordenActual
-        String queryRecetaActual = "SELECT idMenuDetalle, Receta_idReceta FROM menu_detalle WHERE Menu_idMenu = ? AND orden = ?";
-        ps = conn.prepareStatement(queryRecetaActual);
-        ps.setInt(1, idMenu);
-        ps.setInt(2, ordenActual);
-        rs = ps.executeQuery();
-
-        if (rs.next()) {
-            int idMenuDetalleActual = rs.getInt("idMenuDetalle");
-
-            // 2. Obtener la última posición disponible
-            String queryUltimaReceta = "SELECT MAX(orden) AS ultimoOrden FROM menu_detalle WHERE Menu_idMenu = ?";
-            ps = conn.prepareStatement(queryUltimaReceta);
-            ps.setInt(1, idMenu);
-            rs = ps.executeQuery();
-            int ultimoOrden = 0;
-            if (rs.next()) {
-                ultimoOrden = rs.getInt("ultimoOrden");
-            }
-
-            // 3. Calcular el nuevo orden para la receta actual basado en la frecuencia o sin frecuencia
-            int nuevoOrden;
-            Random random = new Random();
-            if (aplicarFrecuencia) {
-                nuevoOrden = random.nextInt((ultimoOrden - (ordenActual + frecuencia)) + 1) + (ordenActual + frecuencia);
-            } else {
-                nuevoOrden = random.nextInt((ultimoOrden - 8) + 1) + 8;
-            }
-
-            // 4. Mover la receta actual al nuevo orden
-            String updateRecetaActual = "UPDATE menu_detalle SET orden = ? WHERE idMenuDetalle = ?";
-            ps = conn.prepareStatement(updateRecetaActual);
-            ps.setInt(1, nuevoOrden);
-            ps.setInt(2, idMenuDetalleActual);
-            ps.executeUpdate();
-
-            // 5. Mover todas las recetas después de la posición actual hacia arriba
-            String updateOrden = "UPDATE menu_detalle SET orden = orden - 1 WHERE Menu_idMenu = ? AND orden > ?";
-            ps = conn.prepareStatement(updateOrden);
+            // 1. Obtener la receta que está en la posición ordenActual
+            String queryRecetaActual = "SELECT idMenuDetalle, Receta_idReceta FROM menu_detalle WHERE Menu_idMenu = ? AND orden = ?";
+            ps = conn.prepareStatement(queryRecetaActual);
             ps.setInt(1, idMenu);
             ps.setInt(2, ordenActual);
-            ps.executeUpdate();
+            rs = ps.executeQuery();
 
-            conn.commit();  // Finalizar la transacción
-        }
-    } catch (SQLException ex) {
-        try {
-            if (conn != null) {
-                conn.rollback();  // Deshacer la transacción en caso de error
+            if (rs.next()) {
+                int idMenuDetalleActual = rs.getInt("idMenuDetalle");
+
+                // 2. Obtener la última posición disponible
+                String queryUltimaReceta = "SELECT MAX(orden) AS ultimoOrden FROM menu_detalle WHERE Menu_idMenu = ?";
+                ps = conn.prepareStatement(queryUltimaReceta);
+                ps.setInt(1, idMenu);
+                rs = ps.executeQuery();
+                int ultimoOrden = 0;
+                if (rs.next()) {
+                    ultimoOrden = rs.getInt("ultimoOrden");
+                }
+
+                // 3. Calcular el nuevo orden para la receta actual basado en la frecuencia o sin frecuencia
+                int nuevoOrden;
+                Random random = new Random();
+                if (aplicarFrecuencia) {
+                    nuevoOrden = random.nextInt((ultimoOrden - (ordenActual + frecuencia)) + 1) + (ordenActual + frecuencia);
+                } else {
+                    nuevoOrden = random.nextInt((ultimoOrden - 8) + 1) + 8;
+                }
+
+                // 4. Mover la receta actual al nuevo orden
+                String updateRecetaActual = "UPDATE menu_detalle SET orden = ? WHERE idMenuDetalle = ?";
+                ps = conn.prepareStatement(updateRecetaActual);
+                ps.setInt(1, nuevoOrden);
+                ps.setInt(2, idMenuDetalleActual);
+                ps.executeUpdate();
+
+                // 5. Mover todas las recetas después de la posición actual hacia arriba
+                String updateOrden = "UPDATE menu_detalle SET orden = orden - 1 WHERE Menu_idMenu = ? AND orden > ?";
+                ps = conn.prepareStatement(updateOrden);
+                ps.setInt(1, idMenu);
+                ps.setInt(2, ordenActual);
+                ps.executeUpdate();
+
+                conn.commit();  // Finalizar la transacción
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        ex.printStackTrace();
-    } finally {
-        try {
-            if (conn != null) {
-                conn.close();
+        } catch (SQLException ex) {
+            try {
+                if (conn != null) {
+                    conn.rollback();  // Deshacer la transacción en caso de error
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
-}
+
+
 
 
