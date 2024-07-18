@@ -230,7 +230,52 @@ public class UsurarioDAO {
         }
         return false;
     }
+    
+    public Usuario obtenerUsuarioPorDNI(String dni) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion con = new Conexion();
+        Usuario usuario = null;
 
+        try {
+            conn = con.getConexion();
+            String query = "SELECT * FROM usuario WHERE DNI = ?";
+            ps = conn.prepareStatement(query);
+            ps.setString(1, dni);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                usuario = new Usuario();
+                usuario.setDni(rs.getString("DNI"));
+                usuario.setCorreo(rs.getString("Correo"));
+                usuario.setPassword(rs.getString("Password"));
+                usuario.setNombre(rs.getString("Nombres"));
+                usuario.setApellidos(rs.getString("Apellidos"));
+                usuario.setRol(rs.getString("Rol"));
+                usuario.setNivel(rs.getString("Nivel"));
+                usuario.setFrecuencia(rs.getInt("Frecuencia"));
+                usuario.setCalmin(rs.getDouble("CalMin"));
+                usuario.setCalmax(rs.getDouble("CalMax"));
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return usuario;
+    }
+       
+    
+    
     public int contarRecetasPorRolC() {
         int count = 0;
         Connection conn = null;

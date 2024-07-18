@@ -52,8 +52,8 @@ public class tipoComidaDAO implements TipoComidaInterface{
         return lista;
     }
 
-    @Override
-    public TipoComida listarUno(String codigo) {
+
+    public TipoComida listarUno(int codigo) {
         try {
             String sql = "select * from tipocomida where idTipo = '"+codigo+"'";            
             conn = con.getConexion();
@@ -69,6 +69,11 @@ public class tipoComidaDAO implements TipoComidaInterface{
             Logger.getLogger(tipoComidaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tc;
+    }
+
+    @Override
+    public TipoComida listarUno(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
