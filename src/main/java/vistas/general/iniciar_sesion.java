@@ -1,6 +1,7 @@
 package vistas.general;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
@@ -16,11 +17,11 @@ import vistas.cliente.cliente_sidebar;
 public class iniciar_sesion extends javax.swing.JFrame {
 
     UsurarioDAO usDao = new UsurarioDAO();
-    
+
     public iniciar_sesion() {
         initComponents();
         hidePsww.setVisible(false);
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -112,6 +113,16 @@ public class iniciar_sesion extends javax.swing.JFrame {
                 txtDNIMousePressed(evt);
             }
         });
+        txtDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDNIActionPerformed(evt);
+            }
+        });
+        txtDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDNIKeyTyped(evt);
+            }
+        });
         background.add(txtDNI, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 380, 310, 30));
 
         txtcontrasena.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
@@ -167,45 +178,41 @@ public class iniciar_sesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        
-        String dni=txtDNI.getText();
-        String password=txtcontrasena.getText();
-        Usuario usu=usDao.validarUsu(dni, password);
-        String rol=usu.getRol();
-        
-       
+
+        String dni = txtDNI.getText();
+        String password = txtcontrasena.getText();
+        Usuario usu = usDao.validarUsu(dni, password);
+        String rol = usu.getRol();
+
         //System.out.println(nivel);
-        
-        
-        
-        if (usu!=null) {
+        if (usu != null) {
             if (rol.equalsIgnoreCase("C")) {
                 //Verificar si tiene preferencias
-                if(usu.getNivel()==null && usu.getFrecuencia()==0 && usu.getCalmax()==0 && usu.getCalmin()==0){
+                if (usu.getNivel() == null && usu.getFrecuencia() == 0 && usu.getCalmax() == 0 && usu.getCalmin() == 0) {
                     cliente_configuracion cliConf = new cliente_configuracion(dni);
                     cliConf.setVisible(true);
                     this.dispose();
-                }else{
-                   cliente_sidebar cliSi= new cliente_sidebar(dni);
-                   cliSi.setVisible(true);
-                   this.dispose();
-                    
+                } else {
+                    cliente_sidebar cliSi = new cliente_sidebar(dni);
+                    cliSi.setVisible(true);
+                    this.dispose();
+
                 }
-                 
+
             }
             if (rol.equalsIgnoreCase("A")) {
-                admin_sidebar adSi= new admin_sidebar();
+                admin_sidebar adSi = new admin_sidebar();
                 adSi.setVisible(true);
                 this.dispose();
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Piña Usuario y/o contraseña no encontrado");
         }
-        
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void mostrarPswwMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mostrarPswwMouseClicked
-        txtcontrasena.setEchoChar((char)0);
+        txtcontrasena.setEchoChar((char) 0);
         hidePsww.setVisible(true);
         mostrarPsww.setVisible(false);
     }//GEN-LAST:event_mostrarPswwMouseClicked
@@ -221,12 +228,12 @@ public class iniciar_sesion extends javax.swing.JFrame {
             txtcontrasena.setText(null);
             txtcontrasena.setForeground(Color.black);
         }
-        
+
         if (txtDNI.getText().isEmpty()) {
             txtDNI.setText("Ingrese su DNI");
-            txtDNI.setForeground(new Color(204,204,204));
+            txtDNI.setForeground(new Color(204, 204, 204));
         }
-        
+
     }//GEN-LAST:event_txtcontrasenaMousePressed
 
     private void txtDNIMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDNIMousePressed
@@ -234,15 +241,27 @@ public class iniciar_sesion extends javax.swing.JFrame {
             txtDNI.setText("");
             txtDNI.setForeground(Color.black);
         }
-        
+
         if (String.valueOf(txtcontrasena.getPassword()).isEmpty()) {
             txtcontrasena.setText("**********");
-            txtcontrasena.setForeground(new Color(204,204,204));
+            txtcontrasena.setForeground(new Color(204, 204, 204));
         }
     }//GEN-LAST:event_txtDNIMousePressed
 
-    
-    
+    private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+        if (txtDNI.getText().length() >= 8) {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDNIKeyTyped
+
+    private void txtDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDNIActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDNIActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,7 +292,7 @@ public class iniciar_sesion extends javax.swing.JFrame {
         /* Create and display the form */
         try {
             //UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatLightLaf.setup();
+            FlatArcOrangeIJTheme.setup();
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }

@@ -5,6 +5,7 @@
 package vistas.general;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 
 /**
  *
@@ -156,7 +157,7 @@ public class bienvenida extends javax.swing.JFrame {
         //</editor-fold>
         try {
             //UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatLightLaf.setup();
+            FlatArcOrangeIJTheme.setup();
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }

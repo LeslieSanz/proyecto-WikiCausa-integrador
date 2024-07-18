@@ -77,15 +77,7 @@ public class DespensaDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(DespensaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        } 
     }
 
     public void eliminar(int numIngrediente, String dni) {
@@ -158,15 +150,7 @@ public class DespensaDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        } 
 
         return lista;
     }

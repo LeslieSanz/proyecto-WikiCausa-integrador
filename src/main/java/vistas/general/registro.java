@@ -1,6 +1,7 @@
 package vistas.general;
 
 import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
@@ -751,7 +752,7 @@ public class registro extends javax.swing.JFrame {
         /* Create and display the form */
         try {
             //UIManager.setLookAndFeel(new FlatLightLaf());
-            FlatLightLaf.setup();
+            FlatArcOrangeIJTheme.setup();
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }

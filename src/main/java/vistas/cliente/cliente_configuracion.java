@@ -18,21 +18,19 @@ public class cliente_configuracion extends javax.swing.JFrame {
     UsurarioDAO ud = new UsurarioDAO();
     String dni;
 
-    
     public cliente_configuracion() {
-        
+
     }
-    
+
     public cliente_configuracion(String dniOb) {
         initComponents();
         setLocationRelativeTo(null); // Centrar en la pantalla
-        dni=dniOb;
+        dni = dniOb;
         pnlResultados.setVisible(false);
         txtDni.setText("DNI:" + dni);
-        
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -180,6 +178,16 @@ public class cliente_configuracion extends javax.swing.JFrame {
         jLabel16.setText("  Peso (kg)");
 
         txtPeso.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txtPeso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPesoActionPerformed(evt);
+            }
+        });
+        txtPeso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPesoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -269,6 +277,11 @@ public class cliente_configuracion extends javax.swing.JFrame {
         jLabel18.setText(" Edad");
 
         txtEdad.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEdadKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -299,6 +312,16 @@ public class cliente_configuracion extends javax.swing.JFrame {
         jLabel19.setText("Altura (cm)");
 
         txtAltura.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txtAltura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAlturaActionPerformed(evt);
+            }
+        });
+        txtAltura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAlturaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -429,7 +452,7 @@ public class cliente_configuracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbtnMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnMActionPerformed
-        
+
         String imagePath = "/img/img_preferencias/hombre.png";
         //System.out.println("Intentando cargar imagen desde: " + imagePath);
 
@@ -446,45 +469,44 @@ public class cliente_configuracion extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtnFActionPerformed
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-             
-        
-    u = ud.ObtenerUsuario(dni);
-    char sexo;
-    if (rbtnM.isSelected()) {
-        sexo = 'M';
-    } else {
-        sexo = 'F';
-    }
-    
-    System.out.println("Sexo seleccionado: " + sexo);
-    
-    try {
-        u.setEdad(Integer.parseInt(txtEdad.getText()));
-        u.setPeso(Double.parseDouble(txtPeso.getText()));
-        u.setAltura(Double.parseDouble(txtAltura.getText()));
-        
-        System.out.println("Edad: " + u.getEdad());
-        System.out.println("Peso: " + u.getPeso());
-        System.out.println("Altura: " + u.getAltura());
-        
-        double calxdia = u.calculaCaloriasPorDia(sexo);
-        System.out.println("Calorías por día calculadas: " + calxdia);
-        
-        u.calcularCaloriasPorSemana(calxdia);
-        
-        System.out.println("Calorías mínimas por semana: " + u.getCalmin());
-        System.out.println("Calorías máximas por semana: " + u.getCalmax());
-        
-        DecimalFormat df = new DecimalFormat("#.00");
-        
-        txtCalMin.setText(df.format(u.getCalmin()));
-        txtCalMax.setText(df.format(u.getCalmax()));
-        pnlResultados.setVisible(true);
-        
-    } catch (NumberFormatException e) {
-        System.err.println("Error en la conversión de los valores: " + e.getMessage());
-        JOptionPane.showMessageDialog(null, "Por favor, introduce valores numéricos válidos.");
-    }   
+
+        u = ud.ObtenerUsuario(dni);
+        char sexo;
+        if (rbtnM.isSelected()) {
+            sexo = 'M';
+        } else {
+            sexo = 'F';
+        }
+
+        System.out.println("Sexo seleccionado: " + sexo);
+
+        try {
+            u.setEdad(Integer.parseInt(txtEdad.getText()));
+            u.setPeso(Double.parseDouble(txtPeso.getText()));
+            u.setAltura(Double.parseDouble(txtAltura.getText()));
+
+            System.out.println("Edad: " + u.getEdad());
+            System.out.println("Peso: " + u.getPeso());
+            System.out.println("Altura: " + u.getAltura());
+
+            double calxdia = u.calculaCaloriasPorDia(sexo);
+            System.out.println("Calorías por día calculadas: " + calxdia);
+
+            u.calcularCaloriasPorSemana(calxdia);
+
+            System.out.println("Calorías mínimas por semana: " + u.getCalmin());
+            System.out.println("Calorías máximas por semana: " + u.getCalmax());
+
+            DecimalFormat df = new DecimalFormat("#.00");
+
+            txtCalMin.setText(df.format(u.getCalmin()));
+            txtCalMax.setText(df.format(u.getCalmax()));
+            pnlResultados.setVisible(true);
+
+        } catch (NumberFormatException e) {
+            System.err.println("Error en la conversión de los valores: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Por favor, introduce valores numéricos válidos.");
+        }
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void txtCalMaxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCalMaxActionPerformed
@@ -492,43 +514,90 @@ public class cliente_configuracion extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCalMaxActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        
-        String nivel=null;
-        if(rbtnPrin.isSelected()) nivel = "P";
-        if(rbtnInter.isSelected()) nivel = "I";
-        if(rbtnAvanza.isSelected()) nivel = "A";
-        
-        int frec=0;
-        switch(cbxFrec.getSelectedIndex()){
-            case 1: frec = 7;
-            break;
-            case 2: frec = 14;
-            break;
-            case 3: frec = 21;
-            break;
+
+        String nivel = null;
+        if (rbtnPrin.isSelected()) {
+            nivel = "P";
         }
-        
+        if (rbtnInter.isSelected()) {
+            nivel = "I";
+        }
+        if (rbtnAvanza.isSelected()) {
+            nivel = "A";
+        }
+
+        int frec = 0;
+        switch (cbxFrec.getSelectedIndex()) {
+            case 1:
+                frec = 7;
+                break;
+            case 2:
+                frec = 14;
+                break;
+            case 3:
+                frec = 21;
+                break;
+        }
+
         u.setFrecuencia(frec);
         u.setNivel(nivel);
         ud.agregarPreferencias(u);
-        
-        
-        cliente_sidebar cliSi= new cliente_sidebar(dni);
+
+        cliente_sidebar cliSi = new cliente_sidebar(dni);
         cliSi.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void rbtnMMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbtnMMousePressed
-       
+
     }//GEN-LAST:event_rbtnMMousePressed
 
     private void rbtnFKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rbtnFKeyPressed
         //lblSilueta.setIcon(iconoMujer);
     }//GEN-LAST:event_rbtnFKeyPressed
 
+    private void txtEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }        // TODO add your handling code here:     
+        if (txtEdad.getText().length() >= 2) {
+            evt.consume();
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_txtEdadKeyTyped
+
+    private void txtAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAlturaKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
+
+        if (txtAltura.getText().length() >= 3) {
+            evt.consume();
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_txtAlturaKeyTyped
+
+    private void txtPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPesoActionPerformed
+
+    private void txtPesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPesoKeyTyped
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9' ) {
+            evt.consume();
+        }
+        if (txtPeso.getText().length() >= 3) {
+            evt.consume();}// TODO add your handling code here:
+    }//GEN-LAST:event_txtPesoKeyTyped
+
+    private void txtAlturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlturaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlturaActionPerformed
+
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -559,7 +628,7 @@ public class cliente_configuracion extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.err.println("Failed to initialize LaF");
         }
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

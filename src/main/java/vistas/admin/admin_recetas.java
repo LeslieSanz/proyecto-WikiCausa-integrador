@@ -185,6 +185,11 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel10.setText("Calorías :");
 
         txtCalorias.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtCalorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCaloriasActionPerformed(evt);
+            }
+        });
         txtCalorias.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCaloriasKeyTyped(evt);
@@ -831,6 +836,10 @@ public class admin_recetas extends javax.swing.JPanel {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCaloriasKeyTyped
+
+    private void txtCaloriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCaloriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCaloriasActionPerformed
 
     public void limpiarCampos() {
         txtIdReceta.setText(null);
