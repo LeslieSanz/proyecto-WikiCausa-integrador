@@ -58,10 +58,9 @@ public class cliente_generarMenu extends javax.swing.JPanel {
      List<DespensaDTO> despensa;
      recetaDAO recetaDAO;
      List<RecetaDTO> recetas;
-    int tipo;
-
-     Usuario us;
      int tipo;
+     Usuario usu;
+
      
     private void establecerColumnas() {
         modelo.addColumn("Lunes");

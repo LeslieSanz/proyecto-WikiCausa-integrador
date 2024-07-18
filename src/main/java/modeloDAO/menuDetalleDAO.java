@@ -81,12 +81,7 @@ public class menuDetalleDAO implements HistorialInterface{
     }
     
     //Lista las 7 recetas de menu_detalle2
-    public ArrayList<MenuDetalleDTO> listarRecetasPorPreferencias() {
-        try {
-            String sql = "SELECT Receta_idReceta,orden\n" +
-                            "FROM menu_detalle2\n" +
-                            "WHERE orden BETWEEN 1 AND 7";
-        System.err.println("Entrando aqui");
+    public ArrayList<MenuDetalleDTO> listarRecetasPorPreferencias() {   
         try {
             String sql = "SELECT Receta_idReceta,orden FROM menu_detalle2 WHERE orden BETWEEN 1 AND 7;";
             
