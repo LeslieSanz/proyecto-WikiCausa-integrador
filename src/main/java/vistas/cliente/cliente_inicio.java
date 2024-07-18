@@ -40,7 +40,7 @@ public class cliente_inicio extends javax.swing.JPanel {
         initComponents();
         dni=dniob;
         prueba();
-        
+        btnDetalles.setVisible(false);
         //Para mostrar la fecha actual
         LocalDate now = LocalDate.now();
         int year = now.getYear();
@@ -63,6 +63,7 @@ public class cliente_inicio extends javax.swing.JPanel {
         if(h==null || h.getReceta()==null){
             System.out.println("Redigiendo a cliente_inicio");
         } else {
+         btnDetalles.setVisible(true);
          txtCodReceta.setText(h.getReceta().getId());
          System.out.println(h.getReceta().getId());
         lblNombreReceta.setText(h.getReceta().getNombre());
@@ -102,7 +103,8 @@ public class cliente_inicio extends javax.swing.JPanel {
         System.out.println(dni);
         Usuario us= usDao.ObtenerUsuario(dni);
         System.out.println(us.getNombre()+" Cli_inicio");
-        jLNombre.setText(us.getNombre() +" " + us.getApellidos());
+        jLNombre.setText(us.getNombre());
+        jlApellido.setText(us.getApellidos());
         
     }
     
@@ -132,8 +134,10 @@ public class cliente_inicio extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jlApellido = new javax.swing.JLabel();
         jLNombre = new javax.swing.JLabel();
         fraseMotivadora = new javax.swing.JLabel();
         lblFecha = new javax.swing.JLabel();
@@ -171,6 +175,9 @@ public class cliente_inicio extends javax.swing.JPanel {
         jPanel1.setPreferredSize(new java.awt.Dimension(1049, 720));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_inicio/iconoperfil.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 60, -1, -1));
+
         jLabel5.setFont(new java.awt.Font("Poppins Medium", 2, 18)); // NOI18N
         jLabel5.setText("¡Tu menú semanal está listo! ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 280, -1));
@@ -179,9 +186,13 @@ public class cliente_inicio extends javax.swing.JPanel {
         jLabel2.setText("Planea hoy, disfruta mañana. ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 280, -1));
 
+        jlApellido.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        jlApellido.setText("Apellido");
+        jPanel1.add(jlApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 90, 130, -1));
+
         jLNombre.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
-        jLNombre.setText("Nombre de usuario");
-        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 80, 180, -1));
+        jLNombre.setText("Nombre ");
+        jPanel1.add(jLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 60, 120, -1));
 
         fraseMotivadora.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         fraseMotivadora.setForeground(new java.awt.Color(46, 46, 46));
@@ -270,8 +281,8 @@ public class cliente_inicio extends javax.swing.JPanel {
         jPanel1.add(estofado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 190, 160));
 
         lblNombreReceta.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
-        lblNombreReceta.setText("Estofado de pollo");
-        jPanel1.add(lblNombreReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 170, -1));
+        lblNombreReceta.setText("Sin definir, genera tu menú semanal");
+        jPanel1.add(lblNombreReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 280, 340, -1));
 
         btnDetalles.setBackground(new java.awt.Color(241, 208, 75));
         btnDetalles.setFont(new java.awt.Font("Poppins SemiBold", 0, 12)); // NOI18N
@@ -288,21 +299,21 @@ public class cliente_inicio extends javax.swing.JPanel {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 340, -1, -1));
 
         lblTiempo.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        lblTiempo.setText("45 minutos");
+        lblTiempo.setText("----");
         jPanel1.add(lblTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 340, -1, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/people.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, -1, -1));
 
         lblPorcion.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        lblPorcion.setText("4 personas");
+        lblPorcion.setText("----");
         jPanel1.add(lblPorcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/img_iconos_recetas/info.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 340, -1, -1));
 
         lblCalorias.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        lblCalorias.setText("600 kcal/porción");
+        lblCalorias.setText("----");
         jPanel1.add(lblCalorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, -1, -1));
 
         lbl2.setBackground(new java.awt.Color(170, 89, 19));
@@ -331,7 +342,7 @@ public class cliente_inicio extends javax.swing.JPanel {
 
         txtCodReceta.setEditable(false);
         txtCodReceta.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        txtCodReceta.setText("R0007");
+        txtCodReceta.setText("----");
         txtCodReceta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodRecetaActionPerformed(evt);
@@ -419,8 +430,10 @@ public class cliente_inicio extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jlApellido;
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl3;
     private javax.swing.JLabel lbl4;
