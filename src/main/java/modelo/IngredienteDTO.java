@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Objects;
+
 public class IngredienteDTO {
     private int id;
     private String nombre;
@@ -13,7 +15,7 @@ public class IngredienteDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -42,6 +44,5 @@ public class IngredienteDTO {
         String[] partes = ingredienteMedida.split("-");
         return partes[partes.length - 1];
     }
- 
-    
+
 }

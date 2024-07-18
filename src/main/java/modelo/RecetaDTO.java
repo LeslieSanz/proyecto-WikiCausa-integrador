@@ -1,5 +1,8 @@
 package modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecetaDTO {
     private String id;
     private String nombre;
@@ -8,7 +11,14 @@ public class RecetaDTO {
     private int porcion;
     private int tiempo;
     private double calorias;
-    private String Imagen;
+    private String imagen;
+    private List<IngredienteDTO> ingredientes;
+    private int coincidencias;
+    private int prioridad;
+
+    public RecetaDTO() {
+        this.ingredientes = new ArrayList<>();
+    }
 
     public String getNombre() {
         return nombre;
@@ -25,8 +35,6 @@ public class RecetaDTO {
     public void setPreparacion(String preparacion) {
         this.preparacion = preparacion;
     }
-
-    
 
     public int getPorcion() {
         return porcion;
@@ -69,12 +77,34 @@ public class RecetaDTO {
     }
 
     public String getImagen() {
-        return Imagen;
+        return imagen;
     }
 
-    public void setImagen(String Imagen) {
-        this.Imagen = Imagen;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
-    
+    public List<IngredienteDTO> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(List<IngredienteDTO> ingredientes) {
+        this.ingredientes = ingredientes;
+    }
+
+    public int getCoincidencias() {
+        return coincidencias;
+    }
+
+    public void setCoincidencias(int coincidencias) {
+        this.coincidencias = coincidencias;
+    }
+
+    public int getPrioridad() {
+        return prioridad;
+    }
+
+    public void setPrioridad(int prioridad) {
+        this.prioridad = prioridad;
+    }
 }
