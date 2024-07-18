@@ -26,7 +26,7 @@ public class main {
 
     // Obtener la despensa del usuario (simulado para este ejemplo)
     DespensaDAO despensaDAO = new DespensaDAO();
-    String dniUsuario = "8888888";  // DNI del usuario
+    String dniUsuario = "99999999";  // DNI del usuario
     List<DespensaDTO> despensa = despensaDAO.obtenerIngredientesPorUsuario(dniUsuario);
 
     // Encontrar las coincidencias entre los ingredientes de la despensa y las recetas
@@ -49,7 +49,7 @@ public class main {
     int frecuencia = usuario.getFrecuencia();  // Obtener la frecuencia del usuario
 
     // Cambiar la receta según la frecuencia o sin frecuencia
-    boolean aplicarFrecuencia = false;  // Cambiar a 'false' si no se quiere aplicar la frecuencia
+    boolean aplicarFrecuencia = true;  // Cambiar a 'false' si no se quiere aplicar la frecuencia
 
     // Cambiar la receta
     menuService.cambiarRecetaConFrecuencia(idMenu, ordenActual, frecuencia, aplicarFrecuencia);

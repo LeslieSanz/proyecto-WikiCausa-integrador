@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 import modelo.*;
 
 public class MenuService {
+    RecetaDTO r;
+    recetaDAO rd = new recetaDAO();
     
     public Map<String, Integer> encontrarCoincidencias(List<RecetaDTO> recetas, List<DespensaDTO> despensa) {
     // Mapa para almacenar el número de coincidencias únicas para cada receta
@@ -258,7 +260,10 @@ public List<IngredienteDTO> listarIngredientesFaltantes(List<RecetaDTO> recetas,
             MenuDetalleDTO detalle = new MenuDetalleDTO();
             detalle.setIdMenuDetalle(rs.getInt("idMenuDetalle"));
             detalle.setMenuIdMenu(rs.getInt("Menu_idMenu"));
-            detalle.setRecetaIdReceta(rs.getString("Receta_idReceta"));
+            //Para la receta
+                String cr = rs.getString("Receta_idReceta");
+                r= rd.listarUno(cr);
+                detalle.setReceta(r); 
             detalle.setOrden(rs.getInt("orden"));
             detallesMenu.add(detalle);
         }

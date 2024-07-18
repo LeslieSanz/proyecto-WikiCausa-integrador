@@ -3,7 +3,7 @@ package modelo;
 public class MenuDetalleDTO {
     private int idMenuDetalle;
     private int menuIdMenu;
-    private String recetaIdReceta;
+    private RecetaDTO receta;
     private int orden;
     
     // Getters y setters
@@ -23,14 +23,15 @@ public class MenuDetalleDTO {
         this.menuIdMenu = menuIdMenu;
     }
 
-    public String getRecetaIdReceta() {
-        return recetaIdReceta;
+    public RecetaDTO getReceta() {
+        return receta;
     }
 
-    public void setRecetaIdReceta(String recetaIdReceta) {
-        this.recetaIdReceta = recetaIdReceta;
+    public void setReceta(RecetaDTO receta) {
+        this.receta = receta;
     }
 
+    
     public int getOrden() {
         return orden;
     }
