@@ -4,8 +4,10 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.intellijthemes.FlatArcOrangeIJTheme;
 import java.awt.Color;
 import javax.swing.JOptionPane;
+import modelo.HistorialDTO;
 import modelo.Usuario;
 import modeloDAO.UsurarioDAO;
+import modeloDAO.historialDAO;
 import vistas.admin.admin_sidebar;
 import vistas.cliente.cliente_configuracion;
 import vistas.cliente.cliente_sidebar;
@@ -18,10 +20,12 @@ public class iniciar_sesion extends javax.swing.JFrame {
 
     UsurarioDAO usDao = new UsurarioDAO();
 
+
     public iniciar_sesion() {
         initComponents();
         hidePsww.setVisible(false);
-
+ 
+        
     }
 
     @SuppressWarnings("unchecked")

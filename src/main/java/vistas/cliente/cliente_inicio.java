@@ -59,6 +59,10 @@ public class cliente_inicio extends javax.swing.JPanel {
         
         //Para que se muestre el plato de día
          h = hd.listarPlatoDelDia(dni);
+         
+        if(h==null || h.getReceta()==null){
+            System.out.println("Redigiendo a cliente_inicio");
+        } else {
          txtCodReceta.setText(h.getReceta().getId());
          System.out.println(h.getReceta().getId());
         lblNombreReceta.setText(h.getReceta().getNombre());
@@ -90,7 +94,7 @@ public class cliente_inicio extends javax.swing.JPanel {
         } catch (Exception e) {
             System.err.println("Error al cargar la imagen: " + e.getMessage());
             e.printStackTrace();
-        }
+        }}
         
     }
 
@@ -327,7 +331,7 @@ public class cliente_inicio extends javax.swing.JPanel {
 
         txtCodReceta.setEditable(false);
         txtCodReceta.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        txtCodReceta.setText("R0017");
+        txtCodReceta.setText("R0007");
         txtCodReceta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodRecetaActionPerformed(evt);
