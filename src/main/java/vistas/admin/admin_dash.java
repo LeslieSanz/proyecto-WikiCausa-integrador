@@ -144,8 +144,8 @@ public class admin_dash extends javax.swing.JPanel {
         les.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/Leslie.png"))); // NOI18N
         add(les, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, -1));
 
-        luiami.setText("LUISMI");
-        add(luiami, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 200, -1, -1));
+        luiami.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/LuisMi.png"))); // NOI18N
+        add(luiami, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 160, -1, -1));
 
         omar.setText("OMAR");
         add(omar, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 200, -1, -1));

@@ -112,6 +112,7 @@ public class admin_verRecetas extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblRecetas = new javax.swing.JTable();
         btnDetalleReceta = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         cbxTipoComida = new javax.swing.JComboBox<>();
         btnFiltrar = new javax.swing.JButton();
@@ -154,6 +155,17 @@ public class admin_verRecetas extends javax.swing.JPanel {
         });
         jPanel1.add(btnDetalleReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 330, 120, 30));
 
+        btnEliminar.setBackground(new java.awt.Color(210, 76, 0));
+        btnEliminar.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 370, 120, -1));
+
         jLabel1.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel1.setText("Acciones");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, -1, -1));
@@ -188,6 +200,30 @@ public class admin_verRecetas extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+   int fila = tblRecetas.getSelectedRow();
+          
+       if (fila==-1){
+            // Mostrar un mensaje de error para notificar al usuario que debe seleccionar una fila.
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una receta de la tabla.", "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+            codReceta = tblRecetas.getValueAt(fila, 0).toString();
+            rd = new recetaDAO();
+            rd.eliminar(codReceta);
+            
+            
+            //Para refrescar la tabla
+            if (cbxTipoComida.getSelectedIndex() != 0) {
+            codTipoComida = cbxTipoComida.getSelectedIndex();
+            FiltrarRecetas(codTipoComida);
+            }else{
+                mostrarRecetas();
+            }
+
+       }
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnDetalleRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetalleRecetaActionPerformed
         int fila = tblRecetas.getSelectedRow();
@@ -230,6 +266,7 @@ public class admin_verRecetas extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetalleReceta;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnFiltrar;
     private javax.swing.JComboBox<String> cbxTipoComida;
     private javax.swing.JLabel jLabel1;

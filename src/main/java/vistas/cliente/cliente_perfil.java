@@ -10,6 +10,7 @@ public class cliente_perfil extends javax.swing.JPanel {
 
     String dni;
     UsurarioDAO usDao = new UsurarioDAO();
+    Usuario u;
 
     public cliente_perfil(String dniob) {
         initComponents();
@@ -137,12 +138,13 @@ public class cliente_perfil extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        rbtnPrin = new javax.swing.JRadioButton();
+        rbtnInter = new javax.swing.JRadioButton();
+        rbtnAvanza = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbxFrec = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
+        btnModPred = new javax.swing.JButton();
         jLNombre = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(245, 245, 245));
@@ -207,7 +209,7 @@ public class cliente_perfil extends javax.swing.JPanel {
                 btnModificarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, -1, -1));
+        jPanel2.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 30, -1, -1));
 
         jButton1.setText("Subir foto");
 
@@ -294,35 +296,53 @@ public class cliente_perfil extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         jLabel10.setText("Nivel culinario");
 
-        btnGroupNivel.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jRadioButton1.setText("Principiante");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupNivel.add(rbtnPrin);
+        rbtnPrin.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        rbtnPrin.setText("Principiante");
+        rbtnPrin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                rbtnPrinActionPerformed(evt);
             }
         });
 
-        btnGroupNivel.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jRadioButton2.setText("Intermedio");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnGroupNivel.add(rbtnInter);
+        rbtnInter.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        rbtnInter.setText("Intermedio");
+        rbtnInter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                rbtnInterActionPerformed(evt);
             }
         });
 
-        btnGroupNivel.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jRadioButton3.setText("Avanzado");
+        btnGroupNivel.add(rbtnAvanza);
+        rbtnAvanza.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        rbtnAvanza.setText("Avanzado");
 
         jLabel11.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         jLabel11.setText("Frecuencia ");
 
-        jComboBox2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxFrec.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        cbxFrec.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Cada 7 días", "Cada 14 días", "Cada 21 días", " " }));
+        cbxFrec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFrecActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Recalcular calorías");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        btnModPred.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        btnModPred.setText("Modificar");
+        btnModPred.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModPredActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -340,21 +360,25 @@ public class cliente_perfil extends javax.swing.JPanel {
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbxFrec, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
+                                .addComponent(rbtnPrin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButton2)))
+                                .addComponent(rbtnInter)))
                         .addGap(14, 14, 14))))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
-                        .addComponent(jRadioButton3))
+                        .addComponent(rbtnAvanza))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(52, 52, 52)
                         .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(btnModPred)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,17 +387,19 @@ public class cliente_perfil extends javax.swing.JPanel {
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rbtnPrin)
+                    .addComponent(rbtnInter))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
-                .addGap(18, 18, 18)
+                .addComponent(rbtnAvanza)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(cbxFrec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnModPred)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         jLNombre.setFont(new java.awt.Font("Poppins", 1, 48)); // NOI18N
@@ -404,7 +430,7 @@ public class cliente_perfil extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 607, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,7 +452,7 @@ public class cliente_perfil extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(83, 83, 83))
+                .addGap(155, 155, 155))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -458,13 +484,13 @@ public class cliente_perfil extends javax.swing.JPanel {
         VerificarCambioPassword();
     }//GEN-LAST:event_btnActPasswordActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void rbtnPrinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnPrinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_rbtnPrinActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void rbtnInterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnInterActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_rbtnInterActionPerformed
 
     private void txtApeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApeKeyTyped
         char c = evt.getKeyChar();
@@ -484,16 +510,69 @@ public class cliente_perfil extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
+    private void btnModPredActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModPredActionPerformed
+
+        Usuario us = usDao.ObtenerUsuario(dni);
+
+        boolean nivelActualizado = false;
+        boolean frecuenciaActualizada = false;
+
+        if (rbtnPrin.isSelected() || rbtnInter.isSelected() || rbtnAvanza.isSelected()) {
+            String nivel = null;
+            if (rbtnPrin.isSelected()) {
+                nivel = "P";
+            } else if (rbtnInter.isSelected()) {
+                nivel = "I";
+            } else if (rbtnAvanza.isSelected()) {
+                nivel = "A";
+            }
+
+            us.setNivel(nivel);
+            nivelActualizado = true;
+            
+        } 
+        
+        if (cbxFrec.getSelectedIndex() != -1) {
+            int frec = 0;
+            switch (cbxFrec.getSelectedIndex()) {
+                case 1:
+                    frec = 7;
+                    break;
+                case 2:
+                    frec = 14;
+                    break;
+                case 3:
+                    frec = 21;
+                    break;
+            }
+
+            us.setFrecuencia(frec);
+            frecuenciaActualizada = true;
+        } 
+
+        btnGroupNivel.clearSelection();
+        cbxFrec.setSelectedIndex(0);
+    }//GEN-LAST:event_btnModPredActionPerformed
+
+    private void cbxFrecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFrecActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxFrecActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActPassword;
     private javax.swing.ButtonGroup btnGroupNivel;
+    private javax.swing.JButton btnModPred;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnValidarPassword;
+    private javax.swing.JComboBox<String> cbxFrec;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -511,9 +590,9 @@ public class cliente_perfil extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton rbtnAvanza;
+    private javax.swing.JRadioButton rbtnInter;
+    private javax.swing.JRadioButton rbtnPrin;
     private javax.swing.JTextField txtApe;
     private javax.swing.JPasswordField txtContraNue1;
     private javax.swing.JPasswordField txtContraNue2;
