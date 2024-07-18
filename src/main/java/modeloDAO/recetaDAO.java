@@ -329,4 +329,40 @@ public class recetaDAO implements RecetaInterface {
         return recetas;
     }
 
+
+     public int contarFilasReg() {
+        int count = 0;
+
+        try {
+            String sql = "SELECT COUNT(*) FROM receta";
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return count;
+    }
+     
+    public int contarTipo(int n) {
+        int count = 0;
+
+        try {
+            String sql = "SELECT COUNT(*) FROM receta where TipoComida_idTipo='"+n+"'";
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return count;
+    }
 }

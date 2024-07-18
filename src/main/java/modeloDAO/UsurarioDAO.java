@@ -210,4 +210,37 @@ public class UsurarioDAO {
         return usuario;
     }
        
+    
+    
+    public int contarRecetasPorRolC() {
+    int count = 0;
+    Connection conn = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+    
+    try {
+        String sql = "SELECT COUNT(*) FROM usuario WHERE Rol = 'C'";
+        Conexion con = new Conexion();
+        conn = con.getConexion();
+        ps = conn.prepareStatement(sql);
+        rs = ps.executeQuery();
+        if (rs.next()) {
+            count = rs.getInt(1);
+        }
+    } catch (SQLException ex) {
+        Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        // Close resources in the reverse order of their creation
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            if (conn != null) conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    return count;
+}
+
 }

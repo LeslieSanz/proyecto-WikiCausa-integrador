@@ -150,6 +150,16 @@ public class admin_recetas extends javax.swing.JPanel {
         jLabel2.setText("Nombre :");
 
         txtNombreReceta.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtNombreReceta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreRecetaActionPerformed(evt);
+            }
+        });
+        txtNombreReceta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreRecetaKeyTyped(evt);
+            }
+        });
 
         jLabel14.setFont(new java.awt.Font("Poppins Medium", 0, 12)); // NOI18N
         jLabel14.setText("Tipo :");
@@ -840,6 +850,18 @@ public class admin_recetas extends javax.swing.JPanel {
     private void txtCaloriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCaloriasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCaloriasActionPerformed
+
+    private void txtNombreRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreRecetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreRecetaActionPerformed
+
+    private void txtNombreRecetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRecetaKeyTyped
+       char c = evt.getKeyChar();
+        if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z')) {
+            evt.consume();
+        }
+    // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreRecetaKeyTyped
 
     public void limpiarCampos() {
         txtIdReceta.setText(null);

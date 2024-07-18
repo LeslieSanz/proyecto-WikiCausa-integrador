@@ -7,21 +7,19 @@ import modelo.Usuario;
 import modeloDAO.UsurarioDAO;
 
 public class cliente_perfil extends javax.swing.JPanel {
-    
+
     String dni;
-    UsurarioDAO usDao= new UsurarioDAO();
-    
-    
-    public cliente_perfil(String dniob){
+    UsurarioDAO usDao = new UsurarioDAO();
+
+    public cliente_perfil(String dniob) {
         initComponents();
         btnModificar.setEnabled(false);
-        dni=dniob;
+        dni = dniob;
         MostrarDatosUsu(dniob);
         txtContraNue1.setEnabled(false);
         txtContraNue2.setEnabled(false);
         btnActPassword.setEnabled(false);
-        
-        
+
         //Detecta algun cambio en el jtextfield
         txtNombre.getDocument().addDocumentListener(new CambioDocumentListener());
         txtApe.getDocument().addDocumentListener(new CambioDocumentListener());
@@ -30,10 +28,9 @@ public class cliente_perfil extends javax.swing.JPanel {
         txtContraNue2.getDocument().addDocumentListener(new CambioDocumentListener());
 
     }
-    
-    
-    public void MostrarDatosUsu(String dni){
-        Usuario us= usDao.ObtenerUsuario(dni);
+
+    public void MostrarDatosUsu(String dni) {
+        Usuario us = usDao.ObtenerUsuario(dni);
         txtDni.setText(dni);
         txtNombre.setText(us.getNombre());
         txtApe.setText(us.getApellidos());
@@ -42,58 +39,59 @@ public class cliente_perfil extends javax.swing.JPanel {
         btnModificar.setEnabled(false);
         System.out.println(us.getCorreo());
     }
-    
-    public boolean validarPassword(){
-        Usuario us= usDao.obtenerPassword(dni);
-        String contra=us.getPassword();
+
+    public boolean validarPassword() {
+        Usuario us = usDao.obtenerPassword(dni);
+        String contra = us.getPassword();
         if (contra.equalsIgnoreCase(txtpassAct.getText())) {
             txtContraNue1.setEnabled(true);
             txtContraNue2.setEnabled(true);
             btnActPassword.setEnabled(true);
             return true;
-        }else{
+        } else {
             txtContraNue1.setEnabled(false);
             txtContraNue2.setEnabled(false);
             JOptionPane.showMessageDialog(null, "Contraseña actual incorrecta");
             return false;
         }
     }
-    
-    public void VerificarCambioPassword(){
-        if (txtContraNue1.getText().equalsIgnoreCase(txtContraNue2.getText())&& validarPassword()) {
+
+    public void VerificarCambioPassword() {
+        if (txtContraNue1.getText().equalsIgnoreCase(txtContraNue2.getText()) && validarPassword()) {
             usDao.editarContraUsu(txtContraNue1.getText(), dni);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Contraseña no coincide");
         }
     }
-    
-    public boolean VerificarCambiosTXT(String nombres,String Ape, String Correo){
-        Usuario us= usDao.ObtenerUsuario(dni);
-        String nomAc=us.getNombre();
-        String apeAc=us.getApellidos();
-        String corrAc=us.getCorreo();
-        
-        if (!nomAc.equalsIgnoreCase(nombres)|| !apeAc.equalsIgnoreCase(Ape) || !corrAc.equalsIgnoreCase(Correo)) {
+
+    public boolean VerificarCambiosTXT(String nombres, String Ape, String Correo) {
+        Usuario us = usDao.ObtenerUsuario(dni);
+        String nomAc = us.getNombre();
+        String apeAc = us.getApellidos();
+        String corrAc = us.getCorreo();
+
+        if (!nomAc.equalsIgnoreCase(nombres) || !apeAc.equalsIgnoreCase(Ape) || !corrAc.equalsIgnoreCase(Correo)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    
-    public void habilitarbtnMod(){
-        
+
+    public void habilitarbtnMod() {
+
         if (VerificarCambiosTXT(txtNombre.getText(), txtApe.getText(), txtCorreo.getText())) {
             btnModificar.setEnabled(true);
         } else {
             btnModificar.setEnabled(false);
         }
     }
-    
+
     private class CambioDocumentListener implements DocumentListener {
+
         @Override
         public void insertUpdate(DocumentEvent e) {
             habilitarbtnMod();
-            
+
         }
 
         @Override
@@ -111,6 +109,7 @@ public class cliente_perfil extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroupNivel = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -162,6 +161,11 @@ public class cliente_perfil extends javax.swing.JPanel {
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
 
         txtNombre.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 188, -1));
 
         jLabel4.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
@@ -169,6 +173,11 @@ public class cliente_perfil extends javax.swing.JPanel {
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
 
         txtApe.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txtApe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApeKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtApe, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 70, 190, -1));
 
         jLabel5.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
@@ -184,6 +193,11 @@ public class cliente_perfil extends javax.swing.JPanel {
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
 
         txtCorreo.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreoActionPerformed(evt);
+            }
+        });
         jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 190, -1));
 
         btnModificar.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
@@ -280,6 +294,7 @@ public class cliente_perfil extends javax.swing.JPanel {
         jLabel10.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
         jLabel10.setText("Nivel culinario");
 
+        btnGroupNivel.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jRadioButton1.setText("Principiante");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -288,6 +303,7 @@ public class cliente_perfil extends javax.swing.JPanel {
             }
         });
 
+        btnGroupNivel.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jRadioButton2.setText("Intermedio");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +312,7 @@ public class cliente_perfil extends javax.swing.JPanel {
             }
         });
 
+        btnGroupNivel.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         jRadioButton3.setText("Avanzado");
 
@@ -425,11 +442,11 @@ public class cliente_perfil extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
-        Usuario us= usDao.ObtenerUsuario(dni);
+        Usuario us = usDao.ObtenerUsuario(dni);
         us.setNombre(txtNombre.getText());
         us.setApellidos(txtApe.getText());
         us.setCorreo(txtCorreo.getText());
-        usDao.editarDatosUsu(dni,us);
+        usDao.editarDatosUsu(dni, us);
         jLNombre.setText(us.getNombre());
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -449,9 +466,28 @@ public class cliente_perfil extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
+    private void txtApeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApeKeyTyped
+        char c = evt.getKeyChar();
+        if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z')) {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApeKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c = evt.getKeyChar();
+        if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z')) {
+            evt.consume();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActPassword;
+    private javax.swing.ButtonGroup btnGroupNivel;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnValidarPassword;
     private javax.swing.JButton jButton1;
