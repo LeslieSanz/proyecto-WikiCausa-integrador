@@ -1,6 +1,7 @@
 package modeloDAO;
 import config.Conexion;
 import java.util.ArrayList;
+import java.time.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -65,6 +66,35 @@ public class menuDAO implements MenuInterface{
             Logger.getLogger(menuDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return m;
+    }
+    
+    public boolean FechasExistentes(java.util.Date fechaINI, java.util.Date fechaFIN,String dniUsuario) {
+        boolean fechasExistentes = false;
+        try {
+            java.sql.Date sqlFechaInicio = new java.sql.Date(fechaINI.getTime());
+            java.sql.Date sqlFechaFin = new java.sql.Date(fechaFIN.getTime());
+
+            String sql = "SELECT COUNT(*) FROM menu WHERE (FechaInicio = ? OR FechaFin = ?) AND Usuario_DNI = ?";
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+
+            ps.setDate(1, sqlFechaInicio);
+            ps.setDate(2, sqlFechaFin);
+            ps.setString(3, dniUsuario);
+
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                if (count > 0) {
+                    fechasExistentes = true;
+                }
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(menuDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return fechasExistentes;
     }
     
     

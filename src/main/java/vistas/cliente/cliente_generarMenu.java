@@ -11,7 +11,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -33,6 +38,7 @@ import modelo.Usuario;
 import modeloDAO.DespensaDAO;
 import modeloDAO.MenuService;
 import modeloDAO.UsurarioDAO;
+import modeloDAO.menuDAO;
 import modeloDAO.menuDetalleDAO;
 import modeloDAO.recetaDAO;
 
@@ -42,6 +48,7 @@ public class cliente_generarMenu extends javax.swing.JPanel {
     
     MenuDetalleDTO mdt;
     menuDetalleDAO mdtdao;
+    menuDAO meDAO = new menuDAO();
     //String codMenu;
     String dni;
     UsurarioDAO usDao= new UsurarioDAO();
@@ -282,7 +289,14 @@ public class cliente_generarMenu extends javax.swing.JPanel {
 
     private void btnGenerarmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarmenuActionPerformed
                                              
-            if (rbtnOptimi.isSelected()) {
+        Date fechaIni = fechaInicio.getDate();
+        Date fechaFi = fechaFin.getDate();
+        
+        
+        if (fechas()) {
+            
+            if (!meDAO.FechasExistentes(fechaIni, fechaFi,dni)) {
+                if (rbtnOptimi.isSelected()) {
                 generarMenuPorOptimizacion();
                 btnReRoll.setVisible(true);
                 tipo = 1;
@@ -294,6 +308,15 @@ public class cliente_generarMenu extends javax.swing.JPanel {
                 System.out.println("Selecciona una opción para generar el menú.");
 
         }
+            }else{
+                JOptionPane.showMessageDialog(null, "Fecha YA existente");
+            }
+            
+        }else{
+            
+        }
+        
+        
 
     }//GEN-LAST:event_btnGenerarmenuActionPerformed
         
@@ -766,14 +789,56 @@ public class cliente_generarMenu extends javax.swing.JPanel {
     tblRecetasNombres.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 }
-
-
-
-
-
-
-
-
+    
+    public boolean fechas(){
+        Date fechaIni = fechaInicio.getDate();
+        Date fechaFi = fechaFin.getDate();
+        
+        if (fechaInicio == null || fechaFin == null) {
+            JOptionPane.showMessageDialog(null, "Por favor, seleccione las fechas de inicio y fin.");
+            return false;
+        }
+        
+        Calendar calInicio = Calendar.getInstance();
+        calInicio.setTime(fechaIni);
+        Calendar calFin = Calendar.getInstance();
+        calFin.setTime(fechaFi);
+        
+        if (calInicio.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY || calFin.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+            JOptionPane.showMessageDialog(null, "Se debe seleccionar un Lunes como fecha de inicio y un Domingo como fecha de fin para generar horarios.");
+            return false;
+        }
+        
+        // Verificar si hay exactamente 7 días de diferencia
+        long diff = calFin.getTimeInMillis() - calInicio.getTimeInMillis();
+        long daysDiff = diff / (24 * 60 * 60 * 1000);
+        if (daysDiff != 6) { // Deben ser exactamente 7 días de diferencia entre lunes y domingo (6 días en total)
+            JOptionPane.showMessageDialog(null, "El rango de fechas debe cubrir exactamente 7 días (de lunes a domingo de la misma semana).");
+            return false;
+        }
+        
+        SimpleDateFormat formatoFec = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaini = formatoFec.format(fechaIni);
+        System.out.println(fechaini);
+        String fechafin = formatoFec.format(fechaFi);
+        System.out.println(fechafin);
+        return true;
+        
+    }
+    
+    
+    public boolean checkFechas(String dateStr1, String dateStr2, String pattern) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+        try {
+            LocalDate date1 = LocalDate.parse(dateStr1, formatter);
+            LocalDate date2 = LocalDate.parse(dateStr2, formatter);
+            return !date1.equals(date2);
+        } catch (DateTimeParseException e) {
+            System.out.println("Error parsing dates: " + e.getMessage());
+            return false;
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnNo;
     private javax.swing.JButton BtnYa;
