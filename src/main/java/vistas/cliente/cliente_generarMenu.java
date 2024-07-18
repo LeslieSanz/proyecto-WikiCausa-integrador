@@ -1,11 +1,18 @@
 package vistas.cliente;
 
+import config.Conexion;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +27,7 @@ import modelo.DespensaDTO;
 import modelo.HistorialDTO;
 import modelo.IngredienteDTO;
 import modelo.MenuDetalleDTO;
+import static modelo.MenuRecomendador.crearMenu;
 import modelo.RecetaDTO;
 import modelo.Usuario;
 import modeloDAO.DespensaDAO;
@@ -45,6 +53,8 @@ public class cliente_generarMenu extends javax.swing.JPanel {
      recetaDAO recetaDAO;
      List<RecetaDTO> recetas;
 
+     Usuario us;
+     int tipo;
      
     private void establecerColumnas() {
         modelo.addColumn("Lunes");
@@ -225,14 +235,16 @@ public class cliente_generarMenu extends javax.swing.JPanel {
     private void btnGenerarmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarmenuActionPerformed
      if(rbtnOptimi.isSelected()){
          generarMenuPorOptimizacion();
+         tipo = 1;
      }else{
-         System.out.println("Se supone que el otro algortimo");
+         generarMenuPorPreferencias();
+         tipo = 2;
      }
     }//GEN-LAST:event_btnGenerarmenuActionPerformed
 
     public void prueba(){
         System.out.println(dni);
-        Usuario us= usDao.ObtenerUsuario(dni);
+        us= usDao.obtenerUsuarioPorDNI(dni);
         System.out.println(us.getNombre()+" cli_menu");  
     }
     
@@ -261,8 +273,126 @@ public class cliente_generarMenu extends javax.swing.JPanel {
     }
     
      public void generarMenuPorPreferencias(){
-         
+        // Paso 1: Obtener las recetas ordenadas por calorías descendentes
+        List<RecetaDTO> recetas = obtenerRecetasOrdenadasPorCalorias();
+        
+        // Paso 2: Ordenar las recetas en grupos de 7 dentro del rango de calorías
+        ordenarRecetasPorRangoCalorias(recetas);
+
+        // Paso 3: Imprimir el resultado por consola sin modificar las calorías originales
+        for (RecetaDTO receta : recetas) {
+            System.out.println("Nombre: " + receta.getNombre() + ", Calorías: " + receta.getCalorias());
+        }
+        
+        String fechaInicio = obtenerFechaInicio(); // Fecha de inicio del menú
+        String fechaFin =  obtenerFechaFin();    // Fecha de fin del menú
+        crearMenu(recetas, fechaInicio, fechaFin , dni);
      }
+     
+     // Método para obtener las recetas ordenadas por calorías descendentes
+        private static List<RecetaDTO> obtenerRecetasOrdenadasPorCalorias() {
+            recetaDAO dao = new recetaDAO();
+            return dao.listarPorCaloriasDesc();
+        }
+        
+        // Método para ordenar las recetas en grupos de 7 dentro del rango de calorías
+    public void ordenarRecetasPorRangoCalorias(List<RecetaDTO> recetas) {
+        // Definir el rango de calorías
+        
+        double rangoMinimo = us.getCalmin(); // Ejemplo de rango mínimo
+        double rangoMaximo = us.getCalmax(); // Ejemplo de rango máximo
+        
+        System.out.println(rangoMaximo);
+        System.out.println(rangoMinimo);
+
+        // Ordenar todas las recetas por calorías descendentes (ya deberían estar ordenadas)
+        Collections.sort(recetas, Comparator.comparingDouble(RecetaDTO::getCalorias).reversed());
+
+        // Iterar y agrupar las recetas en grupos de 7 dentro del rango de calorías
+        for (int i = 0; i < recetas.size(); i += 7) {
+            // Obtener el subconjunto de recetas para este grupo de 7
+            List<RecetaDTO> grupo = recetas.subList(i, Math.min(i + 7, recetas.size()));
+
+            // Calcular la suma total de calorías del grupo
+            double sumaCalorias = grupo.stream().mapToDouble(RecetaDTO::getCalorias).sum();
+
+            // Verificar y ajustar las recetas dentro del rango de calorías
+            if (sumaCalorias < rangoMinimo || sumaCalorias > rangoMaximo) {
+                // Calcular el factor de ajuste proporcional
+                double factorAjuste = 1.0;
+                if (sumaCalorias < rangoMinimo) {
+                    factorAjuste = rangoMinimo / sumaCalorias;
+                } else if (sumaCalorias > rangoMaximo) {
+                    factorAjuste = rangoMaximo / sumaCalorias;
+                }
+
+                // Aplicar el ajuste proporcional a las calorías temporales del grupo y redondear
+                for (RecetaDTO receta : grupo) {
+                    double nuevasCalorias = receta.getCalorias() * factorAjuste;
+                    receta.setCalorias(Math.round(nuevasCalorias)); // Redondear las calorías ajustadas
+                }
+            }
+        }
+    }
+
+    public void crearMenu(List<RecetaDTO> recetasOrdenadas, String fechaInicio, String fechaFin, String dniUsuario) {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+
+            conn = Conexion.getConexion();
+            //Generar nuevo ID de menu
+            String generarIdMenuQuery = "SELECT COALESCE(MAX(idMenu), 0) + 1 AS newId FROM menu";
+            ps = conn.prepareStatement(generarIdMenuQuery);
+            rs = ps.executeQuery();
+            int idMenu = 1; // Inicialización por defecto
+            if (rs.next()) {
+                idMenu = rs.getInt("newId");
+            }
+
+            //insertar en la tabla menu
+            String insertarMenuQuery = "INSERT INTO menu (idMenu, FechaInicio, FechaFin, Usuario_DNI) VALUES (?, ?, ?, ?)";
+            ps = conn.prepareStatement(insertarMenuQuery);
+            ps.setInt(1, idMenu);
+            ps.setString(2, fechaInicio);
+            ps.setString(3, fechaFin);
+            ps.setString(4, dniUsuario);
+            ps.executeUpdate();
+
+            // Insertar en la tabla Menu_Detalle
+            String insertarMenuDetalleQuery = "INSERT INTO menu_detalle2 (Menu_idMenu, Receta_idReceta, orden) VALUES (?, ?, ?)";
+
+            ps = conn.prepareStatement(insertarMenuDetalleQuery);
+            int orden = 1;
+            for (RecetaDTO receta : recetasOrdenadas) {
+                ps.setInt(1, idMenu);
+                ps.setString(2, receta.getId());
+                ps.setInt(3, orden);
+                ps.executeUpdate();
+                orden++;
+            }
+            System.out.println("Menú creado exitosamente.");
+        } catch (SQLException ex) {
+            System.err.println("Error al crear el menú: " + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+            }
+        }
+    }
+
     
     public String obtenerFechaInicio() {
         Date date = fechaInicio.getDate();
@@ -289,7 +419,14 @@ public class cliente_generarMenu extends javax.swing.JPanel {
         modelo2.setRowCount(0); 
 
         mdtdao = new menuDetalleDAO();
-        ArrayList<MenuDetalleDTO> lista = mdtdao.listarRecetasPorOptimizacion();
+        
+        ArrayList<MenuDetalleDTO> lista;
+        if(tipo == 1){
+             lista = mdtdao.listarRecetasPorOptimizacion();
+        }else {
+            lista = mdtdao.listarRecetasPorPreferencias();
+        }
+       
 
         // Crear una fila para los nombres de la receta
         Object[] rowData1 = new Object[7]; 
@@ -333,7 +470,13 @@ public void mostrarMenuSemanal() {
 
 
     mdtdao = new menuDetalleDAO();
-    ArrayList<MenuDetalleDTO> lista = mdtdao.listarRecetasPorOptimizacion();
+    
+    ArrayList<MenuDetalleDTO> lista;
+        if(tipo == 1){
+             lista = mdtdao.listarRecetasPorOptimizacion();
+        }else {
+            lista = mdtdao.listarRecetasPorPreferencias();
+        }
     
     
 
