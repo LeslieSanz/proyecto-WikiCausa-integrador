@@ -3,6 +3,8 @@ package modeloDAO;
 import config.Conexion;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +27,9 @@ public class recetaDAO implements RecetaInterface {
     private ResultSet rs;
     private ArrayList<RecetaDTO> lista = new ArrayList<>();
     private RecetaDTO r;
+    TipoComida tp;
+    tipoComidaDAO tpDao = new tipoComidaDAO();
+
 
     @Override
     public boolean agregar(RecetaDTO r) {
@@ -365,4 +370,79 @@ public class recetaDAO implements RecetaInterface {
 
         return count;
     }
+    
+     //Listar Recetas colocando las calorias mas altas primero
+    public ArrayList<RecetaDTO> listarPorCaloriasDesc() {
+        try {
+            String sql = "SELECT * FROM receta ORDER BY Calorias DESC";
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                r = new RecetaDTO();
+                r.setId(rs.getString("idReceta"));
+                r.setNombre(rs.getString("Nombre"));
+                int cod = rs.getInt("TipoComida_idTipo");
+                tp = tpDao.listarUno(cod);
+                r.setTipo(tp);
+                r.setPorcion(rs.getInt("Porcion"));
+                r.setTiempo(rs.getInt("TiempoPreparacion"));
+                r.setCalorias(rs.getDouble("Calorias"));
+                lista.add(r);
+            }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(recetaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
+    }
+
+    public static List<RecetaDTO> obtenerRecetasOrdenadasPorCalorias() {
+        recetaDAO dao = new recetaDAO();
+        return dao.listarPorCaloriasDesc();
+    }
+
+    public static List<List<RecetaDTO>> ordenarRecetasPorRangoCalorias(List<RecetaDTO> recetas, double rangoMinimo, double rangoMaximo) {
+        Collections.sort(recetas, Comparator.comparingDouble(RecetaDTO::getCalorias).reversed());
+        List<List<RecetaDTO>> gruposValidos = new ArrayList<>();
+        List<RecetaDTO> grupoActual = new ArrayList<>();
+
+        for (RecetaDTO receta : recetas) {
+            grupoActual.add(receta);
+            if (grupoActual.size() == 7) {
+                double sumaCalorias = grupoActual.stream().mapToDouble(RecetaDTO::getCalorias).sum();
+                if (sumaCalorias >= rangoMinimo && sumaCalorias <= rangoMaximo) {
+                    gruposValidos.add(new ArrayList<>(grupoActual));
+                }
+                grupoActual.clear();
+            }
+        }
+        if (!grupoActual.isEmpty()) {
+            gruposValidos.add(new ArrayList<>(grupoActual));
+        }
+        return gruposValidos;
+    }
+
+
+//Lista recetas por tipo
+//    public ArrayList<IngredienteDTO> listaIngrexTipo(int id){
+//        try{
+//            conn = con.getConexion();
+//            String sql="{call  GetIngredienteMedidaByTipo(?)}";
+//            CallableStatement st=conn.prepareCall(sql);
+//            st.setInt(1, id);
+//            ResultSet rs=st.executeQuery();
+//
+//            while(rs.next()){
+//                i = new IngredienteDTO();
+//                i.setNombre(rs.getString("IngredienteMedida"));
+//                lista.add(i);       
+//            }
+//            conn.close();
+//        }catch(Exception ex){
+//            ex.printStackTrace();
+//        }
+//        return lista;
+//    } 
+
 }
