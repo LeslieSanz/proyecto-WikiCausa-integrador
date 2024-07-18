@@ -708,6 +708,8 @@ public class cliente_perfil extends javax.swing.JPanel {
 // Determinar la frecuencia
         int frec = 0;
         switch (cbxFrec.getSelectedIndex()) {
+            case 0:
+                frec= Integer.parseInt(txtFrecuencia.getText());
             case 1:
                 frec = 7;
                 break;
