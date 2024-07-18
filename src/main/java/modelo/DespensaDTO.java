@@ -1,20 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelo;
 
-/**
- *
- * @author yosse
- */
-public class DespensaDTO {
+import java.util.List;
 
+public class DespensaDTO {
     private int idDespensa;
     private String nombre;
     private String fecha;
     private int cantidad;
     private String medida;
+    private List<IngredienteDTO> ingredientes;
 
     public DespensaDTO(String nombre, int cantidad, String medida) {
         this.nombre = nombre;
@@ -33,10 +27,6 @@ public class DespensaDTO {
         this.idDespensa = idDespensa;
     }
     
-    
-
-    
-
     public String getFecha() {
         return fecha;
     }
@@ -69,7 +59,11 @@ public class DespensaDTO {
         this.nombre = nombre;
     }
     
-    
-    
-    
+    public List<IngredienteDTO> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setIngredientes(List<IngredienteDTO> ingredientes) {
+        this.ingredientes = ingredientes;
+    }
 }
