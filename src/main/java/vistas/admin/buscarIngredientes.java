@@ -149,6 +149,11 @@ public class buscarIngredientes extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 126, 379, 281));
 
         txtNomIngre.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        txtNomIngre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNomIngreKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNomIngre, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 180, -1));
 
         jLabel4.setFont(new java.awt.Font("Poppins Medium", 0, 14)); // NOI18N
@@ -246,6 +251,13 @@ public class buscarIngredientes extends javax.swing.JFrame {
     private void tblIngredientesMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_tblIngredientesMouseWheelMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_tblIngredientesMouseWheelMoved
+
+    private void txtNomIngreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomIngreKeyTyped
+      char c = evt.getKeyChar();
+        if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z')) {
+            evt.consume();
+        }  // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomIngreKeyTyped
 
     public void aplicarFiltro() {
         txtBuscar.addKeyListener(new KeyAdapter() {

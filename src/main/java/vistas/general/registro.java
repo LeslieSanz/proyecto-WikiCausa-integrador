@@ -191,6 +191,11 @@ public class registro extends javax.swing.JFrame {
                 txtNomMousePressed(evt);
             }
         });
+        txtNom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomActionPerformed(evt);
+            }
+        });
         txtNom.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtNomKeyTyped(evt);
@@ -253,6 +258,11 @@ public class registro extends javax.swing.JFrame {
         txtEmail1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 txtEmail1MousePressed(evt);
+            }
+        });
+        txtEmail1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEmail1ActionPerformed(evt);
             }
         });
         txtEmail1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -718,12 +728,27 @@ public class registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtApePKeyTyped
 
     private void txtDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDNIKeyTyped
-        
+        if (txtDNI.getText().length() >= 8) {
+            evt.consume();
+        }
+
+        char c = evt.getKeyChar();
+        if (c < '0' || c > '9') {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtDNIKeyTyped
 
     private void txtRepPsswActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepPsswActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRepPsswActionPerformed
+
+    private void txtNomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomActionPerformed
+
+    private void txtEmail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmail1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmail1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
