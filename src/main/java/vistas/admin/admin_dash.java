@@ -29,8 +29,9 @@ public class admin_dash extends javax.swing.JPanel {
              "octubre", "noviembre", "diciembre"};
         lblFecha.setText("Hoy es " + dia + " de " + meses[month - 1]+ " de " + year);
         
-//        actualizarRec();
-//        actualizarNumUsuReg();
+        actualizarRec();
+        actualizarNumUsuReg();
+        cantTipo();
     }
 
     /**
@@ -43,8 +44,12 @@ public class admin_dash extends javax.swing.JPanel {
     private void initComponents() {
 
         lblFecha = new javax.swing.JLabel();
+        numPollo = new javax.swing.JLabel();
         numUsu = new javax.swing.JLabel();
         numUsuReg = new javax.swing.JLabel();
+        numCarne = new javax.swing.JLabel();
+        numPescado = new javax.swing.JLabel();
+        numOtro = new javax.swing.JLabel();
         UsuariosRegistrados = new javax.swing.JLabel();
         TotalRecetas = new javax.swing.JLabel();
         cantPollo = new javax.swing.JLabel();
@@ -74,114 +79,148 @@ public class admin_dash extends javax.swing.JPanel {
         lblFecha.setForeground(new java.awt.Color(170, 89, 19));
         lblFecha.setText("Fecha de hoy");
         lblFecha.setBorder(new javax.swing.border.MatteBorder(null));
-        add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, -1, -1));
+        add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 20, -1, -1));
+
+        numPollo.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        numPollo.setForeground(new java.awt.Color(102, 102, 102));
+        numPollo.setText("0");
+        add(numPollo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 420, 80, 110));
 
         numUsu.setFont(new java.awt.Font("Poppins", 1, 64)); // NOI18N
         numUsu.setText("0");
-        add(numUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 290, 80, 110));
+        add(numUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 80, 110));
 
         numUsuReg.setFont(new java.awt.Font("Poppins", 1, 64)); // NOI18N
         numUsuReg.setForeground(new java.awt.Color(255, 255, 255));
         numUsuReg.setText("0");
-        add(numUsuReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 540, 100, 110));
+        add(numUsuReg, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 500, 100, 110));
+
+        numCarne.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        numCarne.setForeground(new java.awt.Color(102, 102, 102));
+        numCarne.setText("0");
+        add(numCarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 530, 80, 110));
+
+        numPescado.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        numPescado.setForeground(new java.awt.Color(102, 102, 102));
+        numPescado.setText("0");
+        add(numPescado, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 420, 80, 110));
+
+        numOtro.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        numOtro.setForeground(new java.awt.Color(102, 102, 102));
+        numOtro.setText("0");
+        add(numOtro, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 530, 80, 110));
 
         UsuariosRegistrados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/panUsuReg.png"))); // NOI18N
-        add(UsuariosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
+        add(UsuariosRegistrados, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         TotalRecetas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/panTotRec.png"))); // NOI18N
-        add(TotalRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 470, -1, -1));
+        add(TotalRecetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(26, 430, -1, -1));
 
         cantPollo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/panDePollo.png"))); // NOI18N
-        add(cantPollo, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 450, 280, 190));
+        add(cantPollo, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 410, 280, 190));
 
         cantCarne.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/panDeCarne.png"))); // NOI18N
-        add(cantCarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 560, 280, 190));
+        add(cantCarne, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 520, 280, 190));
 
         cantPescado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/panPescado.png"))); // NOI18N
-        add(cantPescado, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 450, 280, 190));
+        add(cantPescado, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 410, 280, 190));
 
         otros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/panOtroa.png"))); // NOI18N
-        add(otros, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 560, 280, 190));
+        add(otros, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 520, 280, 190));
 
         equipodesarrolladores.setFont(new java.awt.Font("Poppins", 1, 20)); // NOI18N
         equipodesarrolladores.setForeground(new java.awt.Color(232, 162, 24));
         equipodesarrolladores.setText("Equipo de desarrolladores");
-        add(equipodesarrolladores, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 160, -1, -1));
+        add(equipodesarrolladores, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
 
         SoporteTecnico.setFont(new java.awt.Font("Poppins", 1, 20)); // NOI18N
         SoporteTecnico.setForeground(new java.awt.Color(232, 162, 24));
         SoporteTecnico.setText("Soporte técnico");
-        add(SoporteTecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, -1, -1));
+        add(SoporteTecnico, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, -1, -1));
 
         yoss.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/Yoss.png"))); // NOI18N
-        add(yoss, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, -1, -1));
+        add(yoss, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, -1, -1));
 
         les.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ADMIN/Leslie.png"))); // NOI18N
-        add(les, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, -1, -1));
+        add(les, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 160, -1, -1));
 
         luiami.setText("LUISMI");
-        add(luiami, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 240, -1, -1));
+        add(luiami, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 200, -1, -1));
 
         omar.setText("OMAR");
-        add(omar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 240, -1, -1));
+        add(omar, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 200, -1, -1));
 
         OmarT.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 16)); // NOI18N
         OmarT.setForeground(new java.awt.Color(67, 77, 86));
         OmarT.setText("Omar Trejo");
-        add(OmarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 300, -1, -1));
+        add(OmarT, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 260, -1, -1));
 
         AndreA.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 16)); // NOI18N
         AndreA.setForeground(new java.awt.Color(67, 77, 86));
         AndreA.setText("Andrea Altamirano");
-        add(AndreA, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, -1));
+        add(AndreA, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, -1, -1));
 
         lessS.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 16)); // NOI18N
         lessS.setForeground(new java.awt.Color(67, 77, 86));
         lessS.setText("Leslie Sánchez");
-        add(lessS, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 300, -1, -1));
+        add(lessS, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, -1, -1));
 
         LuisP.setFont(new java.awt.Font("Nirmala UI Semilight", 1, 16)); // NOI18N
         LuisP.setForeground(new java.awt.Color(67, 77, 86));
         LuisP.setText("Luis Paz");
-        add(LuisP, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 300, -1, -1));
+        add(LuisP, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 260, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Poppins", 1, 15)); // NOI18N
         jLabel1.setText("Horario de atención:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 410, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         jLabel2.setText("Lunes a Viernes, 9:00 AM - 6:00 PM (CET)");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Poppins", 1, 15)); // NOI18N
         jLabel3.setText("Teléfono:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Poppins", 1, 15)); // NOI18N
         jLabel4.setText("Correo electrónico:");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, -1, -1));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         jLabel5.setText("support@wikicausa.com");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, -1, -1));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 330, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Poppins", 0, 15)); // NOI18N
         jLabel6.setText("+34 123 456 789");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 390, -1, -1));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 350, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
-//    private void actualizarRec() {
-//        int count = rDAO.contarFilas();
-//        // Actualiza el JTextField con el número de filas
-//        numUsuReg.setText(String.valueOf(count));
-//    }
-//    
-//    private void actualizarNumUsuReg() {
-//        int count = rUsu.contarRecetasPorRolC();
-//        // Actualiza el JTextField con el número de filas
-//        numUsu.setText(String.valueOf(count));
-//    }
+    private void actualizarRec() {
+        int count = rDAO.contarFilasReg();
+        // Actualiza el JTextField con el número de filas
+        numUsuReg.setText(String.valueOf(count));
+    }
+    
+    private void actualizarNumUsuReg() {
+        int count = rUsu.contarRecetasPorRolC();
+        // Actualiza el JTextField con el número de filas
+        numUsu.setText(String.valueOf(count));
+    }
+    
+    private void cantTipo() {
+        
+        int count1 = rDAO.contarTipo(1);
+        int count2 = rDAO.contarTipo(2);
+        int count3 = rDAO.contarTipo(3);
+        int count4 = rDAO.contarTipo(4);
+        
+        // Actualiza el JTextField con el número de filas
+        numPollo.setText(String.valueOf(count1));
+        numCarne.setText(String.valueOf(count2));
+        numPescado.setText(String.valueOf(count3));
+        numOtro.setText(String.valueOf(count4));
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AndreA;
     private javax.swing.JLabel LuisP;
@@ -203,6 +242,10 @@ public class admin_dash extends javax.swing.JPanel {
     private javax.swing.JLabel les;
     private javax.swing.JLabel lessS;
     private javax.swing.JLabel luiami;
+    private javax.swing.JLabel numCarne;
+    private javax.swing.JLabel numOtro;
+    private javax.swing.JLabel numPescado;
+    private javax.swing.JLabel numPollo;
     private javax.swing.JLabel numUsu;
     private javax.swing.JLabel numUsuReg;
     private javax.swing.JLabel omar;
