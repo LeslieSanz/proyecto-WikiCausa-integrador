@@ -42,7 +42,7 @@ public class cliente_verRecetas extends javax.swing.JPanel {
         codTipoComida = cod;
         
         tpd = new tipoComidaDAO();
-        tp = tpd.listarUno(codTipoComida+"");
+        tp = tpd.listarUno2(codTipoComida+"");
         lblNombreTipo.setText("Recetas de " + tp.getNombre());
         
         FiltrarRecetas(codTipoComida);

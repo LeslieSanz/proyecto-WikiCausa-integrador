@@ -695,6 +695,9 @@ public class cliente_perfil extends javax.swing.JPanel {
 
 // Determinar el nivel
         String nivel = null;
+        if (nivel==null){
+            nivel = txtNivel.getText();
+        }
         if (rbtnPrin.isSelected()) {
             nivel = "P";
         }

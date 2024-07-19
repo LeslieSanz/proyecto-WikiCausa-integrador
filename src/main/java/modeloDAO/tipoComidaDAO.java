@@ -71,6 +71,26 @@ public class tipoComidaDAO implements TipoComidaInterface{
         return tc;
     }
 
+
+    
+    public TipoComida listarUno2(String codigo) {
+         try {
+            String sql = "select * from tipocomida where idTipo = '"+codigo+"'";            
+            conn = con.getConexion();
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                tc = new TipoComida();
+                tc.setId(rs.getInt("idTipo"));
+                tc.setNombre(rs.getString("NombreTipo"));
+             }
+            conn.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(tipoComidaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tc;
+    }
+
     @Override
     public TipoComida listarUno(String codigo) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

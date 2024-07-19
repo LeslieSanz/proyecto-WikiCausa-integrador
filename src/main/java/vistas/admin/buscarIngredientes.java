@@ -253,10 +253,11 @@ public class buscarIngredientes extends javax.swing.JFrame {
     }//GEN-LAST:event_tblIngredientesMouseWheelMoved
 
     private void txtNomIngreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomIngreKeyTyped
-      char c = evt.getKeyChar();
-        if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z')) {
+        char c = evt.getKeyChar();
+        if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z') && c != ' ') {
             evt.consume();
-        }  // TODO add your handling code here:
+        }
+
     }//GEN-LAST:event_txtNomIngreKeyTyped
 
     public void aplicarFiltro() {

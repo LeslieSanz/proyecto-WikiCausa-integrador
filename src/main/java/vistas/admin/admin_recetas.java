@@ -856,11 +856,12 @@ public class admin_recetas extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNombreRecetaActionPerformed
 
     private void txtNombreRecetaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRecetaKeyTyped
-       char c = evt.getKeyChar();
-        if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z')) {
+        char c = evt.getKeyChar();
+        if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z') && c != ' ') {
             evt.consume();
         }
-    // TODO add your handling code here:
+
+        // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreRecetaKeyTyped
 
     public void limpiarCampos() {
